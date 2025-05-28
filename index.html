@@ -13,14 +13,20 @@
     }
     body {
       font-family: 'Raleway', sans-serif;
-      background: #f4f4f4;
-      color: #333;
+      background: #121212;
+      color: #eee;
       padding: 1rem;
     }
     header {
       text-align: center;
       padding: 2rem 1rem;
-      background-color: #ffe600;
+      background: repeating-linear-gradient(
+        45deg,
+        #007bff,
+        #007bff 20px,
+        #ffffff 20px,
+        #ffffff 40px
+      );
       color: #000;
     }
     header h1 {
@@ -39,15 +45,15 @@
       display: inline-block;
       margin: 0.5rem 1rem;
       font-size: 1.2rem;
-      color: #000;
+      color: #007bff;
       text-decoration: none;
-      border: 2px solid #000;
+      border: 2px solid #007bff;
       padding: 0.5rem 1rem;
       border-radius: 5px;
       transition: 0.3s;
     }
     .links a:hover {
-      background-color: #000;
+      background-color: #007bff;
       color: #fff;
     }
     iframe {
@@ -58,10 +64,10 @@
       margin: 2rem auto;
     }
     form {
-      background: #fff;
+      background: #1e1e1e;
       padding: 1rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
       text-align: left;
     }
     form label {
@@ -72,14 +78,16 @@
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.5rem;
-      border: 1px solid #ccc;
+      border: 1px solid #555;
       border-radius: 5px;
+      background-color: #2a2a2a;
+      color: #eee;
     }
     form button {
       margin-top: 1rem;
       padding: 0.7rem 1.2rem;
       border: none;
-      background-color: #000;
+      background-color: #007bff;
       color: #fff;
       font-size: 1rem;
       border-radius: 5px;
@@ -89,7 +97,7 @@
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
-      color: #666;
+      color: #888;
     }
   </style>
 </head>
@@ -107,18 +115,9 @@
     <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
 
     <h2>Book oss!</h2>
-    <form action="mailto:booking.badegjestene@outlook.com" method="post" enctype="text/plain">
-      <label for="name">Navn:</label>
-      <input type="text" id="name" name="name" required>
+    <p style="margin-bottom: 1rem;">Send oss en e-post direkte: <a href="mailto:booking.badegjestene@outlook.com" style="color: #007bff;">booking.badegjestene@outlook.com</a></p>
 
-      <label for="email">E-post:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Melding:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-
-      <button type="submit">Send booking</button>
-    </form>
+    <!-- Suggest using email link instead of insecure form -->
   </div>
   <footer>
     &copy; 2025 Badegjestene Partyband
