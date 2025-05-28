@@ -20,21 +20,11 @@
     header {
       text-align: center;
       padding: 2rem 1rem;
-      background: repeating-linear-gradient(
-        45deg,
-        #007bff,
-        #007bff 20px,
-        #ffffff 20px,
-        #ffffff 40px
-      );
-      color: #000;
+      background-color: #121212;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
+    header img {
+      max-width: 300px;
+      height: auto;
     }
     .content {
       max-width: 800px;
@@ -103,8 +93,7 @@
 </head>
 <body>
   <header>
-    <h1>Badegjestene</h1>
-    <p>Partyband til ditt neste event!</p>
+    <img src="logo.png" alt="Badegjestene logo">
   </header>
   <div class="content">
     <div class="links">
@@ -115,9 +104,21 @@
     <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
 
     <h2>Book oss!</h2>
-    <p style="margin-bottom: 1rem;">Send oss en e-post direkte: <a href="mailto:booking.badegjestene@outlook.com" style="color: #007bff;">booking.badegjestene@outlook.com</a></p>
+    <form action="https://formsubmit.co/booking.badegjestene@outlook.com" method="POST">
+      <label for="name">Navn:</label>
+      <input type="text" id="name" name="name" required>
 
-    <!-- Suggest using email link instead of insecure form -->
+      <label for="email">E-post:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Melding:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+
+      <button type="submit">Send booking</button>
+    </form>
   </div>
   <footer>
     &copy; 2025 Badegjestene Partyband
