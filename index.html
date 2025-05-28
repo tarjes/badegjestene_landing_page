@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Badegjestene Partyband</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      padding: 1rem;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #ffe600;
+      color: #000;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    .links a {
+      display: inline-block;
+      margin: 0.5rem 1rem;
+      font-size: 1.2rem;
+      color: #000;
+      text-decoration: none;
+      border: 2px solid #000;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .links a:hover {
+      background-color: #000;
+      color: #fff;
+    }
+    iframe {
+      width: 100%;
+      max-width: 640px;
+      height: 360px;
+      border: none;
+      margin: 2rem auto;
+    }
+    form {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    form label {
+      display: block;
+      margin-top: 1rem;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      background-color: #000;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Badegjestene</h1>
+    <p>Partyband til ditt neste event!</p>
+  </header>
+  <div class="content">
+    <div class="links">
+      <a href="https://www.instagram.com/badegjestene1" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/watch?v=NEKfliBrN-U" target="_blank">YouTube</a>
+    </div>
+
+    <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
+
+    <h2>Book oss!</h2>
+    <form action="mailto:booking.badegjestene@outlook.com" method="post" enctype="text/plain">
+      <label for="name">Navn:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">E-post:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Melding:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send booking</button>
+    </form>
+  </div>
+  <footer>
+    &copy; 2025 Badegjestene Partyband
+  </footer>
+</body>
+</html>
