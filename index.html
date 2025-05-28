@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Badegjestene Partyband</title>
-  <link rel="icon" type="image/png" href="thumbnail.png">
+  <link rel="icon" type="image/png" href="favicon-32x32.png">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -100,15 +100,16 @@
       margin: 2vh 0;
     }
     .video-section iframe {
-      width: 90vw;
-      max-width: 480px;
-      height: 50vw;
-      max-height: 270px;
+      width: 75vw;           /* Changed from 90vw to 75vw */
+      max-width: 1200px;     /* Increased max-width for large screens */
+      height: 42vw;          /* Adjust height for 16:9 aspect ratio */
+      max-height: 675px;
       border-radius: 12px;
       border: none;
       margin-bottom: 0.5rem;
       box-shadow: 0 2px 24px rgba(0,0,0,0.3);
       background: #000;
+      display: block;
     }
     .video-section a {
       color: #fff;
