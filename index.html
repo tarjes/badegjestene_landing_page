@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Badegjestene Partyband</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       box-sizing: border-box;
@@ -13,52 +14,97 @@
     }
     body {
       font-family: 'Raleway', sans-serif;
-      background: #121212;
+      background: url('background.jpeg') no-repeat center center fixed;
+      background-size: cover;
       color: #eee;
-      padding: 1rem;
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     header {
       text-align: center;
-      padding: 2rem 1rem;
-      background-color: #121212;
+      padding: 2rem 1rem 1rem 1rem;
+      background: rgba(18,18,18,0.7);
+      width: 100%;
     }
     header img {
       max-width: 300px;
       height: auto;
     }
-    .content {
-      max-width: 800px;
-      margin: 2rem auto;
+    .container {
+      background: rgba(18, 18, 18, 0.85);
+      border-radius: 16px;
+      padding: 2rem 1rem;
+      margin: 2rem 0;
+      max-width: 700px;
+      width: 95%;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .video-section {
+      margin-bottom: 2rem;
       text-align: center;
-    }
-    .links a {
-      display: inline-block;
-      margin: 0.5rem 1rem;
-      font-size: 1.2rem;
-      color: #007bff;
-      text-decoration: none;
-      border: 2px solid #007bff;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    .links a:hover {
-      background-color: #007bff;
-      color: #fff;
-    }
-    iframe {
       width: 100%;
-      max-width: 640px;
-      height: 360px;
-      border: none;
-      margin: 2rem auto;
     }
+    .video-section iframe {
+      width: 100%;
+      max-width: 400px;
+      height: 225px;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      border: none;
+    }
+    .video-section a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 1rem;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    .carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+    .carousel img {
+      width: 100%;
+      max-width: 400px;
+      height: 225px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .carousel button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .carousel .prev { left: 0; }
+    .carousel .next { right: 0; }
     form {
       background: #1e1e1e;
       padding: 1rem;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
       text-align: left;
+      width: 100%;
+      margin-bottom: 2rem;
     }
     form label {
       display: block;
@@ -83,11 +129,31 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0 1rem 0;
+    }
+    .social-links a {
+      color: #eee;
+      font-size: 2rem;
+      transition: color 0.2s;
+    }
+    .social-links a:hover {
+      color: #007bff;
+    }
     footer {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1rem;
       font-size: 0.9rem;
       color: #888;
+      background: rgba(18,18,18,0.7);
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 1rem; }
+      .carousel img, .video-section iframe { max-width: 100%; height: auto; }
     }
   </style>
 </head>
@@ -95,14 +161,23 @@
   <header>
     <img src="logo.png" alt="Badegjestene logo">
   </header>
-  <div class="content">
-    <div class="links">
-      <a href="https://www.instagram.com/badegjestene1" target="_blank">Instagram</a>
-      <a href="https://www.youtube.com/watch?v=NEKfliBrN-U" target="_blank">YouTube</a>
+  <div class="container">
+    <!-- YouTube Video -->
+    <div class="video-section">
+      <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
+      <div>
+        <a href="https://www.youtube.com/@Badegjestene" target="_blank">Se flere videoer</a>
+      </div>
     </div>
 
-    <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
+    <!-- Image Carousel -->
+    <div class="carousel">
+      <button class="prev" onclick="prevImage()" aria-label="Forrige bilde"><i class="fas fa-chevron-left"></i></button>
+      <img id="carousel-img" src="old_irish_1.png" alt="Bildekarusell">
+      <button class="next" onclick="nextImage()" aria-label="Neste bilde"><i class="fas fa-chevron-right"></i></button>
+    </div>
 
+    <!-- Booking Form -->
     <h2>Book oss!</h2>
     <form action="https://formspree.io/f/xwpognyr" method="POST">
       <label for="name">Navn:</label>
@@ -115,13 +190,13 @@
       <textarea id="message" name="message" rows="5" required></textarea>
 
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
 
       <button type="submit">Send booking</button>
     </form>
   </div>
-  <footer>
-    &copy; 2025 Badegjestene
-  </footer>
-</body>
-</html>
+  <!-- Social Media Links -->
+  <div class="social-links">
+    <a href="https://www.facebook.com/Badegjestene" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="http://instagram.com/badegjestene1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/@Badegjestene" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@badegjestene" target="_blank" title="TikTok
