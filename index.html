@@ -4,223 +4,270 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Badegjestene Partyband</title>
+  <link rel="icon" type="image/png" href="thumbnail.png">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
     }
     body {
+      min-height: 100vh;
+      min-width: 100vw;
+      width: 100vw;
+      height: 100vh;
       font-family: 'Raleway', sans-serif;
       background: url('background.jpeg') no-repeat center center fixed;
       background-size: cover;
-      color: #eee;
-      min-height: 100vh;
-      padding: 0;
+      color: #fff;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18,18,18,0.45);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .main-content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
     }
     header {
+      width: 100vw;
       text-align: center;
-      padding: 2rem 1rem 1rem 1rem;
-      background: rgba(18,18,18,0.7);
-      width: 100%;
+      margin-top: 2vh;
+      margin-bottom: 2vh;
     }
     header img {
-      max-width: 300px;
+      max-width: 320px;
+      width: 60vw;
       height: auto;
+      filter: drop-shadow(0 2px 12px #000a);
     }
-    .container {
-      background: rgba(18, 18, 18, 0.85);
-      border-radius: 16px;
-      padding: 2rem 1rem;
-      margin: 2rem 0;
-      max-width: 700px;
-      width: 95%;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .video-section {
-      margin-bottom: 2rem;
-      text-align: center;
-      width: 100%;
-    }
-    .video-section iframe {
-      width: 100%;
-      max-width: 400px;
-      height: 225px;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-      border: none;
-    }
-    .video-section a {
-      color: #fff;
-      text-decoration: underline;
-      font-size: 1rem;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-    .carousel {
+    .carousel-fullscreen {
+      width: 100vw;
+      height: 50vh;
+      max-height: 60vw;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 2rem;
-      width: 100%;
-      max-width: 400px;
       position: relative;
+      margin-bottom: 2vh;
+      margin-top: 2vh;
+      overflow: hidden;
     }
-    .carousel img {
-      width: 100%;
-      max-width: 400px;
-      height: 225px;
+    .carousel-fullscreen img {
+      width: 100vw;
+      height: 100%;
       object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      border-radius: 0;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+      transition: opacity 0.3s;
     }
-    .carousel button {
+    .carousel-fullscreen button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       background: rgba(0,0,0,0.5);
       border: none;
       color: #fff;
-      font-size: 2rem;
+      font-size: 2.5rem;
       cursor: pointer;
-      padding: 0 0.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 50%;
-      z-index: 1;
+      z-index: 2;
+      transition: background 0.2s;
     }
-    .carousel .prev { left: 0; }
-    .carousel .next { right: 0; }
+    .carousel-fullscreen .prev { left: 2vw; }
+    .carousel-fullscreen .next { right: 2vw; }
+    .video-section {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2vh 0;
+    }
+    .video-section iframe {
+      width: 90vw;
+      max-width: 480px;
+      height: 50vw;
+      max-height: 270px;
+      border-radius: 12px;
+      border: none;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+      background: #000;
+    }
+    .video-section a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    .booking-form-container {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      margin: 2vh 0;
+    }
     form {
-      background: #1e1e1e;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      text-align: left;
-      width: 100%;
-      margin-bottom: 2rem;
+      background: rgba(18,18,18,0.85);
+      padding: 1.5rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 16px rgba(0,0,0,0.5);
+      width: 90vw;
+      max-width: 400px;
+      margin: 0 auto;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
     }
     form label {
-      display: block;
-      margin-top: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
     }
     form input, form textarea {
       width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.5rem;
+      padding: 0.7rem;
       border: 1px solid #555;
-      border-radius: 5px;
-      background-color: #2a2a2a;
-      color: #eee;
+      border-radius: 6px;
+      background-color: #232323;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
     }
     form button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
+      margin-top: 0.5rem;
+      padding: 0.8rem 1.2rem;
       border: none;
       background-color: #007bff;
       color: #fff;
-      font-size: 1rem;
-      border-radius: 5px;
+      font-size: 1.1rem;
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    form button:hover {
+      background: #0056b3;
     }
     .social-links {
+      width: 100vw;
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin: 2rem 0 1rem 0;
+      gap: 2rem;
+      margin: 2vh 0 1vh 0;
+      z-index: 2;
+      position: relative;
     }
     .social-links a {
-      color: #eee;
-      font-size: 2rem;
+      color: #fff;
+      font-size: 2.2rem;
       transition: color 0.2s;
+      text-shadow: 0 2px 8px #000a;
     }
     .social-links a:hover {
       color: #007bff;
     }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      background: rgba(18,18,18,0.7);
-      width: 100%;
-    }
     @media (max-width: 600px) {
-      .container { padding: 1rem; }
-      .carousel img, .video-section iframe { max-width: 100%; height: auto; }
+      header img { max-width: 90vw; }
+      .carousel-fullscreen { height: 38vw; min-height: 180px; }
+      .carousel-fullscreen img { height: 100%; }
+      .video-section iframe { height: 48vw; min-height: 160px; }
+      form { padding: 1rem 0.5rem; }
     }
   </style>
 </head>
-
-<script>
-  // Simple image carousel logic
-  const images = [
-    'old_irish_38.png',
-    'old_irish_16.png',
-    'old_irish_1.png',
-    'old_irish_22.png',
-  ];
-  let current = 0;
-  const imgEl = document.getElementById('carousel-img');
-  function showImage(idx) {
-    imgEl.src = images[idx];
-  }
-  function prevImage() {
-    current = (current - 1 + images.length) % images.length;
-    showImage(current);
-  }
-  function nextImage() {
-    current = (current + 1) % images.length;
-    showImage(current);
-  }
-</script>
-
 <body>
-  <header>
-    <img src="logo.png" alt="Badegjestene logo">
-  </header>
-  <div class="container">
-    <!-- YouTube Video -->
-    <div class="video-section">
-      <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
-      <div>
-        <a href="https://www.youtube.com/@Badegjestene" target="_blank">Se flere videoer</a>
-      </div>
-    </div>
+  <div class="overlay"></div>
+  <div class="main-content">
+    <header>
+      <img src="logo.png" alt="Badegjestene logo">
+    </header>
 
-    <!-- Image Carousel -->
-    <div class="carousel">
+    <div class="carousel-fullscreen">
       <button class="prev" onclick="prevImage()" aria-label="Forrige bilde"><i class="fas fa-chevron-left"></i></button>
       <img id="carousel-img" src="old_irish_1.png" alt="Bildekarusell">
       <button class="next" onclick="nextImage()" aria-label="Neste bilde"><i class="fas fa-chevron-right"></i></button>
     </div>
 
-    <!-- Booking Form -->
-    <h2>Book oss!</h2>
-    <form action="https://formspree.io/f/xwpognyr" method="POST">
-      <label for="name">Navn:</label>
-      <input type="text" id="name" name="name" required>
+    <div class="video-section">
+      <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
+      <a href="https://www.youtube.com/@Badegjestene" target="_blank">Se flere videoer</a>
+    </div>
 
-      <label for="email">E-post:</label>
-      <input type="email" id="email" name="email" required>
+    <div class="booking-form-container">
+      <form action="https://formspree.io/f/xwpognyr" method="POST">
+        <label for="name">Navn:</label>
+        <input type="text" id="name" name="name" required>
 
-      <label for="message">Melding:</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="email">E-post:</label>
+        <input type="email" id="email" name="email" required>
 
-      <input type="hidden" name="_captcha" value="false">
+        <label for="message">Melding:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
 
-      <button type="submit">Send booking</button>
-    </form>
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit">Send booking</button>
+      </form>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.facebook.com/Badegjestene" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="http://instagram.com/badegjestene1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@Badegjestene" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@badegjestene" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
   </div>
-  <!-- Social Media Links -->
-  <div class="social-links">
-    <a href="https://www.facebook.com/Badegjestene" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-    <a href="http://instagram.com/badegjestene1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.youtube.com/@Badegjestene" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.tiktok.com/@badegjestene" target="_blank" title="TikTok
+  <script>
+    // Fullscreen carousel logic
+    const images = [
+      'old_irish_1.png',
+      'old_irish_2.png',
+      'old_irish_3.png',
+      'old_irish_4.png',
+      'old_irish_5.png'
+    ];
+    let current = 0;
+    const imgEl = document.getElementById('carousel-img');
+    function showImage(idx) {
+      imgEl.style.opacity = 0.5;
+      setTimeout(() => {
+        imgEl.src = images[idx];
+        imgEl.style.opacity = 1;
+      }, 150);
+    }
+    function prevImage() {
+      current = (current - 1 + images.length) % images.length;
+      showImage(current);
+    }
+    function nextImage() {
+      current = (current + 1) % images.length;
+      showImage(current);
+    }
+    // Optional: swipe support for mobile
+    let startX = null;
+    imgEl.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    imgEl.addEventListener('touchend', e => {
+      if (startX === null) return;
+      let endX = e.changedTouches[0].clientX;
+      if (endX - startX > 40) prevImage();
+      else if (startX - endX > 40) nextImage();
+      startX = null;
+    });
+  </script>
+</body>
+</html>
