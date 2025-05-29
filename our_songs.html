@@ -11,14 +11,18 @@
 <body>
   <nav class="main-nav sqs-nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
+      <div class="dropdown-menu">
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon" aria-label="Meny">
+        <ul class="dropdown-list">
+          <li><a href="index.html">Hjem</a></li>
+          <li><a href="about_us.html" class="active">Om oss</a></li>
+          <li><a href="our_songs.html">Låtene våre</a></li>
+        </ul>
+      </div>
+      <div class="nav-logo-center">
         <img src="logo.png" alt="Badegjestene logo">
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Hjem</a></li>
-        <li><a href="about_us.html">Om oss</a></li>
-        <li><a href="our_songs.html" class="active">Låtene våre</a></li>
-      </ul>
+      </div>
     </div>
   </nav>
   <main>
