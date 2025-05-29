@@ -9,63 +9,73 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Cake dropdown menu and centered logo -->
   <nav class="main-nav sqs-nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
+      <div class="dropdown-menu">
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon" aria-label="Meny">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <ul class="dropdown-list">
+          <li><a href="index.html">Hjem</a></li>
+          <li><a href="about_us.html" class="active">Om oss</a></li>
+          <li><a href="our_songs.html">Låtene våre</a></li>
+          <li><a href="mailto:badegjestene@gmail.com">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="nav-logo-center">
         <img src="logo.png" alt="Badegjestene logo">
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Hjem</a></li>
-        <li><a href="about_us.html">Om oss</a></li>
-        <li><a href="our_songs.html" class="active">Låtene våre</a></li>
-      </ul>
+      </div>
     </div>
   </nav>
-  <!-- Add profile image to the top -->
-  <div style="width:100%;text-align:center;margin-top:2rem;">
-    <img src="profile_transparant.png" alt="Badegjestene profilbilde" style="max-width:220px;width:60vw;height:auto;filter:drop-shadow(0 2px 12px #000a);">
-  </div>
   <main>
     <section class="index-section">
       <div class="index-section-wrapper">
-        <h1>Om Badegjestene</h1>
+        <h1>VI ER BADEGJESTENE</h1>
         <p>
           Badegjestene er et Oslo-basert partyband som alltid leverer show med et glimt i øyet og en hitparade av låter som får publikum til å synge og danse. Kledd i badedrakter fra 1920-tallet, kombinerer de humor og musikalsk energi på en måte som engasjerer både unge og gamle.
         </p>
+
+        <div style="width:100%;text-align:center;margin-top:2rem;">
+            <img src="profile_transparant.png" alt="Badegjestene profilbilde" style="max-width:220px;width:60vw;height:auto;filter:drop-shadow(0 2px 12px #000a);">
+        </div>
+
         <p>
           Med et repertoar som spenner fra norske allsangfavoritter til internasjonale klassikere, sørger Badegjestene for topp stemning, uansett scene. En energisk vokalist leder an, støttet av et samspilt band som alltid gir alt. Enten det er sommerfestival, afterski eller låvefest, er Badegjestene garantien for et publikum som går hjem med store smil og slitne danseføtter.
         </p>
         <div class="band-members">
           <div class="member">
             <img src="petter.jpg" alt="Petter Stadsøy">
-            <p>Petter Stadsøy / Vokal</p>
+            <p>Petter Stadsøy<br><span>Vokal</span></p>
           </div>
           <div class="member">
             <img src="petter.jpg" alt="Kristian Jøsok">
-            <p>Kristian Jøsok / Gitar</p>
+            <p>Kristian Jøsok<br><span>Gitar</span></p>
           </div>
           <div class="member">
             <img src="petter.jpg" alt="Eskil Gauslaa Hummelsund">
-            <p>Eskil Gauslaa Hummelsund / Bass</p>
+            <p>Eskil Gauslaa Hummelsund<br><span>Bass</span></p>
           </div>
           <div class="member">
             <img src="tarje.jpg" alt="Tarje Sandvik">
-            <p>Tarje Sandvik / Keyboard</p>
+            <p>Tarje Sandvik<br><span>Keyboard</span></p>
           </div>
           <div class="member">
             <img src="petter.jpg" alt="Martin Johansen">
-            <p>Martin Johansen / Trommer</p>
+            <p>Martin Johansen<br><span>Trommer</span></p>
           </div>
         </div>
       </div>
     </section>
   </main>
-  <!-- Allways have the social media links on the bottom -->
   <div class="social-links">
-        <a href="https://www.facebook.com/Badegjestene" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="http://instagram.com/badegjestene1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@Badegjestene" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@badegjestene" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    </div>
+    <a href="https://www.facebook.com/Badegjestene" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="http://instagram.com/badegjestene1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com/@Badegjestene" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@badegjestene" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+  </div>
 </body>
 </html>
