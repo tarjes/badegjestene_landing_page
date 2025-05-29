@@ -211,7 +211,7 @@ form button:hover {
   position: relative;
 }
 .index-section-wrapper {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   width: 100%;
   background: rgba(18,18,18,0.85);
@@ -360,6 +360,37 @@ form button:hover {
   width: auto;
   filter: drop-shadow(0 2px 8px #000a);
 }
+/* Profile image at the top of about_us.html */
+.profile-banner {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+}
+.profile-banner img {
+  max-width: 660px;
+  width: 90vw;
+  height: auto;
+  filter: drop-shadow(0 2px 12px #000a);
+  margin-bottom: 2rem;
+}
+/* Band members grid: allow all 5 in a row on wide screens */
+.band-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+.band-members .member {
+  flex: 0 1 110px;
+  max-width: 110px;
+  text-align: center;
+}
+@media (min-width: 1100px) {
+  .band-members {
+    flex-wrap: nowrap;
+  }
+}
 @media (max-width: 600px) {
   header img { max-width: 90vw; }
   .carousel-fullscreen { height: 38vw; min-height: 180px; }
@@ -390,35 +421,4 @@ form button:hover {
   .nav-logo-center img {
     height: 36px;
   }
-}
-/* Band members grid */
-.band-members {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 2.5rem;
-}
-.band-members .member {
-  flex: 0 1 110px;
-  max-width: 110px;
-  text-align: center;
-}
-.band-members .member img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 2px 8px #0004;
-}
-.band-members .member p {
-  font-size: 0.98rem;
-  color: #fff;
-  margin: 0;
-  line-height: 1.2;
-}
-.band-members .member span {
-  font-size: 0.85em;
-  color: #ffeb3b;
 }
