@@ -94,6 +94,34 @@
     }
     .carousel-fullscreen .prev { left: 2vw; }
     .carousel-fullscreen .next { right: 2vw; }
+    .carousel-fullscreen .section-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(18,18,18,0.25);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .carousel-fullscreen .carousel-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.7rem;
+      z-index: 2;
+    }
+    .carousel-fullscreen .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff8;
+      border: 2px solid #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .carousel-fullscreen .dot.active {
+      background: #007bff;
+    }
     .video-section {
       width: 100vw;
       display: flex;
@@ -188,6 +216,51 @@
     .social-links a:hover {
       color: #007bff;
     }
+    .index-section {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      margin: 4vh 0;
+      position: relative;
+    }
+
+    .index-section-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(18,18,18,0.85);
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .index-section .section-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(18,18,18,0.45);
+      border-radius: 16px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .primary-btn {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 1rem auto 0 auto;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .primary-btn:hover {
+      background: #0056b3;
+    }
+
     @media (max-width: 600px) {
       header img { max-width: 90vw; }
       .carousel-fullscreen { height: 38vw; min-height: 180px; }
@@ -204,15 +277,27 @@
       <img src="logo.png" alt="Badegjestene logo">
     </header>
 
-    <div class="video-section">
-      <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
-      <a href="https://www.youtube.com/@Badegjestene" target="_blank">Se flere videoer</a>
-    </div>
+    <section class="index-section video-section">
+      <div class="index-section-wrapper">
+        <div class="video-section">
+          <h2 style="text-align:center; font-size:2.2rem; font-weight:700; margin-bottom:1rem;">Se oss live!</h2>
+          <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen></iframe>
+          <a class="primary-btn" href="https://www.youtube.com/@Badegjestene" target="_blank">Se flere videoer</a>
+        </div>
+      </div>
+    </section>
 
     <div class="carousel-fullscreen">
+      <div class="section-overlay"></div>
       <button class="prev" onclick="prevImage()" aria-label="Forrige bilde"><i class="fas fa-chevron-left"></i></button>
       <img id="carousel-img" src="old_irish_1.png" alt="Bildekarusell">
       <button class="next" onclick="nextImage()" aria-label="Neste bilde"><i class="fas fa-chevron-right"></i></button>
+      <div class="carousel-dots">
+        <span class="dot" onclick="showImage(0)"></span>
+        <span class="dot" onclick="showImage(1)"></span>
+        <span class="dot" onclick="showImage(2)"></span>
+        <span class="dot" onclick="showImage(3)"></span>
+      </div>
     </div>
 
     <div class="booking-form-container">
