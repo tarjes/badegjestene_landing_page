@@ -9,14 +9,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-image">
-  <div class="overlay"></div>
+<body>
   <div class="main-content">
     <header>
-      <img src="/imageslogo.png" alt="Badegjestene logo">
+      <img src="images/logo.png" alt="Badegjestene logo">
     </header>
 
-    <section class="index-section video-section">
+    <section class="index-section video-section bg-image">
       <div class="index-section-wrapper">
         <div class="video-section">
           <h2 style="text-align:center; font-size:2.2rem; font-weight:700; margin-bottom:1rem;">Se oss live!</h2>
@@ -24,14 +23,13 @@
           <a class="primary-btn" href="https://www.youtube.com/@Badegjestene" target="_blank">Se flere videoer</a>
         </div>
       </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/Badegjestene" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="http://instagram.com/badegjestene1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Badegjestene" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@badegjestene" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      </div>
     </section>
-
-     <div class="social-links">
-      <a href="https://www.facebook.com/Badegjestene" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="http://instagram.com/badegjestene1" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.youtube.com/@Badegjestene" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.tiktok.com/@badegjestene" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    </div>
 
     <div class="carousel-fullscreen">
       <div class="section-overlay"></div>
@@ -135,13 +133,14 @@
   <script>
     // Fullscreen carousel logic
     const images = [
-      'old_irish_1.png',
-      'old_irish_16.png',
-      'old_irish_22.png',
-      'old_irish_38.png'
+      'images/old_irish_1.png',
+      'images/old_irish_16.png',
+      'images/old_irish_22.png',
+      'images/old_irish_38.png'
     ];
     let current = 0;
     const imgEl = document.getElementById('carousel-img');
+    imgEl.src = images[0];
     function showImage(idx) {
       imgEl.style.opacity = 0.5;
       setTimeout(() => {

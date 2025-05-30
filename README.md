@@ -14,7 +14,7 @@ This is the source code for the Badegjestene partyband landing page. The site is
 ## Editing Content
 
 - **Images:** Place all images in the `images/` folder. Update image references in HTML as `src="images/your_image.png"`.
-- **Song List:** Edit the song list in `index.html` and `our_songs.html` as needed.
+- **Song List:** Edit the song list in `index.html` as needed.
 - **Band Members:** Update the About Us section in `index.html` for member info and photos.
 - **Booking Form:** The booking form is static and connected to Formspree
 - **Social Links:** Update social media URLs at the bottom of `index.html`.
@@ -46,7 +46,6 @@ This is the source code for the Badegjestene partyband landing page. The site is
 - Keep all images in the `images/` folder for consistency.
 - Test on both desktop and mobile after making changes.
 - If you add new sections, update both HTML and CSS as needed.
-- Backup before major changes.
 
 ## Troubleshooting
 

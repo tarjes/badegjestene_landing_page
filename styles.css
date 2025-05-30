@@ -17,9 +17,13 @@ body {
   justify-content: flex-start;
   align-items: stretch;
 }
-body.bg-image {
-  background: url('background.jpeg') no-repeat center center fixed;
-  background-size: cover;
+.bg-image {
+  background: url('images/background.jpeg') center center/cover no-repeat fixed;
+  position: relative;
+  z-index: 1;
+}
+.video-section.bg-image {
+  background: url('images/background.jpeg') center center/cover no-repeat fixed;
 }
 .overlay {
   position: fixed;
@@ -34,7 +38,7 @@ body.bg-image {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; 
   align-items: center;
 }
 header {
