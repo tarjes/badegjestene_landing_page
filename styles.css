@@ -130,17 +130,17 @@ header img {
 }
 .video-section {
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 560px;
-  margin: 0 auto;
 }
 .video-section iframe {
   width: 100%;
+  max-width: 100%;
   height: auto;
   aspect-ratio: 16/9;
-  max-width: 560px;
   border-radius: 12px;
   border: none;
   margin-bottom: 0.5rem;
@@ -427,8 +427,6 @@ form button:hover {
   transition: none;
   letter-spacing: 0.01em;
 }
-.youtube-btn i {
-  color: inherit;
-  font-size: 1.2em;
-  margin-right: 0.6em;
+.youtube-btn:hover, .youtube-btn:focus, .youtube-btn:active {
+  text-decoration: none;
 }
