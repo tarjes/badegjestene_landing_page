@@ -19,9 +19,13 @@
       <div class="index-section-wrapper">
         <div class="video-section" style="position:relative;">
           <h2 style="text-align:center; font-size:2.2rem; font-weight:700; margin-bottom:1rem;">Se oss live!</h2>
-          <div style="position:relative; display:inline-block; width:100%; max-width:560px;">
-            <iframe src="https://www.youtube.com/embed/NEKfliBrN-U" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:16px;"></iframe>
+          <div class="youtube-thumbnail-wrapper" style="position:relative; display:inline-block; width:100%; max-width:560px;">
+            <img id="youtube-thumbnail" src="images/old_irish_bw.png" alt="YouTube video thumbnail" style="width:100%; aspect-ratio:4/3; border-radius:16px; cursor:pointer; display:block;">
+            <div id="youtube-iframe-container" style="display:none;"></div>
           </div>
+          <a class="carousel-youtube-btn" href="https://www.youtube.com/@Badegjestene" target="_blank">
+            <i class="fab fa-youtube"></i> Se flere videoer
+          </a>
         </div>
       </div>
     </section>
@@ -74,10 +78,10 @@
     <section class="index-section">
       <div class="index-section-wrapper">
         <h2>VI ER BADEGJESTENE</h2>
-        <p>Badegjestene er et Oslo-basert partyband som alltid leverer show med et glimt i øyet og en hitparade av låter som får publikum til å synge og danse. Kledd i badedrakter fra 1920-tallet, kombinerer de humor og musikalsk energi på en måte som engasjerer både unge og gamle.</p>
         <div class="profile-banner">
           <img src="images/profile_transparant.png" alt="Badegjestene profilbilde">
         </div>
+        <p>Badegjestene er et Oslo-basert partyband som alltid leverer show med et glimt i øyet og en hitparade av låter som får publikum til å synge og danse. Kledd i badedrakter fra 1920-tallet, kombinerer de humor og musikalsk energi på en måte som engasjerer både unge og gamle.</p>
         <p>Med et repertoar som spenner fra norske allsangfavoritter til internasjonale klassikere, sørger Badegjestene for topp stemning, uansett scene. En energisk vokalist leder an, støttet av et samspilt band som alltid gir alt. Enten det er sommerfestival, afterski eller låvefest, er Badegjestene garantien for et publikum som går hjem med store smil og slitne danseføtter.</p>
         <div class="band-members">
           <div class="member">
@@ -163,6 +167,16 @@
       else if (startX - endX > 40) nextImage();
       startX = null;
     });
+    // YouTube thumbnail click-to-play logic
+    const ytThumb = document.getElementById('youtube-thumbnail');
+    const ytIframeContainer = document.getElementById('youtube-iframe-container');
+    if (ytThumb && ytIframeContainer) {
+      ytThumb.addEventListener('click', function() {
+        ytThumb.style.display = 'none';
+        ytIframeContainer.style.display = 'block';
+        ytIframeContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:16px;"></iframe>';
+      });
+    }
   </script>
 </body>
 </html>
