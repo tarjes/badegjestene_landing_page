@@ -178,7 +178,7 @@
       ytThumb.style.display = 'none';
       ytPlayBtn.style.display = 'none';
       ytIframeContainer.style.display = 'block';
-      ytIframeContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:16px;"></iframe>';
+      ytIframeContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; aspect-ratio:4/3; border-radius:16px;"></iframe>';
     }
     if (ytThumb && ytIframeContainer && ytPlayBtn) {
       ytThumb.addEventListener('click', showYoutubeVideo);
