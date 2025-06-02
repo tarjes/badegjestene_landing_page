@@ -504,3 +504,36 @@ form button:hover {
 .carousel-youtube-btn i {
   font-size: 1.3em;
 }
+.carousel-youtube-btn.video-overlay-btn {
+  position: absolute;
+  right: 2vw;
+  bottom: 2vw;
+  z-index: 3;
+  background: rgba(255,255,255,0.92);
+  color: #e53935;
+  font-weight: 700;
+  font-size: 1.08rem;
+  padding: 0.7em 1.3em;
+  border-radius: 32px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px #0003;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  transition: background 0.2s, color 0.2s;
+}
+.carousel-youtube-btn.video-overlay-btn:hover {
+  background: #e53935;
+  color: #fff;
+}
+.carousel-youtube-btn.video-overlay-btn i {
+  font-size: 1.3em;
+}
+@media (max-width: 600px) {
+  .carousel-youtube-btn.video-overlay-btn {
+    font-size: 0.98rem;
+    padding: 0.5em 1em;
+    right: 1vw;
+    bottom: 1vw;
+  }
+}
