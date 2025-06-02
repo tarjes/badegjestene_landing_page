@@ -427,27 +427,26 @@ form button:hover {
     font-size: 1.3rem;
   }
 }
-/* --- YouTube Button (not carousel-specific) --- */
+/* --- Minimalistic YouTube Button --- */
 .youtube-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6em;
-  background: #fff;
-  color: #e53935 !important;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: none;
+  border: 2px solid #e53935;
+  color: #e53935;
+  font-size: 1.6rem;
+  font-family: 'Raleway', sans-serif;
   font-weight: 700;
-  font-size: 1.08rem;
-  padding: 0.7em 1.3em;
-  border-radius: 32px;
-  text-decoration: none;
-  box-shadow: 0 2px 12px #0003;
+  box-shadow: none;
   margin: 1.5rem auto 0 auto;
-  transition: background 0.2s, color 0.2s;
-}
-.youtube-btn:hover {
-  background: #e53935;
-  color: #fff !important;
+  text-decoration: none;
+  transition: none;
 }
 .youtube-btn i {
-  font-size: 1.3em;
   color: inherit;
+  font-size: 1.6rem;
 }
