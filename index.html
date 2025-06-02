@@ -21,6 +21,9 @@
           <h2 style="text-align:center; font-size:2.2rem; font-weight:700; margin-bottom:1rem;">Se oss live!</h2>
           <div class="youtube-thumbnail-wrapper" style="position:relative; display:inline-block; width:100%; max-width:560px;">
             <img id="youtube-thumbnail" src="images/old_irish_bw.png" alt="YouTube video thumbnail" style="width:100%; aspect-ratio:4/3; border-radius:16px; cursor:pointer; display:block;">
+            <button class="youtube-play-btn" id="youtube-play-btn" aria-label="Spill av video">
+              <i class="fas fa-play"></i>
+            </button>
             <div id="youtube-iframe-container" style="display:none;"></div>
           </div>
           <a class="carousel-youtube-btn" href="https://www.youtube.com/@Badegjestene" target="_blank">
@@ -170,11 +173,18 @@
     // YouTube thumbnail click-to-play logic
     const ytThumb = document.getElementById('youtube-thumbnail');
     const ytIframeContainer = document.getElementById('youtube-iframe-container');
-    if (ytThumb && ytIframeContainer) {
-      ytThumb.addEventListener('click', function() {
-        ytThumb.style.display = 'none';
-        ytIframeContainer.style.display = 'block';
-        ytIframeContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:16px;"></iframe>';
+    const ytPlayBtn = document.getElementById('youtube-play-btn');
+    function showYoutubeVideo() {
+      ytThumb.style.display = 'none';
+      ytPlayBtn.style.display = 'none';
+      ytIframeContainer.style.display = 'block';
+      ytIframeContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:16px;"></iframe>';
+    }
+    if (ytThumb && ytIframeContainer && ytPlayBtn) {
+      ytThumb.addEventListener('click', showYoutubeVideo);
+      ytPlayBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        showYoutubeVideo();
       });
     }
   </script>
