@@ -33,7 +33,7 @@
     <div class="carousel-fullscreen">
       <div class="section-overlay"></div>
       <button class="prev" onclick="prevImage()" aria-label="Forrige bilde"><i class="fas fa-chevron-left"></i></button>
-      <img id="carousel-img" src="images/old_irish_1.png" alt="Bildekarusell">
+      <img id="carousel-img" src="" alt="Bildekarusell">
       <button class="next" onclick="nextImage()" aria-label="Neste bilde"><i class="fas fa-chevron-right"></i></button>
       <div class="carousel-dots">
         <span class="dot" onclick="showImage(0)"></span>
@@ -141,7 +141,7 @@
     ];
     let current = 0;
     const imgEl = document.getElementById('carousel-img');
-    imgEl.src = images[0];
+    imgEl.src = images[current];
     function showImage(idx) {
       imgEl.style.opacity = 0.5;
       setTimeout(() => {

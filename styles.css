@@ -80,15 +80,23 @@ header img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.32);
   border: none;
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 1.3rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.6rem;
   border-radius: 50%;
   z-index: 2;
-  transition: background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #0003;
+  opacity: 0.85;
+  outline: none;
+}
+.carousel-fullscreen button:hover {
+  background: #007bff;
+  color: #fff;
+  opacity: 1;
 }
 .carousel-fullscreen .prev { left: 2vw; }
 .carousel-fullscreen .next { right: 2vw; }
