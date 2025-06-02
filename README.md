@@ -26,7 +26,7 @@ This is the source code for the Badegjestene partyband landing page. The site is
 
 ## Adding/Changing Carousel Images
 
-1. Place new images in the `images/` folder.
+1. Place new images in the `images/` folder. They should be 1200x900 and compressed in some way so they load quickly.  
 2. Update the carousel image list in `index.html` (JavaScript section).
 
 ## Local Development
