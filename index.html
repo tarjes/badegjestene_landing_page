@@ -27,7 +27,7 @@
             <div id="youtube-iframe-container" style="display:none;"></div>
           </div>
           <a class="youtube-btn" href="https://www.youtube.com/@Badegjestene" target="_blank" aria-label="Se flere videoer">
-            <i class="fab fa-youtube"></i>
+            <i class="fab fa-youtube"></i>Se mer på Youtube
           </a>
         </div>
       </div>
@@ -178,7 +178,7 @@
       ytThumb.style.display = 'none';
       ytPlayBtn.style.display = 'none';
       ytIframeContainer.style.display = 'block';
-      ytIframeContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen style="width:100%; aspect-ratio:4/3; border-radius:16px;"></iframe>';
+      ytIframeContainer.innerHTML = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen style="aspect-ratio:16/9; border-radius:16px; display:block; background:#000;"></iframe>';
     }
     if (ytThumb && ytIframeContainer && ytPlayBtn) {
       ytThumb.addEventListener('click', showYoutubeVideo);

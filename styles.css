@@ -319,28 +319,6 @@ form button:hover {
     flex-wrap: nowrap;
   }
 }
-@media (max-width: 900px) {
-  .carousel-fullscreen {
-    height: 70vw;
-    min-height: 180px;
-    max-height: 100vw;
-  }
-  .carousel-fullscreen img {
-    height: 70vw;
-    max-height: 100vw;
-  }
-}
-@media (max-width: 600px) {
-  .carousel-fullscreen {
-    height: 60vw;
-    min-height: 120px;
-    max-height: 100vw;
-  }
-  .carousel-fullscreen img {
-    height: 60vw;
-    max-height: 100vw;
-  }
-}
 @media (max-width: 700px) {
   .nav-logo-center img {
     height: 36px;
@@ -427,26 +405,27 @@ form button:hover {
     font-size: 1.3rem;
   }
 }
-/* --- Minimalistic YouTube Button --- */
+/* --- Minimalistic YouTube Button (Gray, Subtle) --- */
 .youtube-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  padding: 0.7em 1.5em;
+  border-radius: 32px;
   background: none;
-  border: 2px solid #e53935;
-  color: #e53935;
-  font-size: 1.6rem;
+  border: 2px solid #444;
+  color: #ccc;
+  font-size: 1.08rem;
   font-family: 'Raleway', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   box-shadow: none;
   margin: 1.5rem auto 0 auto;
   text-decoration: none;
   transition: none;
+  letter-spacing: 0.01em;
 }
 .youtube-btn i {
   color: inherit;
-  font-size: 1.6rem;
+  font-size: 1.2em;
+  margin-right: 0.6em;
 }
