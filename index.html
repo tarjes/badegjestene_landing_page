@@ -35,12 +35,6 @@
       <button class="prev" onclick="prevImage()" aria-label="Forrige bilde"><i class="fas fa-chevron-left"></i></button>
       <img id="carousel-img" src="" alt="Bildekarusell">
       <button class="next" onclick="nextImage()" aria-label="Neste bilde"><i class="fas fa-chevron-right"></i></button>
-      <div class="carousel-dots">
-        <span class="dot" onclick="showImage(0)"></span>
-        <span class="dot" onclick="showImage(1)"></span>
-        <span class="dot" onclick="showImage(2)"></span>
-        <span class="dot" onclick="showImage(3)"></span>
-      </div>
       <a class="carousel-instagram-btn" href="https://instagram.com/badegjestene1" target="_blank">
         <i class="fab fa-instagram"></i> Se oss på Instagram
       </a>
@@ -171,11 +165,25 @@
     const ytThumb = document.getElementById('youtube-thumbnail');
     const ytIframeContainer = document.getElementById('youtube-iframe-container');
     const ytPlayBtn = document.getElementById('youtube-play-btn');
+    // Add a hint element for mobile unmute
+    let ytHint = null;
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
     function showYoutubeVideo() {
       ytThumb.style.display = 'none';
       ytPlayBtn.style.display = 'none';
       ytIframeContainer.style.display = 'block';
-      ytIframeContainer.innerHTML = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen style="aspect-ratio:16/9; border-radius:16px; display:block; background:#000;"></iframe>';
+      // Remove any previous hint
+      if (ytHint && ytHint.parentNode) ytHint.parentNode.removeChild(ytHint);
+      let mute = isMobile() ? 1 : 0;
+      ytIframeContainer.innerHTML = `<iframe width="100%" height="315" src="https://www.youtube.com/embed/NEKfliBrN-U?autoplay=1&rel=0&playsinline=1&mute=${mute}" allow="autoplay; encrypted-media" allowfullscreen style="aspect-ratio:16/9; border-radius:16px; display:block; background:#000;"></iframe>`;
+      if (mute === 1) {
+        ytHint = document.createElement('div');
+        ytHint.className = 'youtube-unmute-hint';
+        ytHint.innerHTML = '<i class="fas fa-volume-up"></i> Trykk på lyd-ikonet for å få lyd';
+        ytIframeContainer.parentNode.appendChild(ytHint);
+      }
     }
     if (ytThumb && ytIframeContainer && ytPlayBtn) {
       ytThumb.addEventListener('click', showYoutubeVideo);

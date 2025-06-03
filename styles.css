@@ -108,26 +108,10 @@ header img {
   z-index: 1;
   pointer-events: none;
 }
-.carousel-fullscreen .carousel-dots {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.7rem;
-  z-index: 2;
-}
-.carousel-fullscreen .dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #fff8;
-  border: 2px solid #fff;
-  cursor: pointer;
-  transition: background 0.2s;
-}
+.carousel-fullscreen .carousel-dots,
+.carousel-fullscreen .dot,
 .carousel-fullscreen .dot.active {
-  background: #007bff;
+  display: none !important;
 }
 .video-section {
   width: 100%;
@@ -429,4 +413,29 @@ form button:hover {
 }
 .youtube-btn:hover, .youtube-btn:focus, .youtube-btn:active {
   text-decoration: none;
+}
+.youtube-btn i {
+  color: inherit;
+  font-size: 1.2em;
+  margin-right: 0.8em; /* Increased spacing between icon and text */
+}
+.youtube-unmute-hint {
+  margin-top: 0.7em;
+  color: #ffeb3b;
+  background: rgba(18,18,18,0.7);
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  justify-content: center;
+  max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 8px #0003;
+}
+.youtube-unmute-hint i {
+  color: #ffeb3b;
+  font-size: 1.2em;
 }
