@@ -5,8 +5,6 @@ This is the source code for the Badegjestene partyband landing page. The site is
 ## Project Structure
 
 - `index.html` — Main one-page website.
-- `about_us.html` — Standalone About Us page (not linked in main navigation).
-- `our_songs.html` — Standalone Song List page (not linked in main navigation).
 - `styles.css` — All site styles.
 - `images/` — All images (logo, carousel, band members, backgrounds, etc).
 - `README.md` — This file.
