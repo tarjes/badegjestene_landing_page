@@ -439,29 +439,25 @@ form button:hover {
   color: #ffeb3b;
   font-size: 1.2em;
 }
-.quotes-section {
-  background: #f7f7f7;
-  padding: 3rem 0;
-}
-
-.quotes-section h2 {
+.index-section .section-title {
   text-align: center;
   margin-bottom: 2rem;
+  font-size: 2rem;
   color: #222;
 }
 
 .quote {
-  max-width: 600px;
-  margin: 2rem auto;
   background: #fff;
-  border-left: 5px solid #0077b6;
+  border-left: 4px solid #0077b6;
+  margin: 2rem auto;
+  max-width: 600px;
   padding: 1.5rem 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .quote-text {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: #333;
   margin-bottom: 1rem;
   font-style: italic;
@@ -471,6 +467,14 @@ form button:hover {
   display: block;
   text-align: right;
   color: #0077b6;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1rem;
+}
+
+/* Responsive: stack quotes with spacing on mobile */
+@media (max-width: 700px) {
+  .quote {
+    padding: 1rem;
+    max-width: 100%;
+  }
 }
