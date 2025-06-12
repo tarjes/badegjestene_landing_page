@@ -439,16 +439,10 @@ form button:hover {
   color: #ffeb3b;
   font-size: 1.2em;
 }
-.index-section .section-title {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: #222;
-}
 
 .quote {
-  background: #fff;
-  border-left: 4px solid #0077b6;
+  background: #232323;
+  border-left: 4px solid #ffeb3b;
   margin: 2rem auto;
   max-width: 600px;
   padding: 1.5rem 2rem;
@@ -458,7 +452,7 @@ form button:hover {
 
 .quote-text {
   font-size: 1.1rem;
-  color: #333;
+  color: #fff;
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -466,7 +460,7 @@ form button:hover {
 .quote-author {
   display: block;
   text-align: right;
-  color: #0077b6;
+  color: #ffeb3b;
   font-weight: 500;
   font-size: 1rem;
 }
