@@ -298,15 +298,6 @@ form button:hover {
     flex-wrap: nowrap;
   }
 }
-@media (max-width: 700px) {
-  .nav-logo-center img {
-    height: 36px;
-  }
-  .songs-list {
-    grid-template-columns: 1fr;
-    padding-left: 1.5rem;
-  }
-}
 .songs-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -317,6 +308,14 @@ form button:hover {
 }
 .songs-list li {
   margin-bottom: 0.5rem;
+}
+@media (max-width: 700px) {
+  .nav-logo-center img {
+    height: 36px;
+  }
+  .songs-list {
+    grid-template-columns: 1fr;
+  }
 }
 .carousel-instagram-btn {
   position: absolute;
