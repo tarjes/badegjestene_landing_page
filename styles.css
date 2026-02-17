@@ -16,15 +16,15 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  background: url('images/background.jpeg') center center/cover no-repeat fixed;
+  background: url('images/background.webp') center center/cover no-repeat fixed;
 }
 .bg-image {
-  background: url('images/background.jpeg') center center/cover no-repeat fixed;
+  background: url('images/background.webp') center center/cover no-repeat fixed;
   position: relative;
   z-index: 1;
 }
 .video-section.bg-image {
-  background: url('images/background.jpeg') center center/cover no-repeat fixed;
+  background: url('images/background.webp') center center/cover no-repeat fixed;
 }
 .overlay {
   position: fixed;
