@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://badegjestene.no/sitemap.xml
