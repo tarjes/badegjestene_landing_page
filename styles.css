@@ -304,16 +304,19 @@ form button:hover {
   }
   .songs-list {
     grid-template-columns: 1fr;
-    padding-left: 0.5rem;
+    padding-left: 1.5rem;
   }
 }
 .songs-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 2rem;
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding-left: 1.5rem;
   max-width: 800px;
+}
+.songs-list li {
+  margin-bottom: 0.5rem;
 }
 .carousel-instagram-btn {
   position: absolute;
