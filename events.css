@@ -9,15 +9,16 @@
 }
 
 :root {
-  --navy: #1a3f5a;
-  --navy-light: #2d5a7f;
-  --teal: #0099cc;
-  --teal-light: #00c4ff;
-  --text-dark: #1f2937;
-  --text-gray: #6b7280;
+  --navy: #336cbb;
+  --navy-light: #4a83cc;
+  --teal: #336cbb;
+  --teal-light: #5a90d9;
+  --text-dark: #336cbb;
+  --text-gray: #4a6a8a;
   --bg-white: #ffffff;
-  --bg-light: #f9fafb;
-  --border: #e5e7eb;
+  --bg-light: #dae3e5;
+  --bg-main: #dae3e5;
+  --border: #b8cdd0;
   --stripe: 8px;
 }
 
@@ -26,10 +27,15 @@ html {
 }
 
 body {
-  font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text-dark);
-  background: var(--bg-white);
+  background: var(--bg-main);
   line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  color: var(--navy);
 }
 
 .page-wrapper {
@@ -130,15 +136,15 @@ body {
 }
 
 .section--image {
-  background: var(--bg-light);
+  background: var(--bg-main);
 }
 
 .section--features {
-  background: var(--bg-white);
+  background: #eaf0f2;
 }
 
 .section--included {
-  background: var(--bg-light);
+  background: var(--bg-main);
 }
 
 .section--testimonial {
@@ -162,11 +168,11 @@ body {
 }
 
 .section--faq {
-  background: var(--bg-white);
+  background: #eaf0f2;
 }
 
 .section--booking {
-  background: var(--bg-light);
+  background: var(--bg-main);
 }
 
 .container {
@@ -178,10 +184,11 @@ body {
 
 .section__title {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 2rem;
-  letter-spacing: -0.5px;
-  color: var(--text-dark);
+  letter-spacing: 0;
+  color: var(--navy);
+  font-family: 'Fredoka', 'Nunito', sans-serif;
 }
 
 .section__intro {
@@ -259,7 +266,7 @@ body {
   border-radius: 10px;
   padding: 2rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(51, 108, 187, 0.08);
   position: relative;
   overflow: hidden;
 }
@@ -320,6 +327,7 @@ body {
   border: 1px solid var(--border);
   padding: 2rem;
   margin: 2rem 0;
+  color: var(--navy);
 }
 
 .timeline__title {
@@ -367,7 +375,7 @@ body {
 .cost-box p {
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
-  color: var(--text-dark);
+  color: var(--navy);
 }
 
 .cost-list {
@@ -452,35 +460,60 @@ body {
 
 /* ========== FAQ ========== */
 .faq-item {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
+  background: var(--bg-white);
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
 }
 
-.faq-item:last-of-type {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
+.faq-item details {
+  width: 100%;
 }
 
-.faq-item__question {
-  font-size: 1.05rem;
+.faq-item summary {
+  list-style: none;
+  padding: 1.1rem 1.5rem;
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--navy);
-  margin-bottom: 0.75rem;
   cursor: pointer;
-  transition: color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+  user-select: none;
 }
 
-.faq-item__question:hover {
-  color: var(--teal);
+.faq-item summary::-webkit-details-marker {
+  display: none;
 }
 
-.faq-item__answer {
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  color: var(--navy);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.faq-item details[open] summary::after {
+  content: '−';
+}
+
+.faq-item summary:hover {
+  background: rgba(51, 108, 187, 0.07);
+}
+
+.faq-item p {
+  padding: 1.25rem 1.5rem;
   font-size: 0.95rem;
   color: var(--text-gray);
   line-height: 1.7;
   margin: 0;
+  border-top: 1px solid var(--border);
 }
 
 /* ========== FORM ========== */
