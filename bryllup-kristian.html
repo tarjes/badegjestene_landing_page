@@ -26,7 +26,7 @@ h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.75rem 2.5rem;background:rgba(218,227,229,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,46,74,.1)}
-.nav-logo img{height:36px;width:auto;display:block}
+.nav-logo img{height:36px;width:auto;display:block;max-width:200px;object-fit:contain}
 .nav-book{background:var(--navy);color:#fff;padding:.5rem 1.4rem;border-radius:100px;font-size:.88rem;font-weight:700;text-decoration:none;font-family:'Nunito',sans-serif;letter-spacing:.3px;transition:opacity .2s}
 .nav-book:hover{opacity:.75}
 
@@ -126,7 +126,7 @@ footer a:hover{color:var(--gold)}
 
 <nav>
   <!-- Logo: hvit versjon brukes på den lyse bakgrunnen – bytt til 'bilder/logo-hvit.png' om du foretrekker det -->
-  <a href="index.html"><img class="nav-logo" src="bilder/logo-svart.png" alt="Badegjestene"></a>
+  <a href="index.html"><img src="bilder/logo-svart.png" alt="Badegjestene" style="height:36px;width:auto;max-width:200px;display:block"></a>
   <a class="nav-book" href="#booking">Send forespørsel</a>
 </nav>
 
