@@ -55,7 +55,13 @@ section{padding:5.5rem 2rem}
 /* WHY */
 #why{background:#edf1f2}
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-@media(max-width:720px){.why-grid{grid-template-columns:1fr;gap:2.5rem}}
+@media(max-width:720px){
+  .why-grid{grid-template-columns:1fr;gap:2rem}
+  .why-img-stack{display:none}
+  .why-img-mobile{display:flex;gap:.75rem;margin-bottom:1.5rem}
+  .why-img-mobile img{flex:1;aspect-ratio:1;object-fit:cover;border-radius:14px;background:#c8d4d8}
+}
+@media(min-width:721px){.why-img-mobile{display:none}}
 .why-img-stack{position:relative;aspect-ratio:4/5}
 .img-main{width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;background:#c8d4d8}
 .img-accent{position:absolute;width:52%;aspect-ratio:1;object-fit:cover;border-radius:14px;bottom:-1.5rem;right:-1.5rem;border:4px solid var(--bg);background:#b8c8cc}
@@ -93,7 +99,12 @@ section{padding:5.5rem 2rem}
 /* GALLERY */
 #gallery{background:var(--navy);padding:3.5rem 2rem}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:1080px;margin:0 auto}
-@media(max-width:600px){.gallery-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  nav{justify-content:center}
+  .nav-book{display:none}
+  .gallery-grid{grid-template-columns:1fr;gap:.6rem}
+  .gal-img.tall{aspect-ratio:4/3;grid-row:span 1}
+}
 .gal-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;background:#223348}
 .gal-img.tall{aspect-ratio:3/4;grid-row:span 2}
 
@@ -155,6 +166,10 @@ footer a:hover{color:var(--gold)}
         <div class="eyebrow">Hvorfor Badegjestene</div>
         <h2 class="section-title">Vi gjør bryllupet til en skikkelig fest</h2>
         <p style="color:var(--muted);margin-bottom:2rem;font-size:1.05rem">Vi er ikke bare et band – vi er underholdning, stemningsskapere og garanterte allsang-initiativtakere. Ingen ser på fra sidelinjen når vi spiller.</p>
+        <div class="why-img-mobile">
+          <img src="bilder/scene-bred.jpg" alt="Badegjestene på scene" onerror="this.style.background='#b8c8cc'">
+          <img src="bilder/backstage.jpg" alt="Badegjestene backstage" onerror="this.style.background='#a8bcc0'">
+        </div>
         <div class="why-points">
           <div class="why-point">
             <div class="why-icon">🎤</div>
