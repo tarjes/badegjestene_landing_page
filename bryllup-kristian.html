@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badegjestene – Liveband til bryllup i Oslo og hele Norge</title>
+<meta name="description" content="Book Badegjestene til bryllupet ditt. Oslo-basert liveband med masse allsang, energi og god stemning. Vi spiller i hele Norge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:       #dae3e5;
+  --bg-card:  #ffffff;
+  --navy:     #1a2e4a;
+  --gold:     #f5c842;
+  --gold-dk:  #c49a10;
+  --text:     #1a2e4a;
+  --muted:    #4a6070;
+  --radius:   14px;
+}
+body{font-family:'Nunito',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.65}
+h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.75rem 2.5rem;background:rgba(218,227,229,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,46,74,.1)}
+.nav-logo img{height:36px;width:auto;display:block}
+.nav-book{background:var(--navy);color:#fff;padding:.5rem 1.4rem;border-radius:100px;font-size:.88rem;font-weight:700;text-decoration:none;font-family:'Nunito',sans-serif;letter-spacing:.3px;transition:opacity .2s}
+.nav-book:hover{opacity:.75}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;padding-bottom:5.5rem}
+.hero-bg{position:absolute;inset:0;background:url('bilder/konsert-sal.jpg') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,30,.9) 35%,rgba(10,18,30,.25) 100%)}
+.hero-content{position:relative;z-index:2;max-width:760px;padding:0 3rem}
+.hero-tag{display:inline-block;border:1px solid rgba(245,200,66,.5);color:var(--gold);font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-1px;margin-bottom:1.2rem}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:'Nunito',sans-serif;color:rgba(255,255,255,.7);font-size:clamp(1rem,2vw,1.2rem);max-width:500px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-main{background:var(--gold);color:var(--navy);padding:.85rem 2.2rem;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;text-decoration:none;transition:transform .15s,background .2s}
+.btn-main:hover{transform:translateY(-2px);background:#f7d35a}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:.85rem 2rem;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:600;font-size:1rem;text-decoration:none;transition:border-color .2s}
+.btn-ghost:hover{border-color:#fff}
+
+/* SECTIONS */
+section{padding:5.5rem 2rem}
+.container{max-width:1080px;margin:0 auto}
+.eyebrow{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.8rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.1;margin-bottom:1rem}
+.section-sub{color:var(--muted);font-size:1.05rem;max-width:560px;margin-bottom:3rem}
+
+/* WHY */
+#why{background:#edf1f2}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+@media(max-width:720px){.why-grid{grid-template-columns:1fr;gap:2.5rem}}
+.why-img-stack{position:relative;aspect-ratio:4/5}
+.img-main{width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;background:#c8d4d8}
+.img-accent{position:absolute;width:52%;aspect-ratio:1;object-fit:cover;border-radius:14px;bottom:-1.5rem;right:-1.5rem;border:4px solid var(--bg);background:#b8c8cc}
+.why-points{display:flex;flex-direction:column;gap:1.5rem}
+.why-point{display:flex;gap:1rem;align-items:flex-start}
+.why-icon{min-width:46px;height:46px;border-radius:12px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.why-point h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:.25rem;color:var(--navy)}
+.why-point p{font-size:.92rem;color:var(--muted)}
+
+/* VIDEO */
+#video{background:var(--navy)}
+#video .eyebrow{color:var(--gold)}
+#video .section-title{color:#fff}
+#video .section-sub{color:rgba(255,255,255,.55);margin-bottom:2.5rem}
+.video-wrap{max-width:820px;margin:0 auto;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#000;border:3px solid rgba(245,200,66,.2)}
+.video-wrap iframe{width:100%;height:100%;border:none}
+
+/* HOW IT WORKS */
+#howto{background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.step{background:#fff;border-radius:var(--radius);padding:2rem 1.5rem;border:1.5px solid rgba(26,46,74,.07)}
+.step-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:800;color:rgba(26,46,74,.12);line-height:1;margin-bottom:.8rem}
+.step h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:.4rem;color:var(--navy)}
+.step p{font-size:.9rem;color:var(--muted)}
+
+/* PRACTICAL */
+#practical{background:#edf1f2}
+.practical-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.prac-card{background:#fff;border-radius:var(--radius);padding:1.75rem;border:1.5px solid rgba(26,46,74,.07);transition:transform .2s}
+.prac-card:hover{transform:translateY(-3px)}
+.prac-card h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--navy);display:flex;align-items:center;gap:.5rem}
+.prac-card h3 span{font-size:1.1rem}
+.prac-card p{font-size:.9rem;color:var(--muted);line-height:1.65}
+
+/* GALLERY */
+#gallery{background:var(--navy);padding:3.5rem 2rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:1080px;margin:0 auto}
+@media(max-width:600px){.gallery-grid{grid-template-columns:1fr 1fr}}
+.gal-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;background:#223348}
+.gal-img.tall{aspect-ratio:3/4;grid-row:span 2}
+
+/* BOOKING */
+#booking{background:var(--navy)}
+#booking .eyebrow{color:var(--gold)}
+#booking .section-title{color:#fff}
+#booking .section-sub{color:rgba(255,255,255,.55);margin:0 auto 2.5rem}
+.booking-box{max-width:600px;margin:0 auto;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2.5rem}
+.booking-box form{display:flex;flex-direction:column;gap:.85rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.booking-box input,.booking-box select,.booking-box textarea{width:100%;padding:.8rem 1.1rem;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:.95rem;font-family:'Nunito',sans-serif;outline:none;transition:border-color .2s}
+.booking-box input::placeholder,.booking-box textarea::placeholder{color:rgba(255,255,255,.35)}
+.booking-box select{color:rgba(255,255,255,.65)}
+.booking-box select option{background:#1a2e4a;color:#fff}
+.booking-box input:focus,.booking-box select:focus,.booking-box textarea:focus{border-color:var(--gold)}
+.booking-box button{background:var(--gold);color:var(--navy);padding:.9rem;border-radius:10px;font-size:1rem;font-weight:800;font-family:'Nunito',sans-serif;border:none;cursor:pointer;transition:opacity .2s,transform .15s}
+.booking-box button:hover{opacity:.88;transform:translateY(-1px)}
+.booking-note{margin-top:1.2rem;color:rgba(255,255,255,.4);font-size:.82rem;text-align:center}
+.booking-note a{color:var(--gold);text-decoration:none}
+
+/* FOOTER */
+footer{background:#101c2c;color:rgba(255,255,255,.35);text-align:center;padding:2rem;font-size:.83rem;font-family:'Nunito',sans-serif}
+footer a{color:rgba(255,255,255,.55);text-decoration:none}
+footer a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<nav>
+  <!-- Logo: hvit versjon brukes på den lyse bakgrunnen – bytt til 'bilder/logo-hvit.png' om du foretrekker det -->
+  <a href="index.html"><img class="nav-logo" src="bilder/logo-svart.png" alt="Badegjestene"></a>
+  <a class="nav-book" href="#booking">Send forespørsel</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">🎸 Liveband til bryllup</div>
+    <h1>Gjør bryllupet til en <em>fest</em> de aldri glemmer</h1>
+    <p class="hero-sub">Vi er fem musikere fra Oslo som lever for allsang, dansegulv og øyeblikk der alle er med. Ikledd 1920-talls badedrakter setter vi tonen fra første låt.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-main">Send forespørsel</a>
+      <a href="#video" class="btn-ghost">Se oss live ↓</a>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-img-stack">
+        <img class="img-main" src="bilder/scene-bred.jpg" alt="Badegjestene spiller live" onerror="this.style.background='#b8c8cc'">
+        <img class="img-accent" src="bilder/backstage.jpg" alt="Badegjestene backstage" onerror="this.style.background='#a8bcc0'">
+      </div>
+      <div>
+        <div class="eyebrow">Hvorfor Badegjestene</div>
+        <h2 class="section-title">Vi gjør bryllupet til en skikkelig fest</h2>
+        <p style="color:var(--muted);margin-bottom:2rem;font-size:1.05rem">Vi er ikke bare et band – vi er underholdning, stemningsskapere og garanterte allsang-initiativtakere. Ingen ser på fra sidelinjen når vi spiller.</p>
+        <div class="why-points">
+          <div class="why-point">
+            <div class="why-icon">🎤</div>
+            <div><h3>Allsang fra første til siste låt</h3><p>Vi spiller kjente hits alle kan synge med på – og vi sørger for at de gjør det. Energien mellom band og publikum er det vi lever for.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="why-icon">👒</div>
+            <div><h3>Unik look og atmosfære</h3><p>Badedrakter, stråhatter og solbriller gir en umiddelbar sommervibe – og sikrer at bryllupet skiller seg ut fra mengden.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="why-icon">🎵</div>
+            <div><h3>Personlig setliste</h3><p>Vi tar gjerne imot låtønsker og tilpasser kvelden etter dere. Ingen bryllup er like, og ingen setliste trenger å være det heller.</p></div>
+          </div>
+          <div class="why-point">
+            <div class="why-icon">🔊</div>
+            <div><h3>Alt på én faktura</h3><p>Vi hjelper med lydanlegg og tekniker via vår samarbeidspartner, og har kontakter om dere ønsker DJ før eller etter bandet.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="container" style="text-align:center">
+    <div class="eyebrow">Se oss live</div>
+    <h2 class="section-title" style="color:#fff">Sånn ser en Badegjestene-kveld ut</h2>
+    <p class="section-sub" style="margin:0 auto 2.5rem">Det beste vi kan si er ingenting – se selv hva som skjer når vi går på scenen.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/aOkHFCnjLhs?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Badegjestene live på bryllup"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="howto">
+  <div class="container">
+    <div class="eyebrow">Slik fungerer det</div>
+    <h2 class="section-title">Fra første kontakt til dansegulv</h2>
+    <p class="section-sub">Vi gjør det enkelt. Her er hva som skjer fra du tar kontakt til dere danser til siste låt.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h3>Send en forespørsel</h3><p>Fortell oss datoen, stedet og litt om hva dere ser for dere. Vi svarer raskt med info og pris.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Vi planlegger sammen</h3><p>Ønskelåter, setliste, tidspunkt for spilling – vi tilpasser kvelden til nettopp deres bryllup.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Vi setter opp og lydsjekker</h3><p>Vi ankommer i god tid, rigger opp og sørger for at alt er klart – dere trenger ikke tenke på teknikken.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>Dere danser, vi spiller</h3><p>Typisk 90 min sammenhengende for maksimal energi. Trenger dere mer, kjører vi to sett à 60 min.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="practical">
+  <div class="container">
+    <div class="eyebrow">Praktisk info</div>
+    <h2 class="section-title">Det dere lurer på</h2>
+    <p class="section-sub">Svar på det vi oftest får spørsmål om.</p>
+    <div class="practical-grid">
+      <div class="prac-card"><h3><span>📍</span>Hvor spiller dere?</h3><p>Vi holder til i Oslo-området, men reiser gjerne overalt i Norge – Bergen, Stavanger, Lærdal og Kirkenes er blant stedene vi har spilt. Reise og overnatting dekkes av oppdragsgiver.</p></div>
+      <div class="prac-card"><h3><span>⏱</span>Hvor lenge spiller dere?</h3><p>Vi anbefaler 90 min sammenhengende for maksimal energi. Ved behov spiller vi to sett à 60 min med pause – da henter både band og publikum seg inn til runden to.</p></div>
+      <div class="prac-card"><h3><span>🔊</span>Lydanlegg og tekniker?</h3><p>Vi har en fast samarbeidspartner for leie av lydanlegg og lydtekniker. Vi kobler dere også gjerne på en DJ om dere ønsker musikk før eller etter bandet.</p></div>
+      <div class="prac-card"><h3><span>🎵</span>Kan vi velge låter?</h3><p>Absolutt. Vi ønsker å gjøre setlisten personlig for hvert oppdrag. Send oss ønsker – vi garanterer ikke alt, men er fleksible og imøtekommende.</p></div>
+      <div class="prac-card"><h3><span>💰</span>Hva koster det?</h3><p>Pris varierer med spilletid, sted og behov. Ta kontakt for et uforpliktende tilbud – vi svarer raskt og skreddersyr pakken etter budsjettet deres.</p></div>
+      <div class="prac-card"><h3><span>👗</span>Hva har dere på?</h3><p>1920-talls badedrakter, stråhatter og solbriller. Sommerfølelsen er med oss hele året – og gir et unikt og minneverdig innslag på ethvert bryllup.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" style="padding:3.5rem 2rem">
+  <div class="gallery-grid">
+    <img class="gal-img tall" src="bilder/allsang-armer.jpg" alt="Publikum med armene i været" onerror="this.style.background='#223348'">
+    <img class="gal-img" src="bilder/scene-bred.jpg" alt="Badegjestene på stor scene" onerror="this.style.background='#223348'">
+    <img class="gal-img" src="bilder/scene-vokal.jpg" alt="Vokal og bassist på scenen" onerror="this.style.background='#223348'">
+    <img class="gal-img" src="bilder/konsert-sal.jpg" alt="Full sal under konsert" onerror="this.style.background='#223348'">
+  </div>
+</section>
+
+<section id="booking">
+  <div class="container" style="text-align:center">
+    <div class="eyebrow">Booking</div>
+    <h2 class="section-title" style="color:#fff">Er datoen ledig?</h2>
+    <p class="section-sub">Fyll ut skjemaet så svarer vi innen 24 timer med tilgjengelighet og pris.</p>
+    <div class="booking-box">
+      <form action="mailto:booking@badegjestene.no" method="post" enctype="text/plain">
+        <div class="form-row">
+          <input type="text" name="navn" placeholder="Navn" required>
+          <input type="email" name="epost" placeholder="E-post" required>
+        </div>
+        <div class="form-row">
+          <input type="date" name="dato" required>
+          <input type="text" name="sted" placeholder="Sted / lokale">
+        </div>
+        <select name="type">
+          <option value="" disabled selected>Type arrangement</option>
+          <option>Bryllup</option>
+          <option>Firmafest / event</option>
+          <option>Julebord</option>
+          <option>Sommerfest</option>
+          <option>Annet</option>
+        </select>
+        <textarea name="melding" rows="3" placeholder="Fortell litt om arrangementet og eventuelle ønsker..."></textarea>
+        <button type="submit">Send forespørsel →</button>
+      </form>
+      <p class="booking-note">Eller kontakt oss direkte på <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a> · <a href="https://instagram.com/badegjestene1" target="_blank">@Badegjestene1</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="bilder/logo-svart.png" alt="Badegjestene" style="height:28px;opacity:.4;margin-bottom:.8rem;filter:invert(1)">
+  <p style="margin-bottom:.4rem">Oslo, Norge · <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a></p>
+  <p><a href="index.html">← Tilbake til forsiden</a></p>
+</footer>
+
+</body>
+</html>
