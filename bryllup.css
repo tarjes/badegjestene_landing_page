@@ -37,15 +37,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 	nav{justify-content:center;padding:.8rem 1.25rem;position:relative}
 	.nav-links,.nav-links-right{display:none}
 	.nav-logo img{height:44px;max-width:180px}
-	.hamburger{display:flex;position:absolute;left:1.25rem;top:50%;transform:translateY(-50%);z-index:200}
+	.hamburger{display:flex;position:absolute;left:25%;transform:translate(-50%,-50%);top:50%;z-index:200}
 }
+
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;padding-bottom:5.5rem}
 .hero-bg{position:absolute;inset:0;background:url('bilder/konsert-sal.jpg') center/cover no-repeat}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,30,.9) 35%,rgba(10,18,30,.25) 100%)}
-.hero-content{position:relative;z-index:2;width:100%;padding:0 2rem}
+.hero-content{position:relative;z-index:2;width:100%;max-width:100%;padding:0 2rem;box-sizing:border-box}
 .hero-tag{display:inline-block;border:1px solid rgba(245,200,66,.5);color:var(--gold);font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:1.5rem}
-.hero h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-1px;margin-bottom:1.2rem;max-width:760px}
+.hero h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-1px;margin-bottom:1.2rem}
 .hero h1 em{font-style:italic;color:var(--gold)}
 .hero-sub{font-family:'Nunito',sans-serif;color:rgba(255,255,255,.7);font-size:clamp(1rem,2vw,1.15rem);max-width:560px;margin-bottom:2.5rem}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
