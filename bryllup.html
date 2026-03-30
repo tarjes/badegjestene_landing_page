@@ -52,6 +52,7 @@
 </nav>
 
 <!-- MOBILE MENU -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
 	<button class="mobile-close" id="mobileClose">×</button>
 	<a href="om-oss.html">Om oss</a>
@@ -93,19 +94,15 @@
 				</div>
 				<div class="why-points">
 					<div class="why-point">
-						<div class="why-icon">🎤</div>
 						<div><h3>Allsang fra første til siste låt</h3><p>Vi spiller kjente hits alle kan synge med på – og vi sørger for at de gjør det. Energien mellom band og publikum er det vi lever for.</p></div>
 					</div>
 					<div class="why-point">
-						<div class="why-icon">👒</div>
 						<div><h3>Unik look og atmosfære</h3><p>Badedrakter, stråhatter og solbriller gir en umiddelbar sommervibe – og sikrer at bryllupet skiller seg ut fra mengden.</p></div>
 					</div>
 					<div class="why-point">
-						<div class="why-icon">🎵</div>
 						<div><h3>Personlig setliste – inkludert bryllupsdansen</h3><p>Har dere en låt som er "deres"? Vi spiller gjerne bryllupsdansen og tilpasser setlisten etter ønsker. Ingen bryllup er like, og ingen kveld trenger å være det heller.</p></div>
 					</div>
 					<div class="why-point">
-						<div class="why-icon">🔊</div>
 						<div><h3>Alt på én faktura</h3><p>Vi koordinerer lydanlegg og tekniker via vår samarbeidspartner – slik at anlegget er klart ikke bare for oss, men også for taler, toastmaster og andre innslag gjennom kvelden.</p></div>
 					</div>
 				</div>
@@ -227,7 +224,7 @@
 				<textarea name="melding" rows="3" placeholder="Fortell litt om arrangementet og eventuelle ønsker..."></textarea>
 				<button type="submit">Send forespørsel →</button>
 			</form>
-			<p class="booking-note">Eller kontakt oss på <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a> · <a href="https://instagram.com/badegjestene1" target="_blank">@Badegjestene1</a></p>
+			<p class="booking-note">Eller kontakt oss direkte på <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a></p>
 		</div>
 	</div>
 </section>
@@ -271,10 +268,15 @@ const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileClose = document.getElementById('mobileClose');
 const mobileKontakt = document.getElementById('mobileKontakt');
+const mobileOverlay = document.getElementById('mobileOverlay');
 
-hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
-mobileKontakt.addEventListener('click', () => mobileMenu.classList.remove('open'));
+function openMenu(){mobileMenu.classList.add('open');mobileOverlay.classList.add('open')}
+function closeMenu(){mobileMenu.classList.remove('open');mobileOverlay.classList.remove('open')}
+
+hamburger.addEventListener('click', openMenu);
+mobileClose.addEventListener('click', closeMenu);
+mobileOverlay.addEventListener('click', closeMenu);
+mobileKontakt.addEventListener('click', closeMenu);
 </script>
 
 </body>
