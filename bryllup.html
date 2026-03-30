@@ -236,12 +236,12 @@
 	<div class="container" style="text-align:center">
 		<div class="eyebrow">Booking</div>
 		<h2 class="section-title" style="color:#fff">Er datoen ledig?</h2>
-		<p class="section-sub">Fyll ut skjemaet så svarer vi innen 24 timer med tilgjengelighet og pris.</p>
+		<p class="section-sub">Fyll ut skjemaet så svarer vi deg innen 24 timer.</p>
 		<div class="booking-box">
-			<form action="mailto:booking@badegjestene.no" method="post" enctype="text/plain">
+			<form action="https://formspree.io/f/xwpognyr" method="POST">
 				<div class="form-row">
-					<input type="text" name="navn" placeholder="Navn" required>
-					<input type="email" name="epost" placeholder="E-post" required>
+					<input type="text" name="name" placeholder="Navn" required>
+					<input type="email" name="email" placeholder="E-post" required>
 				</div>
 				<div class="form-row">
 					<input type="date" name="dato" required>
@@ -252,13 +252,13 @@
 					<option>Bryllup</option>
 					<option>Firmafest / event</option>
 					<option>Julebord</option>
-					<option>Sommerfest</option>
+					<option>Afterski</option>
 					<option>Annet</option>
 				</select>
-				<textarea name="melding" rows="3" placeholder="Fortell litt om bryllupet og eventuelle ønsker..."></textarea>
-				<button type="submit">Send forespørsel →</button>
+				<textarea name="message" rows="3" required placeholder="Fortell oss om arrangementet, hva som er viktig for deg, og eventuelle spørsmål."></textarea>
+				<input type="hidden" name="_captcha" value="false">
+				<button type="submit" class="form-button">Send forespørsel – Svar innen 24 timer</button>
 			</form>
-			<p class="booking-note">Eller kontakt oss direkte på <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a></p>
 		</div>
 	</div>
 </section>
