@@ -167,11 +167,3 @@ footer a:hover{color:var(--gold)}
 .instagram-nudge a:hover{background:var(--navy);color:#fff}
 .instagram-nudge svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
 
-/* MOBILE */
-@media(max-width:700px){
-	nav{justify-content:center;padding:.8rem 1.25rem;position:relative;background:var(--bg-dark)}
-	.nav-links,.nav-links-right{display:none}
-	.nav-logo img{height:44px;max-width:180px}
-	.hamburger{display:flex;position:absolute;left:1.25rem;top:50%;transform:translateY(-50%);z-index:200}
-	.hero-content{padding:0 1.25rem}
-}
