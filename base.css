@@ -32,10 +32,10 @@ section{padding:5.5rem 2rem;scroll-margin-top:120px}
 .btn-secondary:hover{transform:translateY(-2px);border-color:rgba(26,46,74,.28)}
 
 /* HEADER */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:300;background:transparent}
+.site-header{position:absolute;top:0;left:0;right:0;z-index:300;background:transparent;transition:transform .28s ease}
 .site-header__inner{max-width:1220px;margin:0 auto;padding:1.75rem 1.5rem}
-.site-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:3rem}
-.nav-side{display:flex;align-items:center;gap:3rem}
+.site-nav{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:3rem}
+.nav-side{display:flex;align-items:center;gap:3rem;min-width:0}
 .nav-side--right{justify-content:flex-end}
 .nav-brand{justify-self:center}
 .nav-brand img{height:65px;width:auto;max-width:300px;object-fit:contain}
@@ -64,11 +64,11 @@ section{padding:5.5rem 2rem;scroll-margin-top:120px}
 .mobile-menu__label{font-size:.82rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45)}
 .mobile-menu__subitem{padding-left:.85rem;color:rgba(255,255,255,.84)!important}
 
-.no-hero .site-header{background:rgba(16,28,44,.96);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(10,18,30,.15)}
-.no-hero{padding-top:104px}
+.no-hero .site-header{position:static;background:rgba(16,28,44,.96);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(10,18,30,.15)}
+.no-hero{padding-top:0}
 
 /* HERO */
-.landing-hero{position:relative;min-height:calc(100vh - 104px);display:flex;align-items:flex-end;overflow:hidden;padding:7rem 2rem 5rem}
+.landing-hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;padding:7rem 2rem 5rem}
 .landing-hero::before{content:'';position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
 .landing-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,30,.2) 0%,rgba(10,18,30,.72) 68%,rgba(10,18,30,.92) 100%)}
 .landing-hero--home::before{background-image:url('bilder/konsert-sal.jpg')}
@@ -154,12 +154,18 @@ footer a:hover{color:var(--gold)}
 @media(max-width:960px){
   .site-nav{grid-template-columns:auto 1fr auto}
   .nav-side--right{display:none}
+  .site-header__inner{padding:1.1rem 1rem}
+  .nav-brand img{height:56px;max-width:240px}
+  .nav-side{gap:1.6rem}
+  .nav-link,.nav-dropdown__toggle{font-size:.98rem}
   .offer-grid{grid-template-columns:1fr}
   .about-split{grid-template-columns:1fr}
   .band-members{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:760px){
+  .site-header{position:fixed;background:rgba(16,28,44,.96);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(10,18,30,.15)}
+  .site-header.site-header--hidden{transform:translateY(-100%)}
   .site-header__inner{padding:.8rem 1.25rem}
   .site-nav{grid-template-columns:auto 1fr auto}
   .menu-toggle{display:inline-flex}
@@ -175,7 +181,6 @@ footer a:hover{color:var(--gold)}
   .no-hero{padding-top:76px}
 }
 
-/* BRYLLUP PAGE STYLES (MIGRATED FROM bryllup.css) */
 .hero{position:relative;min-height:calc(100vh - 104px);display:flex;align-items:flex-end;overflow:hidden;padding:0 2rem 5.5rem}
 .hero-bg{position:absolute;inset:0;background:url('bilder/konsert-sal.jpg') center/cover no-repeat}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,30,.9) 35%,rgba(10,18,30,.25) 100%)}

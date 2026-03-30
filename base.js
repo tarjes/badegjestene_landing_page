@@ -3,6 +3,7 @@ const mobileMenu = document.querySelector('[data-mobile-menu]');
 const mobileOverlay = document.querySelector('[data-mobile-overlay]');
 const mobileClose = document.querySelector('[data-mobile-close]');
 const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
+const siteHeader = document.querySelector('.site-header');
 
 function closeMobileMenu() {
   if (!mobileMenu || !mobileOverlay) return;
@@ -45,3 +46,35 @@ dropdownToggles.forEach((toggle) => {
 document.addEventListener('click', () => {
   document.querySelectorAll('.nav-dropdown.open').forEach((item) => item.classList.remove('open'));
 });
+
+let lastScrollY = window.scrollY;
+
+function syncMobileHeaderVisibility() {
+  if (!siteHeader) return;
+
+  if (window.innerWidth > 760) {
+    siteHeader.classList.remove('site-header--hidden');
+    return;
+  }
+
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY <= 20) {
+    siteHeader.classList.remove('site-header--hidden');
+    lastScrollY = currentScrollY;
+    return;
+  }
+
+  if (currentScrollY > lastScrollY + 4) {
+    siteHeader.classList.add('site-header--hidden');
+    closeMobileMenu();
+  } else if (currentScrollY < lastScrollY - 4) {
+    siteHeader.classList.remove('site-header--hidden');
+  }
+
+  lastScrollY = currentScrollY;
+}
+
+window.addEventListener('scroll', syncMobileHeaderVisibility, { passive: true });
+window.addEventListener('resize', syncMobileHeaderVisibility);
+syncMobileHeaderVisibility();
