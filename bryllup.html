@@ -1,499 +1,281 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Liveband til bryllup i Oslo. Badegjestene spiller 90 minutter live med elegante overganger fra middag til dansegulv, tilpasset kjoreplanen deres.">
-    <meta name="keywords" content="liveband bryllup oslo, band bryllup, musikk bryllupsfest, coverband bryllup, bryllupsmusikk">
-    <meta name="theme-color" content="#2c3e50">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Liveband til bryllup – Badegjestene">
-    <meta property="og:description" content="Musikk som følger bryllupsreisen din fra start til slutt. Elegant og minnerik.">
-    <meta property="og:image" content="/images/bryllup-hero.jpg">
-    <link rel="canonical" href="https://badegjestene.no/bryllup.html">
-    <title>Liveband til Bryllup i Oslo | Badegjestene</title>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Georgia, 'Garamond', 'Times New Roman', serif; line-height: 1.7; color: #2c3e50; background: #f5f3f0; }
-        html { scroll-behavior: smooth; }
-        
-        header { background: white; color: #2c3e50; padding: 1.2rem; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
-        header nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; }
-        nav a { color: #2c3e50; text-decoration: none; margin-left: 2rem; font-size: 0.9rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: #8b0000; }
-        
-        .hero { background: linear-gradient(to right, #2c3e50 0%, #34495e 100%); color: white; padding: 6rem 1.5rem 5rem; text-align: center; position: relative; }
-        .hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 700; font-family: Georgia, 'Garamond', serif; }
-        .hero-intro { font-size: 1.2rem; margin-bottom: 0.5rem; opacity: 0.9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; }
-        .hero-subtext { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.8; }
-        
-        .cta-button { display: inline-block; background: #d4af37; color: #2c3e50; padding: 1.2rem 3rem; border-radius: 0; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; cursor: pointer; border: none; }
-        .cta-button:hover { background: #e8c547; transform: translateY(-2px); }
-        
-        main { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
-        section { padding: 4rem 0; border-bottom: 1px solid #ddd; }
-        section:last-of-type { border-bottom: none; }
-        
-        .section-title { font-size: 2.3rem; margin-bottom: 2rem; color: #2c3e50; font-weight: 700; font-family: Georgia, 'Garamond', serif; }
-        .intro-text { font-size: 1.1rem; color: #555; margin-bottom: 2rem; line-height: 1.8; font-style: italic; }
-        
-        .journey-step { margin-bottom: 3rem; padding: 2rem; background: white; border-left: 5px solid #d4af37; }
-        .journey-step h3 { color: #2c3e50; margin-bottom: 1rem; font-size: 1.4rem; }
-        .journey-step p { color: #555; line-height: 1.8; margin-bottom: 0.8rem; }
-        .journey-step-detail { color: #8b0000; font-weight: 600; font-size: 0.9rem; }
-        
-        .testimonial { background: white; border: 2px solid #ddd; padding: 2.5rem; margin: 2rem 0; text-align: center; }
-        .testimonial-text { font-size: 1.15rem; font-style: italic; color: #2c3e50; margin-bottom: 1.5rem; line-height: 1.8; }
-        .testimonial-author { color: #8b0000; font-weight: 600; }
-        .testimonial-detail { color: #999; font-size: 0.9rem; margin-top: 0.5rem; }
-        
-        .pricing-box { background: white; border: 2px solid #d4af37; padding: 2.5rem; border-radius: 0; text-align: center; margin-bottom: 2rem; }
-        .pricing-box h3 { color: #2c3e50; margin-bottom: 0.5rem; font-size: 1.6rem; }
-        .pricing-box .price { color: #d4af37; font-size: 2.5rem; font-weight: 700; margin: 1rem 0; }
-        .pricing-box ul { list-style: none; text-align: left; margin: 1.5rem 0; }
-        .pricing-box li { padding: 0.6rem 0; color: #555; }
-        .pricing-box li::before { content: '✓ '; margin-right: 0.5rem; color: #8b0000; font-weight: bold; }
-        
-        .faq-container { background: white; }
-        details { padding: 1.8rem; border-bottom: 1px solid #ddd; }
-        details:last-child { border-bottom: none; }
-        summary { cursor: pointer; font-weight: 600; font-size: 1.1rem; color: #2c3e50; user-select: none; display: flex; justify-content: space-between; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; }
-        summary:hover { color: #8b0000; }
-        summary::after { content: '▼'; font-size: 0.8rem; transition: transform 0.3s; }
-        details[open] summary::after { transform: rotate(180deg); }
-        details[open] summary { margin-bottom: 1rem; }
-        details p { color: #555; line-height: 1.8; margin-bottom: 0.8rem; }
-        
-        .form-section { background: white; padding: 2.5rem; border-radius: 0; max-width: 600px; margin: 2rem auto; }
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; margin-bottom: 0.6rem; font-weight: 600; color: #2c3e50; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; }
-        input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 0; font-family: inherit; font-size: 1rem; }
-        input:focus, textarea:focus, select:focus { outline: none; border-color: #d4af37; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
-        textarea { resize: vertical; min-height: 120px; }
-        .submit-button { background: #2c3e50; color: white; padding: 1.2rem 2rem; border: none; border-radius: 0; font-weight: 600; cursor: pointer; font-size: 1rem; width: 100%; transition: background 0.3s; }
-        .submit-button:hover { background: #1a252f; }
-        
-        footer { background: #2c3e50; color: white; text-align: center; padding: 2.5rem; margin-top: 3rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif; }
-        .social-links { margin-top: 1rem; }
-        .social-link { display: inline-block; color: white; margin: 0 0.8rem; text-decoration: none; font-size: 1.1rem; transition: color 0.3s; }
-        .social-link:hover { color: #d4af37; }
-        
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero { padding: 3rem 1.5rem; }
-            .section-title { font-size: 1.6rem; }
-            nav a { margin-left: 1rem; font-size: 0.8rem; }
-            main { padding: 0 1rem; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badegjestene – Liveband til bryllup i Oslo og hele Norge</title>
+<meta name="description" content="Book Badegjestene til bryllupet ditt – et energisk coverband fra Oslo med allsang, dansegulv og god stemning. Vi spiller i hele Norge.">
+<meta name="keywords" content="liveband bryllup Oslo, coverband bryllup, bryllupsband Norge, allsang bryllup, Badegjestene">
+<meta property="og:title" content="Badegjestene – Liveband til bryllup">
+<meta property="og:description" content="Gjør bryllupet til en fest dere aldri glemmer. Badegjestene er Oslos mest energiske coverband – ikledd 1920-talls badedrakter skaper vi allsang og dansegulv hele natten.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://badegjestene.no/bryllup">
+<meta property="og:image" content="https://badegjestene.no/bilder/konsert-sal.jpg">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "MusicGroup",
+	"name": "Badegjestene",
+	"url": "https://badegjestene.no",
+	"description": "Badegjestene er et party- og coverband fra Oslo som spiller bryllup, firmafest, julebord og andre arrangementer i hele Norge.",
+	"genre": "Cover/Party",
+	"areaServed": "Norge",
+	"sameAs": [
+		"https://www.instagram.com/badegjestene1",
+		"https://www.youtube.com/@badegjestene",
+		"https://www.facebook.com/Badegjestene",
+		"https://www.tiktok.com/@badegjestene"
+	]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="bryllup.css">
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-4RM4JNEL8J');
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Badegjestene – Liveband til bryllup",
-        "description": "Coverband som skaper musikk for hele bryllupsreisen din",
-        "url": "https://badegjestene.no/bryllup.html",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Oslo",
-            "addressCountry": "NO"
-        },
-        "priceRange": "22000-28000 NOK",
-        "service": {
-            "@type": "Service",
-            "name": "Liveband til bryllup",
-            "duration": "PT90M"
-        }
-    }
-    </script>
 
-    <header>
-        <nav>
-            <div class="logo">Badegjestene</div>
-            <div><a href="/">Hjem</a> <a href="#kontakt">Kontakt</a></div>
-        </nav>
-    </header>
+<!-- NAV -->
+<nav>
+	<button class="hamburger" id="hamburger" aria-label="Meny">
+		<span></span><span></span><span></span>
+	</button>
+	<div class="nav-links">
+		<a href="om-oss.html">Om oss</a>
+		<a href="media.html">Media</a>
+	</div>
+	<a href="index.html"><img src="bilder/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" style="height:52px;width:auto;max-width:240px;object-fit:contain;display:block"></a>
+	<div class="nav-links-right">
+		<a href="faq.html">FAQ</a>
+		<a href="#booking">Kontakt</a>
+	</div>
+</nav>
 
-    <section class="hero">
-        <div>
-            <p class="hero-intro">Musikk til den viktigste dagen</p>
-            <h1>En bryllupsfest som følger dagen fra start til slutt</h1>
-            <p class="hero-subtext">Fra det stille øyeblikket under vielsen til jubelen på dansegolvet. Musikk som er tilstede nettopp når det skal være – elegant, personlig og minneverdig.</p>
-            <a href="#kontakt" class="cta-button">Skaff musikk til bryllupet</a>
-        </div>
-    </section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+	<button class="mobile-close" id="mobileClose">×</button>
+	<a href="om-oss.html">Om oss</a>
+	<a href="media.html">Media</a>
+	<a href="faq.html">FAQ</a>
+	<a href="#booking" id="mobileKontakt">Kontakt</a>
+</div>
 
-    <main>
-        <section>
-            <h2 class="section-title">En bryllupsfest som gjenspeiler dagen</h2>
-            <p class="intro-text">Bryllupsfesten er ikke en konsert. Det er en fortsettelse av dagen – vielsen avsluttet, festen begynt. Musikken skal vokse og pulsere naturlig gjennom hver fase.</p>
-            
-            <div class="journey-step">
-                <h3>Vielsen</h3>
-                <p>Noen ganger spiller vi før og efter. Stille, varm musikk mens gjestene ankommer. Eller vi venter i det stille øyeblikket.</p>
-                <p class="journey-step-detail">• Diskresjon over alt</p>
-            </div>
-            
-            <div class="journey-step">
-                <h3>Aperitif & Middag</h3>
-                <p>Musikken er tilstede, men ikke dominant. Folk skal spise, tale og være sammen. Vi spiller elegant bakgrunn som løfter stemningen uten å stjele fokus.</p>
-                <p class="journey-step-detail">• Klassikere og covers som smitter</p>
-            </div>
-            
-            <div class="journey-step">
-                <h3>Toastene</h3>
-                <p>Vi vet når det er tid for skål. Vi trekker oss tilbake, demper oss, venter. Og når toasten er over – vi er tilbake, og musikken blomstrer igjen.</p>
-                <p class="journey-step-detail">• Perfekt timing, alltid</p>
-            </div>
-            
-            <div class="journey-step">
-                <h3>Dansen</h3>
-                <p>Det er her bryllupsfesten virkelig blomstrer. Folk som aldri danser, danser. Vi leser rommet, vi vet når det trengs energi og når det trengs varme.</p>
-                <p class="journey-step-detail">• Musikk som får folk opp fra stolen</p>
-            </div>
-        </section>
+<!-- HERO -->
+<section class="hero">
+	<div class="hero-bg"></div>
+	<div class="hero-overlay"></div>
+	<div class="hero-content">
+		<div class="hero-tag">Liveband til bryllup</div>
+		<h1>Gjør bryllupet til en <em>fest</em> dere aldri glemmer</h1>
+		<p class="hero-sub">Den dagen handler om dere og de dere holder kjærest. Vi er der for å sørge for at feiringen med familie og venner blir en natt ingen glemmer – fra første dans til siste låt.</p>
+		<div class="hero-btns">
+			<a href="#booking" class="btn-main">Send forespørsel</a>
+			<a href="#video" class="btn-ghost">Se oss live ↓</a>
+		</div>
+	</div>
+</section>
 
-        <section>
-            <h2 class="section-title">Hva får du?</h2>
-            <div class="pricing-box">
-                <h3>Bryllupspakke – Fra 22.000 kroner</h3>
-                <div class="price">22.000 kr</div>
-                <p style="margin-bottom: 1.5rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;">For 90 minutter + 5 musikere</p>
-                <ul>
-                    <li>5 musikere (vokal, gitar, bass, trommer, keyboard)</li>
-                    <li>90 minutter live musikk</li>
-                    <li>Soundcheck og planlegging med dere</li>
-                    <li>Setup og teardown inkludert</li>
-                    <li>Romantiske covers + klassikere + moderne hits</li>
-                </ul>
-            </div>
-        </section>
+<!-- WHY -->
+<section id="why">
+	<div class="container">
+		<div class="why-grid">
+			<div class="why-img-stack">
+				<img class="img-main" src="bilder/scene-bred.jpg" alt="Badegjestene spiller live i stor sal" onerror="this.style.background='#b8c8cc'">
+				<img class="img-accent" src="bilder/backstage.jpg" alt="Badegjestene backstage" onerror="this.style.background='#a8bcc0'">
+			</div>
+			<div>
+				<div class="eyebrow">Hvorfor Badegjestene</div>
+				<h2 class="section-title">Vi gjør bryllupet til en skikkelig fest</h2>
+				<p style="color:var(--muted);margin-bottom:2rem;font-size:1.05rem">Vi er ikke bare et band – vi er underholdning, stemningsskapere og garanterte allsang-initiativtakere. Ingen ser på fra sidelinjen når vi spiller.</p>
+				<div class="why-img-mobile">
+					<img src="bilder/scene-bred.jpg" alt="Badegjestene på scene" onerror="this.style.background='#b8c8cc'">
+					<img src="bilder/backstage.jpg" alt="Badegjestene backstage" onerror="this.style.background='#a8bcc0'">
+				</div>
+				<div class="why-points">
+					<div class="why-point">
+						<div class="why-icon">🎤</div>
+						<div><h3>Allsang fra første til siste låt</h3><p>Vi spiller kjente hits alle kan synge med på – og vi sørger for at de gjør det. Energien mellom band og publikum er det vi lever for.</p></div>
+					</div>
+					<div class="why-point">
+						<div class="why-icon">👒</div>
+						<div><h3>Unik look og atmosfære</h3><p>Badedrakter, stråhatter og solbriller gir en umiddelbar sommervibe – og sikrer at bryllupet skiller seg ut fra mengden.</p></div>
+					</div>
+					<div class="why-point">
+						<div class="why-icon">🎵</div>
+						<div><h3>Personlig setliste – inkludert bryllupsdansen</h3><p>Har dere en låt som er "deres"? Vi spiller gjerne bryllupsdansen og tilpasser setlisten etter ønsker. Ingen bryllup er like, og ingen kveld trenger å være det heller.</p></div>
+					</div>
+					<div class="why-point">
+						<div class="why-icon">🔊</div>
+						<div><h3>Alt på én faktura</h3><p>Vi koordinerer lydanlegg og tekniker via vår samarbeidspartner – slik at anlegget er klart ikke bare for oss, men også for taler, toastmaster og andre innslag gjennom kvelden.</p></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-        <section>
-            <div class="testimonial">
-                <p class="testimonial-text">«Badegjestene gjorde bryllupsfesten vår perfekt. De skjønte intuitivt når de skulle være med og når de skulle trekke seg tilbake. Det føltes som de var del av vår dag.»</p>
-                <p class="testimonial-author">Ingrid & Thomas</p>
-                <p class="testimonial-detail">Bryllup juli 2024, Ekeberg Restauranten</p>
-            </div>
-        </section>
+<!-- VIDEO -->
+<section id="video">
+	<div class="container" style="text-align:center">
+		<div class="eyebrow">Se oss live</div>
+		<h2 class="section-title" style="color:#fff">Sånn ser en kveld med Badegjestene ut</h2>
+		<p class="section-sub" style="margin:0 auto 2.5rem">En video sier mer enn tusen ord.</p>
+		<div class="video-wrap">
+			<iframe src="https://www.youtube.com/embed/aOkHFCnjLhs?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Badegjestene live på bryllup"></iframe>
+		</div>
+	</div>
+</section>
 
-        <section>
-            <h2 class="section-title">Spørsmål om bryllupet ditt</h2>
-            <div class="faq-container">
-                <details>
-                    <summary>Hva påvirker prisen for bryllup?</summary>
-                    <p><strong>Soundcheck og planlegging</strong> – vi trenger tid til å snakke med dere, forstå dagen deres, planlegge antall setninger.</p>
-                    <p><strong>Tidsbruk totalt</strong> – handler ikke bare om 90 min musikk, men hele perioden fra setup til teardown.</p>
-                    <p><strong>Må vi vente til festa er over?</strong> – eller kan vi rigge ned med en gang? Det påvirker kostnad.</p>
-                    <p><strong>PA-system</strong> – hvis bryllupslokalet ikke har det, kan vi levere.</p>
-                </details>
-                <details>
-                    <summary>Kan dere lære oss en spesiell sang?</summary>
-                    <p>Absolutt! Hvis det er en sang som betyr alt for dere – enten for prosesjon, bryllupsdans eller moment – kan vi gjerne lære den. Si bare fra i god tid.</p>
-                </details>
-                <details>
-                    <summary>Hvor mange musikere trenger vi?</summary>
-                    <p>5 musikere er standard og gir fullt sound. 3 musikere (trio) kan fungere bra for intimere bryllup. Vi anbefaler full band for størst effekt.</p>
-                </details>
-                <details>
-                    <summary>Hvor lenge er en «90-minutters set»?</summary>
-                    <p>90 minutter er ren musikk. Vi gir pauser når det naturlig passer – under aperitif, under middag. Det er løst. Den totale tidsbruk inkluderer setup, soundcheck og teardown.</p>
-                </details>
-                <details>
-                    <summary>Hvor langt i forveien må vi booke?</summary>
-                    <p>Vi anbefaler 4-5 måneder, men ta kontakt! Bryllup-sesongen er mai-september, så mai-juni blir fort booket opp.</p>
-                </details>
-                <details>
-                    <summary>Kan dere komme til bryllup utenfor Oslo?</summary>
-                    <p>Ja, Vi reiser gjerne. Det legges til som reisekostnad. Stavanger, Bergen, Lillehammer – vi kommer dit!</p>
-                </details>
-            </div>
-        </section>
+<!-- HOW IT WORKS -->
+<section id="howto">
+	<div class="container">
+		<div class="eyebrow">Slik fungerer det</div>
+		<h2 class="section-title">Fra første kontakt til dansegulv</h2>
+		<p class="section-sub">Vi gjør det enkelt. Her er hva som skjer fra du tar kontakt til dere danser til siste låt.</p>
+		<div class="steps">
+			<div class="step"><div class="step-num">01</div><h3>Send en forespørsel</h3><p>Fortell oss datoen, stedet og litt om hva dere ser for dere. Vi svarer raskt med info og pris.</p></div>
+			<div class="step"><div class="step-num">02</div><h3>Vi planlegger sammen</h3><p>Ønskelåter, setliste, tidspunkt for spilling – vi tilpasser kvelden til nettopp deres bryllup.</p></div>
+			<div class="step"><div class="step-num">03</div><h3>Vi setter opp og lydsjekker</h3><p>Vi ankommer i god tid, rigger opp og sørger for at alt er klart – dere trenger ikke tenke på teknikken.</p></div>
+			<div class="step"><div class="step-num">04</div><h3>Dere danser, vi spiller</h3><p>Typisk 90 min sammenhengende for maksimal energi. Trenger dere mer, kjører vi to sett à 60 min.</p></div>
+		</div>
+	</div>
+</section>
 
-        <section id="kontakt">
-            <h2 class="section-title">Book musikk til bryllupet</h2>
-            <div class="form-section">
-                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                    <input type="hidden" name="event_type" value="bryllup">
-                    
-                    <div class="form-group">
-                        <label>Navn (begge?)</label>
-                        <input type="text" name="names" required>
-                    </div>
-                    <div class="form-group">
-                        <label>E-post</label>
-                        <input type="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Telefon</label>
-                        <input type="tel" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label>Dato for bryllupet</label>
-                        <input type="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Hvor i Oslo-området?</label>
-                        <input type="text" name="location" placeholder="Lokal eller venuenavn">
-                    </div>
-                    <div class="form-group">
-                        <label>Antall gjester ca.</label>
-                        <select name="guests" required>
-                            <option value="">-- Velg --</option>
-                            <option value="30-50">30-50</option>
-                            <option value="50-100">50-100</option>
-                            <option value="100-150">100-150</option>
-                            <option value="150+">150+</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Noen spørsmål eller ønsker?</label>
-                        <textarea name="message" placeholder="Spesialsanger, timing, osv."></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Send forespørsel – Vi svarer raskt</button>
-                </form>
-            </div>
-        </section>
+<!-- FAQ -->
+<section id="faq">
+	<div class="container">
+		<div class="eyebrow">Spørsmål og svar</div>
+		<h2 class="section-title">Ofte stilte spørsmål</h2>
+		<p class="section-sub">Lurer du på noe? Her er svarene på det vi oftest får spørsmål om.</p>
+		<div class="faq-list">
+			<div class="faq-item">
+				<button class="faq-q">Hvor spiller dere?<span>+</span></button>
+				<div class="faq-a">Vi holder til i Oslo-området, men reiser gjerne overalt i Norge. Vi har spilt i Bergen, Stavanger, Lærdal og Kirkenes – vi stiller opp der dere er. Reise og eventuell overnatting dekkes av oppdragsgiver.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Hvor lenge spiller dere på et bryllup?<span>+</span></button>
+				<div class="faq-a">Vi anbefaler 90 minutter sammenhengende for maksimal energi fra start til slutt. Ønsker dere lengre spilletid, kjører vi gjerne to sett à 60 minutter med en kort pause imellom – da henter både band og publikum seg inn til runde to.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Kan vi velge låter og bryllupsdans?<span>+</span></button>
+				<div class="faq-a">Absolutt. Vi ønsker å gjøre kvelden personlig for dere. Send oss låtønsker og fortell om dere har en spesiell sang til bryllupsdansen – vi tilpasser setlisten så godt vi kan. Vi garanterer ikke alt, men er genuint fleksible og imøtekommende.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Ordner dere lydanlegg og tekniker?<span>+</span></button>
+				<div class="faq-a">Ja, vi hjelper med å skaffe lydanlegg og lydtekniker via vår faste samarbeidspartner. Anlegget vil også være tilgjengelig for taler, toastmaster og andre innslag gjennom kvelden. Vi har også kontakter om dere ønsker DJ før eller etter bandet.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Hva koster det?<span>+</span></button>
+				<div class="faq-a">Pris varierer etter spilletid, sted og behov. Ta kontakt for et uforpliktende tilbud – vi svarer raskt og skreddersyr gjerne pakken etter budsjettet og ønskene deres.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Hva har dere på dere?<span>+</span></button>
+				<div class="faq-a">Vi møter opp ikledd ikoniske 1920-talls badedrakter, stråhatter og solbriller. Sommerfølelsen er med oss hele året – og gir et unikt og minneverdig preg på bryllupet.</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-              <section>
-                <h2 class="section-title" style="margin-bottom: 1rem;">Flere arrangementer</h2>
-                <p style="margin-bottom: 1rem; color: #555;">Planlegger du en annen type fest? Se ogsa:</p>
-                <p style="line-height: 1.9;">
-                  <a href="julebord.html" style="margin-right: 0.75rem; font-weight: 600; color: #8b0000;">Liveband til julebord i Oslo</a>
-                  <a href="firmafest.html" style="margin-right: 0.75rem; font-weight: 600; color: #8b0000;">Liveband til firmafest i Oslo</a>
-                  <a href="afterski.html" style="font-weight: 600; color: #8b0000;">Liveband til afterski i Oslo</a>
-                </p>
-              </section>
-    </main>
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+	<div class="container">
+		<div class="eyebrow">Hva brudeparene sier</div>
+		<h2 class="section-title">Ord fra de som var der</h2>
+		<div class="testimonials-inner">
+			<div class="testimonial-imgs">
+				<img class="t-img-1" src="bilder/allsang-armer.jpg" alt="Publikum med armene i været" onerror="this.style.background='#c8d4d8'">
+				<img class="t-img-2" src="bilder/scene-vokal.jpg" alt="Badegjestene på scenen" onerror="this.style.background='#b8c8cc'">
+			</div>
+			<div class="testimonial-quotes">
+				<div class="quote-card">
+					<p class="quote-text">Badegjestene skapte en fantastisk stemning på dansegulvet. Hyggelige, proffe og ikke minst veldig dyktige musikere sørger for en vellykket kveld. Vi kan på det sterkeste anbefale dette bandet. Gleder oss allerede til neste gang!</p>
+					<p class="quote-author">— Marius, brudgom 2024</p>
+				</div>
+				<div class="quote-card">
+					<p class="quote-text">Helt topp! Profesjonelle, dyktige og hyggelige å ha med å gjøre både før, under og etter arrangementet. Gir av seg selv og får virkelig salen med!</p>
+					<p class="quote-author">— Nini, brud august 2025</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-    <footer>
-        <p>&copy; 2024 Badegjestene – Liveband for enhver anledning</p>
-        <p>Oslo, Norge | livemusikk@badegjestene.no</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/Badegjestene" class="social-link" title="Facebook">f</a>
-            <a href="https://instagram.com/badegjestene1" class="social-link" title="Instagram">@</a>
-        </div>
-    </footer>
-</body>
-</html>
-          <p class="hero__description">Vi tilpasser oss din stil: klassiker romantiske sanger til middag, eller fete klasskere til dansegulvet?</p>
-        </div>
-      </section>
+<!-- BOOKING -->
+<section id="booking">
+	<div class="container" style="text-align:center">
+		<div class="eyebrow">Booking</div>
+		<h2 class="section-title" style="color:#fff">Er datoen ledig?</h2>
+		<p class="section-sub">Fyll ut skjemaet så svarer vi innen 24 timer med tilgjengelighet og pris.</p>
+		<div class="booking-box">
+			<form action="mailto:booking@badegjestene.no" method="post" enctype="text/plain">
+				<div class="form-row">
+					<input type="text" name="navn" placeholder="Navn" required>
+					<input type="email" name="epost" placeholder="E-post" required>
+				</div>
+				<div class="form-row">
+					<input type="date" name="dato" required>
+					<input type="text" name="sted" placeholder="Sted / lokale">
+				</div>
+				<select name="type">
+					<option value="" disabled selected>Type arrangement</option>
+					<option>Bryllup</option>
+					<option>Firmafest / event</option>
+					<option>Julebord</option>
+					<option>Sommerfest</option>
+					<option>Annet</option>
+				</select>
+				<textarea name="melding" rows="3" placeholder="Fortell litt om arrangementet og eventuelle ønsker..."></textarea>
+				<button type="submit">Send forespørsel →</button>
+			</form>
+			<p class="booking-note">Eller kontakt oss på <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a> · <a href="https://instagram.com/badegjestene1" target="_blank">@Badegjestene1</a></p>
+		</div>
+	</div>
+</section>
 
-      <section class="section section--image">
-        <div class="container">
-          <div class="image-placeholder">
-            <div class="image-placeholder__content">
-              <i class="fas fa-heart"></i>
-              <p>Foto fra bryllup</p>
-            </div>
-          </div>
-        </div>
-      </section>
+<!-- FOOTER -->
+<footer>
+	<img class="footer-logo" src="bilder/logo-hvit.png" alt="Badegjestene">
+	<div class="social-links">
+		<!-- Instagram -->
+		<a class="social-btn" href="https://instagram.com/badegjestene1" target="_blank" aria-label="Instagram">
+			<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+		</a>
+		<!-- YouTube -->
+		<a class="social-btn" href="https://youtube.com/@badegjestene" target="_blank" aria-label="YouTube">
+			<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+		</a>
+		<!-- Facebook -->
+		<a class="social-btn" href="https://facebook.com/Badegjestene" target="_blank" aria-label="Facebook">
+			<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+		</a>
+		<!-- TikTok -->
+		<a class="social-btn" href="https://tiktok.com/@badegjestene" target="_blank" aria-label="TikTok">
+			<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+		</a>
+	</div>
+	<p style="margin-bottom:.4rem">Oslo, Norge · <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a></p>
+	<p><a href="index.html">← Tilbake til forsiden</a></p>
+</footer>
 
-      <section class="section section--features">
-        <div class="container">
-          <h2 class="section__title">Hvorfor velge Badegjestene?</h2>
-          <div class="features-grid">
-            <article class="feature-card">
-              <div class="feature-card__icon">💍</div>
-              <h3 class="feature-card__title">Fleksibel stil</h3>
-              <p class="feature-card__text">Fra inngang til første dans, til dansegulvet sent på kvelden. Vi tilpasser musikken slik du ønsker det.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-card__icon">🎻</div>
-              <h3 class="feature-card__title">Elegant repertoar</h3>
-              <p class="feature-card__text">Klassiker, popkryss, 70'er-80'er, og moderne låter – alle inkludert. Du bestemmer stemningen.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-card__icon">🎤</div>
-              <h3 class="feature-card__title">PA-system eller ditt eget</h3>
-              <p class="feature-card__text">Vi leverer fullstendig teknisk løsning, eller jobber med ditt eget utstyr. Ditt valg!</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-card__icon">✨</div>
-              <h3 class="feature-card__title">Profesjonell og personlig</h3>
-              <p class="feature-card__text">Vi ser bryllupet ditt som ditt eget. Ingen «Badegjestene-vibe» – DIN vibe er det vi skaper.</p>
-            </article>
-          </div>
-        </div>
-      </section>
+<script>
+document.querySelectorAll('.faq-q').forEach(btn => {
+	btn.addEventListener('click', () => {
+		const item = btn.parentElement;
+		const isOpen = item.classList.contains('open');
+		document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+		if (!isOpen) item.classList.add('open');
+	});
+});
 
-      <section class="section section--included">
-        <div class="container">
-          <h2 class="section__title">Typisk bryllup-dag</h2>
-          
-          <div class="timeline">
-            <h3 class="timeline__title">Eksempel: 4 timer bryllupsmusikk</h3>
-            <div class="timeline__items">
-              <div class="timeline__item">
-                <span class="timeline__time">16:00–16:30</span>
-                <span class="timeline__event">Oppsett mens gjester ankommer</span>
-              </div>
-              <div class="timeline__item">
-                <span class="timeline__time">16:30–17:00</span>
-                <span class="timeline__event">Stille musikk under middag</span>
-              </div>
-              <div class="timeline__item">
-                <span class="timeline__time">17:00–17:30</span>
-                <span class="timeline__event">Første danse og toaster-musikk</span>
-              </div>
-              <div class="timeline__item">
-                <span class="timeline__time">17:30–20:00</span>
-                <span class="timeline__event">Dansegulv full av energi og favorittlåter</span>
-              </div>
-            </div>
-          </div>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+const mobileKontakt = document.getElementById('mobileKontakt');
 
-          <div class="cost-box">
-            <p><strong>Premium bryllup-pakke:</strong> Vår honorar begynner på 25.000 NOK for 4 timer. Vi leverer også PA-system og fylkestekniker som standard (løst fra til det fungerer perfekt). Hvis du har eget utstyr, kan vi tilpasse prisen.</p>
-            <ul class="cost-list">
-              <li><strong>Musiker:</strong> 5 stk – vokal, gitar, bass, trommer, keys</li>
-              <li><strong>PA-system + Ljudtekniker:</strong> Inkludert i premium</li>
-              <li><strong>Oppvarmingstid:</strong> 90 minutter før opptredne</li>
-              <li><strong>Tilpasset repertoar:</strong> Etter dine ønsker</li>
-              <li><strong>Transport Oslo-området:</strong> Inkludert</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileKontakt.addEventListener('click', () => mobileMenu.classList.remove('open'));
+</script>
 
-      <section class="section section--testimonial">
-        <div class="container">
-          <div class="testimonial">
-            <p class="testimonial__quote">"De forstod nøyaktig hva vi ønsket. Elegant under middag, energisk på dansegulvet. Alle gjestene våre snakket om musikken dagen etter!"</p>
-            <p class="testimonial__author">– Ingrid & Tom</p>
-            <p class="testimonial__context">Bryllup for 80 gjester, Oslo, mai 2024</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--faq">
-        <div class="container">
-          <h2 class="section__title">Bryllup-FAQ</h2>
-          
-          <div class="faq-item">
-            <details>
-              <summary>Når må vi booke bryllup-musikk?</summary>
-              <p>Ideelt 6–8 måneder før bryllupet. Dette gir tid til planlegging. Vi tar gjerne tidligere eller senere avtaler hvis kapasitetet tillater det.</p>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>Kan vi velge musikken selv?</summary>
-              <p>Absolutt! Du sender oss en liste over ønsker – første danse, middag-bakgrunn, favorittlåter til dansegulvet. Vi tilpasser alt til DIN stils fest.</p>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>Har dere erfaring med kirke-inngang?</summary>
-              <p>Ja, vi har gjort det mange ganger. Vi kan spille pre-rekorders musikk med en DJ, eller bare på akustisk gitar hvis du ønsker der.</p>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>PA-system – hva skal vi velge?</summary>
-              <p>Vi leverer profesjonell PA som standard i vår premium-pakke. Hvis du har eget system, tilpasser vi oss – bare si fra!</p>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>Hvor lang tid trenger dere for oppsett?</summary>
-              <p>Kalkuler med 90 minutter for fullstendig oppsett, lydsjekk og testing. Vi er fleksible, men dette er ideelt.</p>
-            </details>
-          </div>
-
-          <div class="faq-item">
-            <details>
-              <summary>Kan dere spille et spesielt arrangement?</summary>
-              <p>Ja! En spesiell låt, en sang fra barndommen, eller noe helt tredje – send oss detaljer og vi gjør vårt beste.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--booking">
-        <div class="container">
-          <h2 class="section__title" style="color: white;">Book musikk til bryllupet</h2>
-          <form class="booking-form" action="https://formspree.io/f/xwpognyr" method="POST">
-            <input type="hidden" name="Arrangementtype" value="Bryllup">
-            
-            <div class="form-group">
-              <label class="form-label">Navn (brudgom/brud eller koordinator)</label>
-              <input type="text" name="name" class="form-input" required>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">E-post</label>
-              <input type="email" name="email" class="form-input" required>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Dato for bryllupet</label>
-              <input type="date" name="date" class="form-input" required>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Hvor mange gjester?</label>
-              <input type="number" name="guests" class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Lengde på musikk?</label>
-              <select name="duration" class="form-input" required>
-                <option value="">-- Velg --</option>
-                <option value="2">2 timer</option>
-                <option value="3">3 timer</option>
-                <option value="4">4 timer</option>
-                <option value="5">5+ timer</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Kort beskrivelse av bryllupet ditt</label>
-              <textarea name="message" class="form-input form-textarea"></textarea>
-            </div>
-
-            <button type="submit" class="form-button">Send forespørsel – Vi svarer fort!</button>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="social-links">
-        <a href="https://www.facebook.com/Badegjestene" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/badegjestene1" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@Badegjestene" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@badegjestene" class="social-link" title="TikTok"><i class="fab fa-tiktok"></i></a>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    document.querySelectorAll('details').forEach(el => {
-      el.addEventListener('toggle', () => {
-        if (el.open) {
-          el.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-        }
-      });
-    });
-  </script>
 </body>
 </html>
