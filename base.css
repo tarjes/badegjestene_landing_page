@@ -265,9 +265,9 @@ footer a:hover{color:var(--gold)}
 
 /* GALLERY MOSAIC */
 .gallery-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:.75rem}
-.gm-square{grid-column:1;grid-row:1;aspect-ratio:1/1;width:100%;object-fit:cover;border-radius:14px}
-.gm-landscape:first-of-type{grid-column:2;grid-row:1;aspect-ratio:4/3;width:100%;object-fit:cover;border-radius:14px}
-.gm-landscape:last-of-type{grid-column:1;grid-row:2;aspect-ratio:4/3;width:100%;object-fit:cover;border-radius:14px}
+.gm-square{grid-column:1;grid-row:1;aspect-ratio:3/2;width:100%;object-fit:cover;border-radius:14px}
+.gm-landscape:first-of-type{grid-column:2;grid-row:1;aspect-ratio:3/2;width:100%;object-fit:cover;border-radius:14px}
+.gm-landscape:last-of-type{grid-column:1;grid-row:2;aspect-ratio:1/1;width:100%;object-fit:cover;border-radius:14px}
 .gm-portrait{grid-column:2;grid-row:2;aspect-ratio:3/4;width:100%;object-fit:cover;border-radius:14px}
 @media(max-width:600px){
 	.gallery-mosaic{grid-template-columns:1fr}
