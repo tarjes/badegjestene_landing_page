@@ -24,7 +24,7 @@ nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-links-right a:hover{color:#fff}
 
 /* MOBILE NAV */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;z-index:200;background:none;border:none;padding:4px}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;z-index:200;background:none;border:none;padding:4px;flex-shrink:0}
 .hamburger span{display:block;height:2px;background:#fff;border-radius:2px}
 .mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:140}
 .mobile-overlay.open{display:block}
@@ -34,11 +34,11 @@ nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:
 .mobile-menu a:hover{color:var(--gold)}
 .mobile-close{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.8rem;cursor:pointer;line-height:1}
 @media(max-width:700px){
-	nav{justify-content:center;padding:.8rem 1.25rem;position:relative;background:var(--bg-dark)}
+	nav{justify-content:space-between;padding:.8rem 1.25rem;position:fixed;background:var(--bg-dark)}
 	.nav-links,.nav-links-right{display:none}
 	.nav-logo img{height:44px;max-width:180px}
-	.hero-content{padding:0 1.25rem}
-	.hamburger{display:flex;position:absolute;left:calc(50% - 90px - 36px);top:50%;transform:translateY(-50%);z-index:200}
+	.hero-content{padding:0 1.25rem;max-width:100%}
+	.hamburger{display:flex}
 }
 
 /* HERO */
