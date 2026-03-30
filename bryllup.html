@@ -31,34 +31,43 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
 <link rel="stylesheet" href="bryllup.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-	<button class="hamburger" id="hamburger" aria-label="Meny">
-		<span></span><span></span><span></span>
-	</button>
-	<div class="nav-links">
-		<a href="om-oss.html">Om oss</a>
-		<a href="media.html">Media</a>
+<header class="site-header">
+	<div class="site-header__inner">
+		<nav class="site-nav" aria-label="Hovedmeny">
+			<button class="menu-toggle" type="button" aria-label="Åpne meny" data-menu-toggle><span></span></button>
+			<div class="nav-side nav-side--left">
+				<a class="nav-link" href="om_oss.html">Om oss</a>
+				<div class="nav-dropdown">
+					<button class="nav-dropdown__toggle" type="button" aria-expanded="false" data-dropdown-toggle>Arrangementer</button>
+					<div class="nav-dropdown__menu">
+						<a href="event.html">Event</a>
+						<a href="fest.html">Fest</a>
+						<a href="bryllup.html">Bryllup</a>
+					</div>
+				</div>
+			</div>
+			<a class="nav-brand" href="index2.html"><img src="bilder/logo-hvit.png" alt="Badegjestene"></a>
+			<div class="nav-side nav-side--right">
+				<a class="nav-link" href="index2.html#booking">Kontakt oss</a>
+			</div>
+		</nav>
 	</div>
-	<a href="index.html"><img src="bilder/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" style="height:65px;width:auto;max-width:300px;object-fit:contain;display:block"></a>
-	<div class="nav-links-right">
-		<a href="faq.html">FAQ</a>
-		<a href="#booking">Kontakt</a>
-	</div>
-</nav>
+</header>
 
-<!-- MOBILE MENU -->
-<div class="mobile-overlay" id="mobileOverlay"></div>
-<div class="mobile-menu" id="mobileMenu">
-	<button class="mobile-close" id="mobileClose">×</button>
-	<a href="om-oss.html">Om oss</a>
-	<a href="media.html">Media</a>
-	<a href="faq.html">FAQ</a>
-	<a href="#booking" id="mobileKontakt">Kontakt</a>
+<div class="mobile-overlay" data-mobile-overlay></div>
+<div class="mobile-menu" data-mobile-menu>
+	<button class="mobile-close" type="button" aria-label="Lukk meny" data-mobile-close>×</button>
+	<a href="om_oss.html">Om oss</a>
+	<div class="mobile-menu__label">Arrangementer</div>
+	<a class="mobile-menu__subitem" href="event.html">Event</a>
+	<a class="mobile-menu__subitem" href="fest.html">Fest</a>
+	<a class="mobile-menu__subitem" href="bryllup.html">Bryllup</a>
+	<a href="index2.html#booking">Kontakt oss</a>
 </div>
 
 <!-- HERO -->
@@ -281,7 +290,7 @@
 		</a>
 	</div>
 	<p style="margin-bottom:.4rem">Oslo, Norge · <a href="mailto:booking@badegjestene.no">booking@badegjestene.no</a></p>
-	<p><a href="index.html">← Tilbake til forsiden</a></p>
+	<p><a href="index2.html">← Tilbake til forsiden</a></p>
 </footer>
 
 <script>
@@ -293,21 +302,8 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 		if (!isOpen) item.classList.add('open');
 	});
 });
-
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileClose = document.getElementById('mobileClose');
-const mobileKontakt = document.getElementById('mobileKontakt');
-const mobileOverlay = document.getElementById('mobileOverlay');
-
-function openMenu(){mobileMenu.classList.add('open');mobileOverlay.classList.add('open')}
-function closeMenu(){mobileMenu.classList.remove('open');mobileOverlay.classList.remove('open')}
-
-hamburger.addEventListener('click', openMenu);
-mobileClose.addEventListener('click', closeMenu);
-mobileOverlay.addEventListener('click', closeMenu);
-mobileKontakt.addEventListener('click', closeMenu);
 </script>
+<script src="base.js"></script>
 
 </body>
 </html>
