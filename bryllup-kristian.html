@@ -67,9 +67,9 @@ nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:
 .mobile-menu a:hover{color:var(--gold)}
 .mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
 @media(max-width:700px){
-  nav{justify-content:flex-start;padding:1rem 1.25rem;gap:1rem}
+  nav{justify-content:center;padding:1rem 1.25rem;position:fixed;background:transparent}
   .nav-links,.nav-links-right{display:none}
-  .hamburger{display:flex}
+  .hamburger{display:flex;position:fixed;left:1.25rem;top:1rem;z-index:200}
 }
 
 /* HERO */
