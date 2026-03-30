@@ -38,7 +38,7 @@ nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:
 	.nav-links,.nav-links-right{display:none}
 	.nav-logo img{height:44px;max-width:180px}
 	.hero-content{padding:0 1.25rem}
-	.hamburger{display:flex;position:absolute;left:1.25rem;top:50%;transform:translateY(-50%);z-index:200}
+	.hamburger{display:flex;position:absolute;left:calc(50% - 90px - 36px);top:50%;transform:translateY(-50%);z-index:200}
 }
 
 /* HERO */
