@@ -161,8 +161,7 @@ footer a:hover{color:var(--gold)}
 .gal-img.tall{aspect-ratio:3/4;grid-row:span 2}
 
 /* INSTAGRAM NUDGE */
-.instagram-nudge{margin-top:.5rem}
-.instagram-nudge a{display:inline-flex;align-items:center;gap:.6rem;color:var(--muted);font-size:.88rem;font-weight:600;text-decoration:none;transition:color .2s}
-.instagram-nudge a:hover{color:var(--navy)}
-.instagram-nudge svg{width:16px;height:16px;fill:var(--muted);flex-shrink:0;transition:fill .2s}
-.instagram-nudge a:hover svg{fill:var(--navy)}
+.instagram-nudge{margin-top:1rem}
+.instagram-nudge a{display:inline-flex;align-items:center;gap:.7rem;color:var(--navy);font-size:.9rem;font-weight:700;text-decoration:none;padding:.65rem 1.25rem;border-radius:100px;border:2px solid var(--navy);transition:background .2s,color .2s}
+.instagram-nudge a:hover{background:var(--navy);color:#fff}
+.instagram-nudge svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
