@@ -48,21 +48,28 @@ body{font-family:'Nunito',system-ui,sans-serif;color:var(--text);background:var(
 h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
 
 /* NAV */
-nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:2.5rem;padding:1.2rem 2.5rem}
-.nav-logo img{height:48px;width:auto;display:block;max-width:220px;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:2rem}
-.nav-links a{color:rgba(255,255,255,.82);font-size:.88rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
+nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:2.5rem;padding:1.4rem 2.5rem}
+.nav-logo img{height:52px;width:auto;display:block;max-width:240px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{color:rgba(255,255,255,.82);font-size:.95rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:#fff}
-.nav-right{display:flex;gap:2rem}
-.nav-links-right{display:flex;gap:2rem}
-.nav-links-right a{color:rgba(255,255,255,.82);font-size:.88rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
+.nav-right{display:flex;gap:2.5rem}
+.nav-links-right{display:flex;gap:2.5rem}
+.nav-links-right a{color:rgba(255,255,255,.82);font-size:.95rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
 .nav-links-right a:hover{color:#fff}
 
 /* MOBILE NAV */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;z-index:200;background:none;border:none;padding:4px}
+.hamburger span{display:block;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--bg-dark);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;font-size:1.5rem;font-weight:700;text-decoration:none;letter-spacing:.5px;font-family:'Playfair Display',serif}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
 @media(max-width:700px){
-  nav{justify-content:center;padding:1rem}
-  .nav-logo{flex:none;justify-content:center}
-  .nav-links,.nav-right{display:none}
+  nav{justify-content:flex-start;padding:1rem 1.25rem;gap:1rem}
+  .nav-links,.nav-links-right{display:none}
+  .hamburger{display:flex}
 }
 
 /* HERO */
@@ -193,16 +200,28 @@ footer a:hover{color:var(--gold)}
 
 <!-- NAV -->
 <nav>
+  <button class="hamburger" id="hamburger" aria-label="Meny">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-links">
     <a href="om-oss.html">Om oss</a>
     <a href="media.html">Media</a>
   </div>
-  <a href="index.html"><img src="bilder/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" style="height:48px;width:auto;max-width:220px;object-fit:contain;display:block"></a>
+  <a href="index.html"><img src="bilder/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" style="height:52px;width:auto;max-width:240px;object-fit:contain;display:block"></a>
   <div class="nav-links-right">
     <a href="faq.html">FAQ</a>
     <a href="#booking">Kontakt</a>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">×</button>
+  <a href="om-oss.html">Om oss</a>
+  <a href="media.html">Media</a>
+  <a href="faq.html">FAQ</a>
+  <a href="#booking" id="mobileKontakt">Kontakt</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -410,6 +429,15 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     if (!isOpen) item.classList.add('open');
   });
 });
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+const mobileKontakt = document.getElementById('mobileKontakt');
+
+hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileKontakt.addEventListener('click', () => mobileMenu.classList.remove('open'));
 </script>
 
 </body>
