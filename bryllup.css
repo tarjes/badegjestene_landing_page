@@ -23,11 +23,15 @@ nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-links-right{display:flex;gap:3rem}
 .nav-links-right a{color:rgba(255,255,255,.82);font-size:1.05rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
 .nav-links-right a:hover{color:#fff}
+@media(max-width:700px){
+	nav{padding:1rem 1.25rem}
+	.nav-logo img{height:44px;max-width:180px}
+}
 
 /* MOBILE NAV */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;z-index:200;background:none;border:none;padding:4px}
 .hamburger span{display:block;height:2px;background:#fff;border-radius:2px}
-.mobile-menu{display:none;position:fixed;top:0;left:0;bottom:0;width:72vw;max-width:280px;background:var(--bg-dark);z-index:150;flex-direction:column;padding:5rem 2rem 2rem;gap:1.75rem;box-shadow:4px 0 32px rgba(0,0,0,.4)}
+.mobile-menu{display:none;position:fixed;top:0;left:0;bottom:0;width:72vw;max-width:280px;background:var(--navy);z-index:150;flex-direction:column;padding:5rem 2rem 2rem;gap:1.75rem;box-shadow:4px 0 32px rgba(0,0,0,.5)}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:#fff;font-size:1.2rem;font-weight:700;text-decoration:none;font-family:'Playfair Display',serif;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:1rem}
 .mobile-menu a:hover{color:var(--gold)}
@@ -70,7 +74,7 @@ section{padding:5.5rem 2rem}
 .img-accent{position:absolute;width:52%;aspect-ratio:1;object-fit:cover;border-radius:14px;bottom:-1.5rem;right:-1.5rem;border:4px solid #edf1f2;background:#b8c8cc}
 .why-points{display:flex;flex-direction:column;gap:1.5rem}
 .why-point{display:flex;gap:1rem;align-items:flex-start}
-.why-icon{min-width:46px;height:46px;border-radius:12px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.why-dot{min-width:12px;height:12px;border-radius:50%;background:var(--navy);flex-shrink:0;margin-top:.45rem}
 .why-point h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:.25rem;color:var(--navy)}
 .why-point p{font-size:.92rem;color:var(--muted)}
 @media(max-width:720px){
