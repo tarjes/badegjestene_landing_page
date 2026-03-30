@@ -19,29 +19,25 @@ nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-links{display:flex;align-items:center;gap:3rem}
 .nav-links a{color:rgba(255,255,255,.82);font-size:1.05rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:#fff}
-.nav-right{display:flex;gap:3rem}
 .nav-links-right{display:flex;gap:3rem}
 .nav-links-right a{color:rgba(255,255,255,.82);font-size:1.05rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
 .nav-links-right a:hover{color:#fff}
-@media(max-width:700px){
-	nav{padding:1rem 1.25rem}
-	.nav-logo img{height:44px;max-width:180px}
-}
 
 /* MOBILE NAV */
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;z-index:200;background:none;border:none;padding:4px}
 .hamburger span{display:block;height:2px;background:#fff;border-radius:2px}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:140}
+.mobile-overlay.open{display:block}
 .mobile-menu{display:none;position:fixed;top:0;left:0;bottom:0;width:72vw;max-width:280px;background:var(--navy);z-index:150;flex-direction:column;padding:5rem 2rem 2rem;gap:1.75rem;box-shadow:4px 0 32px rgba(0,0,0,.5)}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:#fff;font-size:1.2rem;font-weight:700;text-decoration:none;font-family:'Playfair Display',serif;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:1rem}
 .mobile-menu a:hover{color:var(--gold)}
 .mobile-close{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:rgba(255,255,255,.6);font-size:1.8rem;cursor:pointer;line-height:1}
-.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:140}
-.mobile-overlay.open{display:block}
 @media(max-width:700px){
-	nav{justify-content:center;padding:1rem 1.25rem;position:fixed;background:transparent}
+	nav{position:fixed;justify-content:center;padding:1rem 1.25rem;background:transparent}
 	.nav-links,.nav-links-right{display:none}
-	.hamburger{display:flex;position:fixed;left:1.25rem;top:1.35rem;z-index:200}
+	.nav-logo img{height:44px;max-width:180px}
+	.hamburger{display:flex;position:fixed;left:1.25rem;top:1.1rem;z-index:200}
 }
 
 /* HERO */
@@ -154,13 +150,10 @@ footer p{font-size:.83rem;margin-bottom:.4rem}
 footer a{color:rgba(255,255,255,.55);text-decoration:none}
 footer a:hover{color:var(--gold)}
 
-/* GALLERY (kept minimal, used in testimonials now) */
+/* GALLERY */
 #gallery{background:var(--navy);padding:3.5rem 2rem}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:1080px;margin:0 auto}
 @media(max-width:640px){
-	nav{justify-content:center;padding:1rem}
-	.nav-logo{flex:none;justify-content:center}
-	.nav-links,.nav-right{display:none}
 	.gallery-grid{grid-template-columns:1fr;gap:.6rem}
 	.gal-img.tall{aspect-ratio:4/3;grid-row:span 1}
 }
