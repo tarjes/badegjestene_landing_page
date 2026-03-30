@@ -33,7 +33,7 @@ section{padding:5.5rem 2rem;scroll-margin-top:120px}
 
 /* HEADER */
 .site-header{position:absolute;top:0;left:0;right:0;z-index:300;background:transparent;transition:transform .28s ease}
-.site-header__inner{max-width:1220px;margin:0 auto;padding:1.75rem 1.5rem}
+.site-header__inner{max-width:900px;margin:0 auto;padding:1.75rem 1.5rem}
 .site-nav{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:3rem}
 .nav-side{display:flex;align-items:center;gap:3rem;min-width:0}
 .nav-side--right{justify-content:flex-end}
