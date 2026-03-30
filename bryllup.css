@@ -14,7 +14,7 @@ body{font-family:'Nunito',system-ui,sans-serif;color:var(--text);background:var(
 h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:3rem;padding:1.75rem 3rem}
+nav{position:absolute;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:3rem;padding:1.75rem 3rem}
 .nav-logo img{height:65px;width:auto;display:block;max-width:300px;object-fit:contain}
 .nav-links{display:flex;align-items:center;gap:3rem}
 .nav-links a{color:rgba(255,255,255,.82);font-size:1.05rem;font-weight:600;text-decoration:none;letter-spacing:.3px;transition:color .2s;white-space:nowrap}
