@@ -2,16 +2,16 @@
 <html lang="no">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fest – Badegjestene</title>
-<meta name="description" content="Liveband til bursdag, jubileum, vennefest og afterski.">
-<link rel="canonical" href="https://badegjestene.no/fest.html">
 <link rel="icon" type="image/png" href="images/gummiand_favicon.png">
-<meta property="og:title" content="Fest – Badegjestene">
-<meta property="og:description" content="Liveband til bursdag, jubileum, vennefest og afterski.">
-<meta property="og:image" content="https://badegjestene.no/images/allsang-armer.jpg">
-<meta property="og:url" content="https://badegjestene.no/fest.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badegjestene – Liveband til fest i Oslo og hele Norge</title>
+<meta name="description" content="Book Badegjestene til bursdag, sommerfest eller fest. Energisk liveband fra Oslo med allsang og dansegulv som holder hele natten.">
+<link rel="canonical" href="https://badegjestene.no/fest.html">
+<meta property="og:title" content="Badegjestene – Liveband til fest">
+<meta property="og:description" content="Enten det er bursdag, sommerfest eller bare lørdag – Badegjestene leverer energi og allsang som gjør kvelden uforglemmelig.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://badegjestene.no/fest.html">
+<meta property="og:image" content="https://badegjestene.no/images/hero-fest.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" as="style">
@@ -19,103 +19,317 @@
 <link rel="preload" href="base.css" as="style">
 <link rel="stylesheet" href="base.css" media="print" onload="this.media='all'">
 <noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="base.css">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="base.css">
 </noscript>
+<style>
+  .fest-why-imgs {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+    height: 480px;
+  }
+  .fest-why-imgs img:first-child {
+    grid-row: 1 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  .fest-why-imgs img:not(:first-child) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  .fest-testimonial-imgs {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+    height: 420px;
+  }
+  .fest-testimonial-imgs img:first-child {
+    grid-row: 1 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  .fest-testimonial-imgs img:not(:first-child) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  @media(max-width:760px) {
+    .fest-why-imgs { height: auto; grid-template-columns: 1fr; grid-template-rows: auto; }
+    .fest-why-imgs img:first-child { grid-row: auto; aspect-ratio: 4/3; height: auto; }
+    .fest-why-imgs img:not(:first-child) { aspect-ratio: 4/3; height: auto; }
+    .fest-testimonial-imgs { display: none; }
+  }
+</style>
 </head>
 <body>
+
 <header class="site-header">
-  <div class="site-header__inner">
-    <nav class="site-nav" aria-label="Hovedmeny">
-      <button class="menu-toggle" type="button" aria-label="Åpne meny" data-menu-toggle><span></span></button>
-      <div class="nav-side nav-side--left">
-        <a class="nav-link" href="om_oss.html">Om oss</a>
-        <div class="nav-dropdown">
-          <button class="nav-dropdown__toggle" type="button" aria-expanded="false" data-dropdown-toggle>Arrangementer</button>
-          <div class="nav-dropdown__menu">
-            <a href="event.html">Event</a>
-            <a href="fest.html">Fest</a>
-            <a href="bryllup.html">Bryllup</a>
-          </div>
-        </div>
-      </div>
-      <a class="nav-brand" href="index.html"><img src="images/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" width="300" height="65"></a>
-      <div class="nav-side nav-side--right">
-        <a class="nav-link" href="index.html#booking">Kontakt oss</a>
-      </div>
-    </nav>
-  </div>
+	<div class="site-header__inner">
+		<nav class="site-nav" aria-label="Hovedmeny">
+			<button class="menu-toggle" type="button" aria-label="Åpne meny" data-menu-toggle><span></span></button>
+			<div class="nav-side nav-side--left">
+				<a class="nav-link" href="om_oss.html">Om oss</a>
+				<div class="nav-dropdown">
+					<button class="nav-dropdown__toggle" type="button" aria-expanded="false" data-dropdown-toggle>Arrangementer</button>
+					<div class="nav-dropdown__menu">
+						<a href="event.html">Event</a>
+						<a href="fest.html">Fest</a>
+						<a href="bryllup.html">Bryllup</a>
+					</div>
+				</div>
+			</div>
+			<a class="nav-brand" href="index.html"><img src="images/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" width="300" height="65"></a>
+			<div class="nav-side nav-side--right">
+				<a class="nav-link" href="#booking">Kontakt oss</a>
+			</div>
+		</nav>
+	</div>
 </header>
+
 <div class="mobile-overlay" data-mobile-overlay></div>
 <div class="mobile-menu" data-mobile-menu>
-  <button class="mobile-close" type="button" aria-label="Lukk meny" data-mobile-close>×</button>
-  <a href="om_oss.html">Om oss</a>
-  <div class="mobile-menu__label">Arrangementer</div>
-  <a class="mobile-menu__subitem" href="event.html">Event</a>
-  <a class="mobile-menu__subitem" href="fest.html">Fest</a>
-  <a class="mobile-menu__subitem" href="bryllup.html">Bryllup</a>
-  <a href="index.html#booking">Kontakt oss</a>
+	<button class="mobile-close" type="button" aria-label="Lukk meny" data-mobile-close>×</button>
+	<a href="om_oss.html">Om oss</a>
+	<div class="mobile-menu__label">Arrangementer</div>
+	<a class="mobile-menu__subitem" href="event.html">Event</a>
+	<a class="mobile-menu__subitem" href="fest.html">Fest</a>
+	<a class="mobile-menu__subitem" href="bryllup.html">Bryllup</a>
+	<a href="#booking">Kontakt oss</a>
 </div>
 
+<!-- HERO -->
 <section class="landing-hero landing-hero--fest">
-  <div class="container landing-hero__inner">
-    <div class="landing-hero__tag">Fest</div>
-    <h1>For kvelder som skal <em>løfte</em> seg fort</h1>
-    <p>Fest-siden kommer snart i full versjon. Her kommer det egen informasjon for bursdag, jubileum, vennefest, festival og afterski.</p>
-    <div class="hero-actions">
-      <a class="btn-main" href="index.html#booking">Send forespørsel</a>
-      <a class="btn-ghost" href="index.html">Til forsiden</a>
-    </div>
-  </div>
+	<div class="landing-hero__inner" style="padding-left:2rem;padding-right:2rem">
+		<div class="landing-hero__tag">Liveband til fest</div>
+		<h1>Vi tar festen til et helt <em>annet nivå</em></h1>
+		<p>Enten det er bursdag, sommerfest eller bare lørdag – Badegjestene leverer energi og allsang som gjør kvelden til noe alle snakker om dagen etter.</p>
+		<div class="hero-actions">
+			<a href="#booking" class="btn-main">Send forespørsel</a>
+			<a href="#video" class="btn-ghost">Se oss live ↓</a>
+		</div>
+	</div>
 </section>
 
-<section>
-  <div class="container">
-    <div class="placeholder-panel">
-      <h2 class="section-title">Fest-siden bygges videre</h2>
-      <p>Hvis dere planlegger en kveld der målet er fullt gulv og høy temperatur, er det bare å kontakte oss allerede nå.</p>
-      <p>Vi fyller ut denne siden med mer konkret informasjon, forslag og eksempler i neste runde.</p>
-      <a class="btn-main" href="index.html#booking">Gå til booking</a>
-    </div>
-  </div>
+<!-- WHY -->
+<section id="why">
+	<div class="container">
+		<div class="why-grid">
+			<div class="fest-why-imgs">
+				<img src="images/fest-1.webp" alt="Badegjestene på fest" width="600" height="800" onerror="this.style.background='#b8c8cc'">
+				<img src="images/fest-2.webp" alt="Badegjestene på scene" width="400" height="300" onerror="this.style.background='#c8d4d8'">
+				<img src="images/fest-3.webp" alt="Publikum på fest med Badegjestene" width="400" height="300" onerror="this.style.background='#a8bcc0'">
+			</div>
+			<div>
+				<div class="eyebrow">Hvorfor Badegjestene</div>
+				<h2 class="section-title">Fordi en god fest fortjener et skikkelig band</h2>
+				<p style="color:var(--muted);margin-bottom:2rem;font-size:1.05rem">Vi har spilt hundrevis av fester og vet hva som skal til for at folk glemmer alt annet og bare danser.</p>
+				<div class="why-points">
+					<div class="why-point">
+						<img class="why-duck" src="images/gummiand_right.png" alt="" width="24" height="24">
+						<div><h3>Dansegulvet fylles – og forblir fullt</h3><p>Vi leser rommet og spiller det folk faktisk vil danse til. Ingen dead spots, ingen tomme gulv.</p></div>
+					</div>
+					<div class="why-point">
+						<img class="why-duck" src="images/gummiand_right.png" alt="" width="24" height="24">
+						<div><h3>Badedrakter og sommervibe hele året</h3><p>Vi kommer inn i rommet og folk skjønner med en gang at dette blir annerledes. Uttrykket vårt er en del av festen.</p></div>
+					</div>
+					<div class="why-point">
+						<img class="why-duck" src="images/gummiand_right.png" alt="" width="24" height="24">
+						<div><h3>Låter alle kan synge med på</h3><p>Fra norske klassikere til internasjonale hits – vi spiller musikk som treffer alle i rommet, uansett alder og smak.</p></div>
+					</div>
+					<div class="why-point">
+						<img class="why-duck" src="images/gummiand_right.png" alt="" width="24" height="24">
+						<div><h3>Vi tilpasser oss festen din</h3><p>Har du ønskelåter, en spesiell sang eller noe du vil at vi spiller? Send oss en liste – vi gjør det vi kan for å treffe akkurat din kveld.</p></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
+<!-- VIDEO -->
+<section id="video">
+	<div class="container" style="text-align:center">
+		<div class="eyebrow">Se oss live</div>
+		<h2 class="section-title" style="color:#fff">En forsmak på stemningen</h2>
+		<p class="section-sub" style="margin:0 auto 2.5rem">Se selv hva som skjer når vi går på scenen.</p>
+		<div class="video-wrap">
+			<iframe src="https://www.youtube.com/embed/RTLjzLkLW6U?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Badegjestene liveband på fest"></iframe>
+		</div>
+	</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="howto">
+	<div class="container">
+		<div class="eyebrow">Slik fungerer det</div>
+		<h2 class="section-title">Fra første kontakt til dansegulv</h2>
+		<p class="section-sub">Vi gjør det enkelt. Her er hva som skjer fra du tar kontakt til dere danser til siste låt.</p>
+		<div class="steps">
+			<div class="step">
+				<div class="step-num">01</div>
+				<h3>Send en forespørsel</h3>
+				<p>Fortell oss datoen, stedet og litt om festen. Vi svarer raskt med mer info og et tilbud.</p>
+			</div>
+			<div class="step">
+				<div class="step-num">02</div>
+				<h3>Vi planlegger sammen</h3>
+				<p>Ønskelåter, setliste og tidsplan for kvelden. Vi tilpasser oss festen din.</p>
+			</div>
+			<div class="step">
+				<div class="step-num">03</div>
+				<h3>Vi rigger opp</h3>
+				<p>Vi ankommer i god tid og sørger for at alt er klart før gjestene kommer.</p>
+			</div>
+			<div class="step">
+				<div class="step-num">04</div>
+				<h3>Fest og allsang</h3>
+				<p>Du nyter kvelden med vennene dine. Vi sørger for at dansegulvet aldri blir tomt.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+	<div class="container">
+		<div class="eyebrow">Spørsmål og svar</div>
+		<h2 class="section-title">Ofte stilte spørsmål</h2>
+		<p class="section-sub">Lurer du på noe? Her er svarene på det vi oftest får spørsmål om.</p>
+		<div class="faq-list">
+			<div class="faq-item">
+				<button class="faq-q">Passer dere til både store og små fester?<span>+</span></button>
+				<div class="faq-a">Absolutt. Vi har spilt for alt fra 30 til 600 personer. Vi tilpasser oss lokalet og publikum uansett størrelse.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Kan vi velge låter?<span>+</span></button>
+				<div class="faq-a">Ja! Send oss ønskelåter i forkant og vi gjør vårt beste for å få dem inn i setlisten. Jo mer vi vet om hva dere liker, jo bedre kan vi treffe stemningen på kvelden.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Ordner dere lydanlegg og tekniker?<span>+</span></button>
+				<div class="faq-a">Ja, vi kan hjelpe med å skaffe lydanlegg og lydtekniker via våre samarbeidspartnere, og samle alt på én faktura.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Kan dere spille utendørs?<span>+</span></button>
+				<div class="faq-a">Ja, vi spiller gjerne utendørs. Det viktigste er at det finnes et telt eller lignende som er stort nok til å dekke scene og utstyr. Ta kontakt så går vi gjennom hva som trengs.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Reiser dere utenfor Oslo?<span>+</span></button>
+				<div class="faq-a">Ja, vi reiser gjerne overalt i Norge. Vi har spilt i Bergen, Stavanger, Lærdal og Kirkenes. Reise og eventuell overnatting dekkes av oppdragsgiver.</div>
+			</div>
+			<div class="faq-item">
+				<button class="faq-q">Hva koster det?<span>+</span></button>
+				<div class="faq-a">Pris varierer etter spilletid, sted og behov. Ta kontakt for et uforpliktende tilbud. Vi svarer raskt.</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+	<div class="container">
+		<div class="eyebrow">Hva folk sier</div>
+		<h2 class="section-title">Ord fra de som har booket oss</h2>
+		<div class="testimonials-inner" style="direction:rtl">
+			<div class="fest-testimonial-imgs" style="direction:ltr">
+				<img src="images/fest-4.webp" alt="Badegjestene på fest" width="600" height="800" onerror="this.style.background='#b8c8cc'">
+				<img src="images/fest-5.webp" alt="Publikum på fest" width="400" height="300" onerror="this.style.background='#c8d4d8'">
+				<img src="images/fest-6.webp" alt="Badegjestene på scene" width="400" height="300" onerror="this.style.background='#a8bcc0'">
+			</div>
+			<div style="direction:ltr" class="testimonial-quotes">
+				<div class="quote-card">
+					<p class="quote-text">Badegjestene skapte en fantastisk stemning på dansegulvet. Hyggelige, proffe og ikke minst veldig dyktige musikere sørger for en vellykket kveld. Vi kan på det sterkeste anbefale dette bandet. Gleder oss allerede til neste gang!</p>
+					<p class="quote-author">Marius, Drevent</p>
+				</div>
+				<div class="quote-card">
+					<p class="quote-text">Helt topp! Profesjonelle, dyktige og hyggelige å ha med å gjøre både før, under og etter arrangementet. Gir av seg selv og får virkelig salen med!</p>
+					<p class="quote-author">Nini, NME – Nor-Shipping</p>
+				</div>
+				<div class="instagram-nudge">
+					<a href="https://instagram.com/badegjestene1" target="_blank" rel="noopener">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+						Følg oss på Instagram for å se mer fra tidligere oppdrag
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- BOOKING -->
 <section id="booking">
-  <div class="container" style="text-align:center">
-    <div class="eyebrow">Booking</div>
-    <h2 class="section-title" style="color:#fff">Er vi ledig?</h2>
-    <p class="section-sub">Fyll ut skjemaet så svarer vi deg innen 24 timer.</p>
-    <div class="booking-box">
-      <form action="https://formspree.io/f/xwpognyr" method="POST">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="Navn" required>
-          <input type="email" name="email" placeholder="E-post" required>
-        </div>
-        <div class="form-row">
-          <input type="date" name="dato" required>
-          <input type="text" name="sted" placeholder="Sted / lokale">
-        </div>
-        <select name="type">
-          <option value="" disabled>Type arrangement</option>
-          <option>Bryllup</option>
-          <option>Firmafest / event</option>
-          <option>Julebord</option>
-          <option>Afterski</option>
-          <option selected>Fest / privat</option>
-          <option>Annet</option>
-        </select>
-        <textarea name="message" rows="3" required placeholder="Fortell oss om arrangementet, hva som er viktig for deg, og eventuelle spørsmål."></textarea>
-        <input type="hidden" name="_captcha" value="false">
-        <button type="submit" class="form-button">Send forespørsel – Svar innen 24 timer</button>
-      </form>
-    </div>
-  </div>
+	<div class="container" style="text-align:center">
+		<div class="eyebrow">Booking</div>
+		<h2 class="section-title" style="color:#fff">Er vi ledig?</h2>
+		<p class="section-sub">Fyll ut skjemaet så svarer vi deg innen 24 timer.</p>
+		<div class="booking-box">
+			<form action="https://formspree.io/f/xwpognyr" method="POST">
+				<div class="form-row">
+					<input type="text" name="name" placeholder="Navn" required>
+					<input type="email" name="email" placeholder="E-post" required>
+				</div>
+				<div class="form-row">
+					<input type="date" name="dato" required>
+					<input type="text" name="sted" placeholder="Sted / lokale">
+				</div>
+				<select name="type">
+					<option value="" disabled>Type arrangement</option>
+					<option selected>Fest</option>
+					<option>Bryllup</option>
+					<option>Firmafest / event</option>
+					<option>Julebord</option>
+					<option>Afterski</option>
+					<option>Annet</option>
+				</select>
+				<textarea name="message" rows="3" required placeholder="Fortell oss om festen, hva som er viktig for deg, og eventuelle spørsmål."></textarea>
+				<input type="hidden" name="_captcha" value="false">
+				<button type="submit" class="form-button">Send forespørsel – Svar innen 24 timer</button>
+			</form>
+		</div>
+	</div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <img class="footer-logo" src="images/logo-hvit.png" alt="Badegjestene">
-  <p><a href="index.html">← Tilbake til forsiden</a></p>
+	<img class="footer-logo" src="images/logo-hvit.png" alt="Badegjestene" width="220" height="50">
+	<div class="social-links">
+		<a class="social-btn" href="https://instagram.com/badegjestene1" target="_blank" rel="noopener" aria-label="Følg Badegjestene på Instagram">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+		</a>
+		<a class="social-btn" href="https://youtube.com/@badegjestene" target="_blank" rel="noopener" aria-label="Se Badegjestene på YouTube">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+		</a>
+		<a class="social-btn" href="https://facebook.com/Badegjestene" target="_blank" rel="noopener" aria-label="Følg Badegjestene på Facebook">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+		</a>
+		<a class="social-btn" href="https://tiktok.com/@badegjestene" target="_blank" rel="noopener" aria-label="Følg Badegjestene på TikTok">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+		</a>
+	</div>
+	<p style="margin-bottom:.4rem">Oslo, Norge · <a href="mailto:booking.badegjestene@outlook.com">booking.badegjestene@outlook.com</a></p>
+	<p><a href="index.html">← Tilbake til forsiden</a></p>
 </footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(btn => {
+	btn.addEventListener('click', () => {
+		const item = btn.parentElement;
+		const isOpen = item.classList.contains('open');
+		document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+		if (!isOpen) item.classList.add('open');
+	});
+});
+</script>
 <script src="base.js"></script>
+
 </body>
 </html>
