@@ -201,7 +201,7 @@ footer a:hover{color:var(--gold)}
 }
 
 .hero{position:relative;min-height:calc(100vh - 104px);display:flex;align-items:flex-end;overflow:hidden;padding:0 2rem 5.5rem}
-.hero-bg{position:absolute;inset:0;background:url('bilder/konsert-sal.jpg') center/cover no-repeat}
+.hero-bg{position:absolute;inset:0;background:url('bilder/konsert-sal.webp') center/cover no-repeat}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,30,.9) 35%,rgba(10,18,30,.25) 100%)}
 .hero-content{position:relative;z-index:2;max-width:760px;padding:0 3rem}
 .hero-tag{display:inline-block;border:1px solid rgba(245,200,66,.5);color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:1.5rem}
