@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="base.css">
 </head>
-<body class="no-hero">
+<body>
 <header class="site-header">
   <div class="site-header__inner">
     <nav class="site-nav" aria-label="Hovedmeny">
@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-      <a class="nav-brand" href="index2.html"><img src="bilder/logo-hvit.png" alt="Badegjestene"></a>
+      <a class="nav-brand" href="index2.html"><img src="bilder/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" width="300" height="65"></a>
       <div class="nav-side nav-side--right">
         <a class="nav-link" href="index2.html#booking">Kontakt oss</a>
       </div>
@@ -63,6 +63,37 @@
       <p>Her kommer det snart en egen side for bedriftsarrangementer, konferanser, kick-off og andre oppdrag der timing, fleksibilitet og tydelig sceneuttrykk er viktig.</p>
       <p>Hvis dere allerede vet dato og sted, er det bedre å sende en forespørsel nå enn å vente.</p>
       <a class="btn-main" href="index2.html#booking">Gå til booking</a>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="container" style="text-align:center">
+    <div class="eyebrow">Booking</div>
+    <h2 class="section-title" style="color:#fff">Er vi ledig?</h2>
+    <p class="section-sub">Fyll ut skjemaet så svarer vi deg innen 24 timer.</p>
+    <div class="booking-box">
+      <form action="https://formspree.io/f/xwpognyr" method="POST">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Navn" required>
+          <input type="email" name="email" placeholder="E-post" required>
+        </div>
+        <div class="form-row">
+          <input type="date" name="dato" required>
+          <input type="text" name="sted" placeholder="Sted / lokale">
+        </div>
+        <select name="type">
+          <option value="" disabled>Type arrangement</option>
+          <option selected>Firmafest / event</option>
+          <option>Bryllup</option>
+          <option>Julebord</option>
+          <option>Afterski</option>
+          <option>Annet</option>
+        </select>
+        <textarea name="message" rows="3" required placeholder="Fortell oss om arrangementet, hva som er viktig for deg, og eventuelle spørsmål."></textarea>
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit" class="form-button">Send forespørsel – Svar innen 24 timer</button>
+      </form>
     </div>
   </div>
 </section>
