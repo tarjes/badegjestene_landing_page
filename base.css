@@ -69,10 +69,10 @@ section{padding:3.5rem 2rem;scroll-margin-top:120px}
 .mobile-menu__subitem{padding-left:.85rem;color:rgba(255,255,255,.84)!important}
 
 .no-hero .site-header{position:fixed;background:rgba(16,28,44,.96);backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(10,18,30,.15)}
-.no-hero{padding-top:0}
-.no-hero .surface-section:first-of-type{min-height:100vh;display:flex;align-items:center;padding-top:140px;padding-bottom:4rem}
+.no-hero{padding-top:0!important}
+.no-hero .surface-section:first-of-type{min-height:100vh;display:flex;align-items:center;padding-top:140px!important;padding-bottom:4rem}
 @media(max-width:760px){
-	.no-hero .surface-section:first-of-type{padding-top:100px}
+	.no-hero .surface-section:first-of-type{padding-top:100px!important}
 }
 
 /* HERO */
@@ -89,6 +89,8 @@ section{padding:3.5rem 2rem;scroll-margin-top:120px}
 .landing-hero h1 em{font-style:italic;color:var(--gold)}
 .landing-hero p{font-size:clamp(1rem,2vw,1.18rem);color:rgba(255,255,255,.76);max-width:600px;margin-bottom:2rem}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.landing-hero--bryllup{align-items:flex-end;padding:7rem 2rem 5rem}
+.landing-hero--bryllup .landing-hero__inner{align-self:flex-end}
 
 /* PANELS */
 .surface-section{background:var(--bg-soft)}
