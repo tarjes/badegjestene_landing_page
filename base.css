@@ -80,7 +80,7 @@ section{padding:3.5rem 2rem;scroll-margin-top:120px}
 .landing-hero::before{content:'';position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
 .landing-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,30,.2) 0%,rgba(10,18,30,.72) 68%,rgba(10,18,30,.92) 100%)}
 .landing-hero--home::before{background-image:url('images/hero-forside.webp')}
-.landing-hero--event::before{background-image:url('images/scene-vokal.jpg')}
+.landing-hero--event::before{background-image:url('images/hero-event.webp')}
 .landing-hero--fest::before{background-image:url('images/hero-fest.webp')}
 .landing-hero--bryllup::before{background-image:url('images/hero-bryllup.webp')}
 .landing-hero__inner{position:relative;z-index:1;max-width:720px}
