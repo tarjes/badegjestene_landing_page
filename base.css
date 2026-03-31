@@ -279,3 +279,7 @@ footer a:hover{color:var(--gold)}
 .landing-hero--bryllup{align-items:flex-end}
 .landing-hero--bryllup .landing-hero__inner{max-width:760px;padding-bottom:1rem}
 
+/* FEST */
+.landing-hero--fest .landing-hero__inner{text-align:right;margin-left:auto;margin-right:0}
+.landing-hero--fest .hero-actions{justify-content:flex-end}
+
