@@ -18,7 +18,7 @@ body{font-family:'Nunito',system-ui,sans-serif;color:var(--text);background:var(
 h1,h2,h3,h4,.serif{font-family:'Playfair Display',Georgia,serif}
 img{max-width:100%;display:block}
 a{color:inherit}
-section{padding:5.5rem 2rem;scroll-margin-top:120px}
+section{padding:3.5rem 2rem;scroll-margin-top:120px}
 .container{max-width:1080px;margin:0 auto}
 .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.8rem}
 .section-title{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;color:var(--navy);letter-spacing:-.5px;line-height:1.1;margin-bottom:1rem}
