@@ -276,3 +276,6 @@ footer a:hover{color:var(--gold)}
   .why-img-mobile{display:none}
 }
 
+.landing-hero--bryllup{align-items:flex-end}
+.landing-hero--bryllup .landing-hero__inner{max-width:760px;padding-bottom:1rem}
+
