@@ -13,7 +13,7 @@ This is the source code for the Badegjestene landing page. The site is a mobile-
 
 ## Editing Content
 
-- **Images:** Place all images in the `images/` folder. Update image references in HTML as `src="images/your_image.png"`.
+- **Images:** Place all images in the `images/` folder. Update image references in HTML as `src="images/your_image.webp"`.
 - **Homepage:** Edit hero, arrangement cards, and booking in `index.html`.
 - **Song List:** Edit the song list in `om_oss.html` as needed.
 - **Band Members:** Update the About Us section in `om_oss.html` for member info and photos.
