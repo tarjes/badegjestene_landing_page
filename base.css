@@ -283,3 +283,11 @@ footer a:hover{color:var(--gold)}
 .landing-hero--fest .landing-hero__inner{text-align:right;margin-left:auto;margin-right:0}
 .landing-hero--fest .hero-actions{justify-content:flex-end}
 
+/* EVENT */
+.why-grid--reverse{grid-template-columns:1fr 1fr;direction:ltr}
+.why-grid--reverse > div:first-child{order:1}
+.why-img-single{order:2}
+@media(max-width:720px){
+	.why-img-single{display:none}
+}
+
