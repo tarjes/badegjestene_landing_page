@@ -39,6 +39,14 @@
 </noscript>
 <style>
   #testimonials .t-img-2 { aspect-ratio: 3/4; }
+  @media(max-width:760px){
+    .why-grid--reverse { grid-template-columns: 1fr; }
+    .why-img-single { display: none; }
+    .why-img-mobile-event { display: block; }
+  }
+  @media(min-width:761px){
+    .why-img-mobile-event { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -98,6 +106,7 @@
 				<div class="eyebrow">Hvorfor Badegjestene</div>
 				<h2 class="section-title">Profesjonell underholdning som treffer bredt</h2>
 				<p style="color:var(--muted);margin-bottom:2rem;font-size:1.05rem">Vi er vant til å spille for alle typer publikum og alle typer arrangementer. Fra intime kick-off til store jubileumsfester med hundrevis av gjester.</p>
+				<img class="why-img-mobile-event" src="images/presentasjon.webp" alt="Badegjestene presentasjon" style="width:100%;border-radius:16px;object-fit:cover;margin-bottom:1.5rem;">
 				<div class="why-points">
 					<div class="why-point">
 						<img class="why-duck" src="images/gummiand_right.png" alt="" width="24" height="24">
