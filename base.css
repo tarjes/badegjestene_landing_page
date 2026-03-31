@@ -137,8 +137,13 @@ section{padding:3.5rem 2rem;scroll-margin-top:120px}
 .booking-box{max-width:620px;margin:0 auto;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2rem}
 .booking-box form{display:flex;flex-direction:column;gap:.85rem;text-align:left}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.form-row>*{min-width:0}
 .booking-box input,.booking-box select,.booking-box textarea{width:100%;padding:.85rem 1rem;border-radius:10px;border:1.5px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font-size:.96rem;font-family:'Nunito',sans-serif;outline:none;transition:border-color .2s,background .2s}
 .booking-box input::placeholder,.booking-box textarea::placeholder{color:rgba(255,255,255,.38)}
+.booking-box input[type="date"]{color:rgba(255,255,255,.38)}
+.booking-box input[type="date"].has-value{color:#fff}
+.booking-box input[type="date"]::-webkit-datetime-edit-text,.booking-box input[type="date"]::-webkit-datetime-edit-month-field,.booking-box input[type="date"]::-webkit-datetime-edit-day-field,.booking-box input[type="date"]::-webkit-datetime-edit-year-field{color:rgba(255,255,255,.38)}
+.booking-box input[type="date"].has-value::-webkit-datetime-edit-text,.booking-box input[type="date"].has-value::-webkit-datetime-edit-month-field,.booking-box input[type="date"].has-value::-webkit-datetime-edit-day-field,.booking-box input[type="date"].has-value::-webkit-datetime-edit-year-field{color:#fff}
 .booking-box select{color:rgba(255,255,255,.72)}
 .booking-box select option{background:#1a2e4a;color:#fff}
 .booking-box input:focus,.booking-box select:focus,.booking-box textarea:focus{border-color:var(--gold);background:rgba(255,255,255,.1)}

@@ -78,3 +78,11 @@ function syncMobileHeaderVisibility() {
 window.addEventListener('scroll', syncMobileHeaderVisibility, { passive: true });
 window.addEventListener('resize', syncMobileHeaderVisibility);
 syncMobileHeaderVisibility();
+
+document.querySelectorAll('input[type="date"]').forEach(function (input) {
+  function syncDateColor() {
+    input.classList.toggle('has-value', !!input.value);
+  }
+  input.addEventListener('change', syncDateColor);
+  syncDateColor();
+});
