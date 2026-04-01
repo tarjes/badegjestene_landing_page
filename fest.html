@@ -46,25 +46,30 @@
   .fest-testimonial-imgs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
     gap: .75rem;
     align-self: start;
+    height: 420px;
   }
   .fest-testimonial-imgs img:first-child {
-    grid-column: 1;
     grid-row: 1 / 3;
     width: 100%;
-    aspect-ratio: 2/3;
+    height: 100%;
     object-fit: cover;
     border-radius: 16px;
   }
-  .fest-testimonial-imgs img:nth-child(2),
-  .fest-testimonial-imgs img:nth-child(3) {
-    grid-column: 2;
+  .fest-testimonial-imgs img:nth-child(2) {
+    height: calc(50% - .375rem);
     width: 100%;
-    aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 16px;
+    align-self: start;
+  }
+  .fest-testimonial-imgs img:nth-child(3) {
+    height: calc(50% - .375rem);
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    align-self: end;
   }
   @media(max-width:760px) {
     .fest-why-imgs { height: auto; grid-template-columns: 1fr; grid-template-rows: auto; }
