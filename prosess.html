@@ -18,14 +18,18 @@
 </noscript>
 <style>
   .timeline { display: flex; flex-direction: column; gap: 0; max-width: 760px; margin-top: 2.5rem; }
-  .tl-item { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; position: relative; padding-bottom: 2.5rem; }
+  .tl-item { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; position: relative; padding-bottom: 2.5rem; transition: opacity .4s; opacity: .4; }
+  .tl-item.active { opacity: 1; }
   .tl-item:last-child { padding-bottom: 0; }
   .tl-left { display: flex; flex-direction: column; align-items: center; }
-  .tl-dot { width: 48px; height: 48px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; }
-  .tl-dot span { color: var(--gold); font-weight: 800; font-size: .85rem; font-family: 'Nunito', sans-serif; }
+  .tl-dot { width: 48px; height: 48px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; transition: transform .35s, background .35s; }
+  .tl-item.active .tl-dot { transform: scale(1.25); background: var(--gold); }
+  .tl-item.active .tl-dot span { color: var(--navy); }
+  .tl-dot span { color: var(--gold); font-weight: 800; font-size: .85rem; font-family: 'Nunito', sans-serif; transition: color .35s; }
   .tl-line { width: 2px; background: rgba(26,46,74,.12); flex: 1; margin-top: .5rem; }
   .tl-item:last-child .tl-line { display: none; }
-  .tl-body { padding-top: .65rem; }
+  .tl-body { padding-top: .65rem; transition: transform .35s; }
+  .tl-item.active .tl-body { transform: translateX(6px); }
   .tl-when { font-size: .72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dk); margin-bottom: .35rem; }
   .tl-body h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: .6rem; }
   .tl-body p { color: var(--muted); font-size: .96rem; line-height: 1.7; margin-bottom: .6rem; }
@@ -172,6 +176,21 @@
   <p><a href="index.html">← Tilbake til forsiden</a></p>
 </footer>
 
+<script>
+const items = document.querySelectorAll('.tl-item');
+const activate = () => {
+  const mid = window.innerHeight / 2;
+  let closest = null, closestDist = Infinity;
+  items.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const dist = Math.abs(rect.top + rect.height / 2 - mid);
+    if (dist < closestDist) { closestDist = dist; closest = el; }
+  });
+  items.forEach(el => el.classList.toggle('active', el === closest));
+};
+window.addEventListener('scroll', activate, { passive: true });
+activate();
+</script>
 <script src="base.js"></script>
 </body>
 </html>
