@@ -18,18 +18,18 @@
 </noscript>
 <style>
   .timeline { display: flex; flex-direction: column; gap: 0; max-width: 760px; margin-top: 2.5rem; }
-  .tl-item { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; position: relative; padding-bottom: 2.5rem; transition: opacity .4s; opacity: .4; }
+  .tl-item { display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem; position: relative; padding-bottom: 2.5rem; transition: opacity .4s; opacity: .35; }
   .tl-item.active { opacity: 1; }
   .tl-item:last-child { padding-bottom: 0; }
   .tl-left { display: flex; flex-direction: column; align-items: center; }
-  .tl-dot { width: 48px; height: 48px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; transition: transform .35s, background .35s; }
-  .tl-item.active .tl-dot { transform: scale(1.25); background: var(--gold); }
+  .tl-dot { width: 56px; height: 56px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; transition: transform .35s, background .35s; cursor: pointer; }
+  .tl-item.active .tl-dot { transform: scale(1.35); background: var(--gold); }
   .tl-item.active .tl-dot span { color: var(--navy); }
-  .tl-dot span { color: var(--gold); font-weight: 800; font-size: .85rem; font-family: 'Nunito', sans-serif; transition: color .35s; }
+  .tl-dot span { color: var(--gold); font-weight: 800; font-size: .9rem; font-family: 'Nunito', sans-serif; transition: color .35s; }
   .tl-line { width: 2px; background: rgba(26,46,74,.12); flex: 1; margin-top: .5rem; }
   .tl-item:last-child .tl-line { display: none; }
-  .tl-body { padding-top: .65rem; transition: transform .35s; }
-  .tl-item.active .tl-body { transform: translateX(6px); }
+  .tl-body { padding-top: .75rem; transition: transform .35s; }
+  .tl-item.active .tl-body { transform: translateX(8px); }
   .tl-when { font-size: .72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dk); margin-bottom: .35rem; }
   .tl-body h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: .6rem; }
   .tl-body p { color: var(--muted); font-size: .96rem; line-height: 1.7; margin-bottom: .6rem; }
@@ -37,8 +37,11 @@
   .tl-you { background: var(--bg); border-radius: 10px; padding: .75rem 1rem; font-size: .9rem; color: var(--navy); margin-top: .75rem; }
   .tl-you strong { display: block; font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dk); margin-bottom: .25rem; }
   .cta-box { background: var(--navy); border-radius: 20px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
-  .cta-box h2 { color: #fff; font-size: 1.8rem; margin-bottom: .75rem; }
-  .cta-box p { color: rgba(255,255,255,.62); margin-bottom: 1.5rem; }
+  .cta-box h2 { color: #fff; font-size: 1.8rem; margin-bottom: 1.75rem; }
+  .contact-portraits { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; }
+  .contact-portrait img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,.15); display: block; margin: 0 auto .75rem; }
+  .contact-portrait strong { display: block; color: #fff; font-size: .95rem; margin-bottom: .2rem; }
+  .contact-portrait span { color: var(--gold); font-size: .8rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
   @media(max-width:600px) {
     .needs-grid { grid-template-columns: 1fr; }
   }
@@ -140,7 +143,18 @@
   <div class="container">
     <div class="cta-box">
       <h2>Spørsmål?</h2>
-      <p>Ta kontakt med Martin, bookingansvarlig, eller Kristian, teknisk ansvarlig.</p>
+      <div class="contact-portraits">
+        <div class="contact-portrait">
+          <img src="images/martin2.webp" alt="Martin Johansen">
+          <strong>Martin Johansen</strong>
+          <span>Bookingansvarlig</span>
+        </div>
+        <div class="contact-portrait">
+          <img src="images/kristian2.webp" alt="Kristian Jøsok">
+          <strong>Kristian Jøsok</strong>
+          <span>Teknisk ansvarlig</span>
+        </div>
+      </div>
       <a href="mailto:booking.badegjestene@outlook.com" class="btn-main">Ta kontakt</a>
     </div>
   </div>
@@ -166,6 +180,15 @@ const activate = () => {
 };
 window.addEventListener('scroll', activate, { passive: true });
 activate();
+
+document.querySelectorAll('.tl-dot').forEach(dot => {
+  dot.addEventListener('click', () => {
+    const item = dot.closest('.tl-item');
+    const rect = item.getBoundingClientRect();
+    const offset = window.scrollY + rect.top - (window.innerHeight / 2) + (rect.height / 2);
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  });
+});
 </script>
 <script src="base.js"></script>
 </body>
