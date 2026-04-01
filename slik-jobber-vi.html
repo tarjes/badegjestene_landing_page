@@ -37,9 +37,10 @@
   .tl-you { background: var(--bg); border-radius: 10px; padding: .75rem 1rem; font-size: .9rem; color: var(--navy); margin-top: .75rem; }
   .tl-you strong { display: block; font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dk); margin-bottom: .25rem; }
   .cta-box { background: var(--navy); border-radius: 20px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
-  .cta-box h2 { color: #fff; font-size: 1.8rem; margin-bottom: 1.75rem; }
-  .contact-portraits { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2rem; }
-  .contact-portrait img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,.15); display: block; margin: 0 auto .75rem; }
+  .cta-box h2 { color: #fff; font-size: 1.8rem; margin-bottom: 1.75rem; order: 2; }
+  .cta-box-inner { display: flex; flex-direction: column; align-items: center; }
+  .contact-portraits { display: flex; justify-content: center; gap: 3rem; margin-bottom: 1.5rem; }
+  .contact-portrait img { width: 135px; height: 135px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,.15); display: block; margin: 0 auto .75rem; }
   .contact-portrait strong { display: block; color: #fff; font-size: .95rem; margin-bottom: .2rem; }
   .contact-portrait span { color: var(--gold); font-size: .8rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
   @media(max-width:600px) {
@@ -69,21 +70,22 @@
         <p class="section-sub" style="margin-bottom:0">Når bookingen er bekreftet starter vi planleggingen. Her er alt dere kan forvente fra oss, og det lille vi trenger fra dere, for at kvelden skal gå akkurat som planlagt.</p>
       </div>
       <div style="position:relative">
-        <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;z-index:0">
-          <clipPath id="blob1">
-            <path d="M170,20 C195,45 205,80 190,110 C175,140 140,158 105,155 C70,152 35,138 18,112 C1,86 5,48 25,26 C45,4 80,-5 110,3 C140,11 145,-5 170,20Z"/>
-          </clipPath>
+        <svg width="0" height="0" style="position:absolute">
+          <defs>
+            <clipPath id="blob1" clipPathUnits="objectBoundingBox">
+              <path d="M0.02,0.08 C0.05,0.01 0.15,-0.02 0.28,0.01 C0.41,0.04 0.52,-0.01 0.65,0.02 C0.78,0.05 0.92,0.01 0.97,0.08 C1.02,0.15 0.99,0.28 1.00,0.42 C1.01,0.56 1.03,0.70 0.98,0.82 C0.93,0.94 0.82,1.01 0.68,1.00 C0.54,0.99 0.42,1.02 0.28,0.99 C0.14,0.96 0.03,1.01 0.01,0.88 C-0.01,0.75 0.01,0.62 0.00,0.48 C-0.01,0.34 -0.01,0.15 0.02,0.08Z"/>
+            </clipPath>
+          </defs>
         </svg>
         <img src="images/naust.webp" alt="Badegjestene ved naustet" width="1200" height="800"
-          style="width:100%;height:380px;object-fit:cover;object-position:center;border-radius:0;
-          clip-path:url(#blob1);display:block;">
+          style="width:100%;height:360px;object-fit:cover;object-position:center;display:block;clip-path:url(#blob1);">
       </div>
     </div>
   </div>
 </section>
 
 <!-- TIDSLINJE -->
-<section class="surface-section" style="padding-top:0;padding-bottom:4rem">
+<section class="surface-section" style="padding-top:2rem;padding-bottom:4rem">
   <div class="container">
     <div class="timeline">
 
@@ -135,7 +137,7 @@
           <div class="tl-when">Showtime</div>
           <h3>Vi gjør jobben vår</h3>
           <p>Fra første låt til siste akkord sørger vi for energi, allsang og et dansegulv som aldri blir tomt. Etter showet rigger vi ned og rydder etter oss.</p>
-          <div class="tl-you"><strong>Det dere gjør</strong>Danse, synge med og nyte kvelden. Det er derfor vi er her.</div>
+          <div class="tl-you"><strong>Det dere gjør</strong>Danse, synge med og nyte kvelden.</div>
         </div>
       </div>
 
@@ -156,20 +158,22 @@
 <section style="padding:3.5rem 2rem 4rem">
   <div class="container">
     <div class="cta-box">
-      <h2>Spørsmål?</h2>
-      <div class="contact-portraits">
-        <div class="contact-portrait">
-          <img src="images/martin2.webp" alt="Martin Johansen">
-          <strong>Martin Johansen</strong>
-          <span>Bookingansvarlig</span>
+      <div class="cta-box-inner">
+        <div class="contact-portraits">
+          <div class="contact-portrait">
+            <img src="images/martin2.webp" alt="Martin Johansen">
+            <strong>Martin Johansen</strong>
+            <span>Bookingansvarlig</span>
+          </div>
+          <div class="contact-portrait">
+            <img src="images/kristian2.webp" alt="Kristian Jøsok">
+            <strong>Kristian Jøsok</strong>
+            <span>Teknisk ansvarlig</span>
+          </div>
         </div>
-        <div class="contact-portrait">
-          <img src="images/kristian2.webp" alt="Kristian Jøsok">
-          <strong>Kristian Jøsok</strong>
-          <span>Teknisk ansvarlig</span>
-        </div>
+        <h2>Spørsmål?</h2>
+        <a href="mailto:booking.badegjestene@outlook.com" class="btn-main">Ta kontakt</a>
       </div>
-      <a href="mailto:booking.badegjestene@outlook.com" class="btn-main">Ta kontakt</a>
     </div>
   </div>
 </section>
