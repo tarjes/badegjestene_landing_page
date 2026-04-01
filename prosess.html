@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/gummiand_favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badegjestene – Slik jobber vi</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" href="base.css" as="style">
+<link rel="stylesheet" href="base.css" media="print" onload="this.media='all'">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+</noscript>
+<style>
+  .timeline { display: flex; flex-direction: column; gap: 0; max-width: 760px; margin-top: 2.5rem; }
+  .tl-item { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; position: relative; padding-bottom: 2.5rem; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot { width: 48px; height: 48px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; }
+  .tl-dot span { color: var(--gold); font-weight: 800; font-size: .85rem; font-family: 'Nunito', sans-serif; }
+  .tl-line { width: 2px; background: rgba(26,46,74,.12); flex: 1; margin-top: .5rem; }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-body { padding-top: .65rem; }
+  .tl-when { font-size: .72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dk); margin-bottom: .35rem; }
+  .tl-body h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: .6rem; }
+  .tl-body p { color: var(--muted); font-size: .96rem; line-height: 1.7; margin-bottom: .6rem; }
+  .tl-body p:last-child { margin-bottom: 0; }
+  .tl-you { background: var(--bg); border-radius: 10px; padding: .75rem 1rem; font-size: .9rem; color: var(--navy); margin-top: .75rem; }
+  .tl-you strong { display: block; font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dk); margin-bottom: .25rem; }
+  .needs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+  .need-card { background: #fff; border-radius: 14px; padding: 1.5rem; border: 1.5px solid rgba(26,46,74,.08); }
+  .need-card h3 { font-size: .72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dk); margin-bottom: .6rem; }
+  .need-card p { color: var(--muted); font-size: .93rem; line-height: 1.65; }
+  .cta-box { background: var(--navy); border-radius: 20px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
+  .cta-box h2 { color: #fff; font-size: 1.8rem; margin-bottom: .75rem; }
+  .cta-box p { color: rgba(255,255,255,.62); margin-bottom: 1.5rem; }
+  @media(max-width:600px) {
+    .needs-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="no-hero">
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <nav class="site-nav" aria-label="Hovedmeny">
+      <div class="nav-brand" style="margin:0 auto">
+        <a href="index.html"><img src="images/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" width="300" height="65"></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="surface-section" style="padding-top:140px;padding-bottom:3rem">
+  <div class="container">
+    <div class="eyebrow">Fra booking til badedrakter</div>
+    <h1 class="section-title">Slik jobber vi</h1>
+    <p class="section-sub">Når bookingen er bekreftet tar vi over. Her er alt dere kan forvente fra oss – og det lille vi trenger fra dere – for at kvelden skal gå akkurat som planlagt.</p>
+  </div>
+</section>
+
+<!-- TIDSLINJE -->
+<section class="surface-section" style="padding-top:0;padding-bottom:4rem">
+  <div class="container">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><span>01</span></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-when">Rett etter booking</div>
+          <h3>Booking bekreftet</h3>
+          <p>Vi sender kontrakt og bekrefter datoen. Dere får også vår tekniske rider – en liste over strøm og plass vi trenger på scenen.</p>
+          <div class="tl-you"><strong>Det dere gjør</strong>Signere kontrakten og sende den tilbake. Ingenting annet.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><span>02</span></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-when">4–6 uker før</div>
+          <h3>Vi planlegger kvelden</h3>
+          <p>Vi tar kontakt for å koordinere setliste og tidsplan. Har dere ønskelåter, spesielle innslag eller en åpningslåt dere vil ha – dette er tidspunktet.</p>
+          <div class="tl-you"><strong>Det dere gjør</strong>Send oss eventuelle låtønsker og gi oss tidsplanen for kvelden så vi vet når vi skal på.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><span>03</span></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-when">1–2 uker før</div>
+          <h3>Siste detaljer på plass</h3>
+          <p>Vi bekrefter ankomsttid og lydsjekk, og avklarer hvem vi skal forholde oss til på stedet. Tips: sett oss gjerne i kontakt med en forlover, kollega eller annen ansvarlig – så slipper dere å bli kontaktet med praktiske spørsmål den dagen.</p>
+          <div class="tl-you"><strong>Det dere gjør</strong>Gi oss navn og nummer på en kontaktperson som er tilgjengelig på dagen.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><span>04</span></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-when">Gigdagen</div>
+          <h3>Vi ankommer og rigger opp</h3>
+          <p>Vi kommer i god tid, rigger opp og gjennomfører lydsjekk. Innen gjestene ankommer er alt klart og vi er spilleklare. Dere trenger ikke tenke på oss – bare nyt kvelden.</p>
+          <div class="tl-you"><strong>Det dere gjør</strong>Sørge for at vi har tilgang til lokalet og at kontaktpersonen er tilgjengelig ved behov.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><span>05</span></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-when">Showtime</div>
+          <h3>Vi gjør jobben vår</h3>
+          <p>Fra første låt til siste akkord sørger vi for energi, allsang og et dansegulv som aldri blir tomt. Etter showet rigger vi ned og rydder etter oss.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-dot"><span>06</span></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-when">Etter gigen</div>
+          <h3>Faktura og tilbakemelding</h3>
+          <p>Faktura sendes i henhold til kontrakt. Vi setter alltid pris på en tilbakemelding – og om dere er fornøyde hører vi gjerne fra dere igjen.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HVA VI TRENGER -->
+<section style="background:var(--bg-soft);padding:3.5rem 2rem">
+  <div class="container">
+    <div class="eyebrow">Praktisk</div>
+    <h2 class="section-title" style="font-size:1.8rem">Det vi trenger fra dere</h2>
+    <p style="color:var(--muted);max-width:560px">Vi stiller med alt av utstyr. Det eneste vi trenger fra dere er dette:</p>
+    <div class="needs-grid">
+      <div class="need-card">
+        <h3>Tilgang til lokalet</h3>
+        <p>Vi trenger å komme inn i god tid før showet for å rigge opp og gjennomføre lydsjekk.</p>
+      </div>
+      <div class="need-card">
+        <h3>Strøm</h3>
+        <p>Standard stikkontakter i nærheten av sceneområdet. Teknisk rider spesifiserer hva vi trenger.</p>
+      </div>
+      <div class="need-card">
+        <h3>En kontaktperson</h3>
+        <p>En person vi kan forholde oss til på dagen for praktiske spørsmål – så dere slipper å bli forstyrret.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:3.5rem 2rem 4rem">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Spørsmål?</h2>
+      <p>Ta kontakt med Martin direkte, så svarer han raskt.</p>
+      <a href="mailto:booking.badegjestene@outlook.com" class="btn-main">booking.badegjestene@outlook.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img class="footer-logo" src="images/logo-hvit.png" alt="Badegjestene" width="220" height="50">
+  <p style="margin-bottom:.4rem">Oslo, Norge · <a href="mailto:booking.badegjestene@outlook.com">booking.badegjestene@outlook.com</a></p>
+  <p><a href="index.html">← Tilbake til forsiden</a></p>
+</footer>
+
+<script src="base.js"></script>
+</body>
+</html>
