@@ -68,7 +68,7 @@
         <div class="eyebrow">Fra booking til bading</div>
         <h1 class="section-title">Slik jobber vi</h1>
         <p class="section-sub" style="margin-bottom:1.5rem">Når bookingen er bekreftet starter vi planleggingen. Her er alt dere kan forvente fra oss, og det lille vi trenger fra dere, for at kvelden skal gå akkurat som planlagt.</p>
-        <a href="#steg-1" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--gold);text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(3px)'" onmouseout="this.style.transform='translateY(0)'">
+        <a href="#steg-1" onclick="event.preventDefault();const el=document.getElementById('steg-1');const offset=el.getBoundingClientRect().top+window.scrollY-(window.innerHeight/2)+(el.offsetHeight/2);window.scrollTo({top:offset,behavior:'smooth'});" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--gold);text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(3px)'" onmouseout="this.style.transform='translateY(0)'">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </a>
       </div>
