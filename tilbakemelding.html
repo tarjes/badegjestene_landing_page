@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/gummiand_favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tilbakemelding – Badegjestene</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" href="base.css" as="style">
+<link rel="stylesheet" href="base.css" media="print" onload="this.media='all'">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+</noscript>
+<style>
+  .fb-card { background: #fff; border-radius: 16px; padding: 1.75rem; border: 1.5px solid rgba(26,46,74,.08); margin-bottom: 1.25rem; }
+  .fb-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
+  .fb-card p { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
+  .star-row { display: flex; gap: .5rem; margin-bottom: .25rem; }
+  .star-row input { display: none; }
+  .star-row label { font-size: 1.8rem; cursor: pointer; color: #d0d8e0; transition: color .15s; line-height: 1; }
+  .star-row input:checked ~ label,
+  .star-row label:hover,
+  .star-row label:hover ~ label { color: var(--gold); }
+  .star-row { flex-direction: row-reverse; justify-content: flex-end; }
+  .star-row label:hover,
+  .star-row label:hover ~ label,
+  .star-row input:checked ~ label { color: var(--gold); }
+  .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: .5rem; }
+  .radio-group label, .checkbox-group label { display: flex; align-items: center; gap: .6rem; font-size: .95rem; color: var(--navy); cursor: pointer; }
+  .radio-group input, .checkbox-group input { accent-color: var(--navy); width: 16px; height: 16px; flex-shrink: 0; }
+  .fb-input, .fb-textarea { width: 100%; padding: .8rem 1rem; border-radius: 10px; border: 1.5px solid rgba(26,46,74,.16); background: var(--bg); color: var(--navy); font-size: .96rem; font-family: 'Nunito', sans-serif; outline: none; transition: border-color .2s; }
+  .fb-input:focus, .fb-textarea:focus { border-color: var(--navy); }
+  .fb-textarea { resize: vertical; min-height: 100px; }
+  .section-label { font-size: .72rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-dk); margin: 2rem 0 .75rem; }
+  .submit-btn { background: var(--gold); color: var(--navy); padding: 1rem 2rem; border-radius: 100px; font-weight: 800; font-size: 1rem; font-family: 'Nunito', sans-serif; border: none; cursor: pointer; transition: transform .15s, background .2s; width: 100%; margin-top: .5rem; }
+  .submit-btn:hover { transform: translateY(-2px); background: #f7d35a; }
+  .success-msg { display: none; text-align: center; padding: 3rem 1rem; }
+  .success-msg h2 { color: var(--navy); margin-bottom: .5rem; }
+  .success-msg p { color: var(--muted); }
+</style>
+</head>
+<body class="no-hero">
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <nav class="site-nav" aria-label="Hovedmeny">
+      <div class="nav-brand" style="margin:0 auto">
+        <a href="index.html"><img src="images/logo-hvit.png" alt="Badegjestene – tilbake til forsiden" width="300" height="65"></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="surface-section" style="padding-top:140px;padding-bottom:5rem">
+  <div class="container" style="max-width:680px">
+    <div class="eyebrow">🎶 Tilbakemelding på spillejobb</div>
+    <h1 class="section-title">Tusen takk!</h1>
+    <p style="color:var(--muted);margin-bottom:2rem">Vi setter stor pris på om dere vil bruke 2–3 minutter på å gi oss tilbakemelding. Dette hjelper oss å bli enda bedre!</p>
+
+    <div id="form-wrap">
+      <form action="https://formspree.io/f/xwpognyr" method="POST" id="fb-form">
+        <input type="hidden" name="_replyto" value="">
+        <input type="hidden" name="_subject" value="Tilbakemelding – Badegjestene">
+        <input type="hidden" name="skjema" value="tilbakemelding">
+
+        <!-- E-post -->
+        <div class="fb-card">
+          <h3>E-post *</h3>
+          <input class="fb-input" type="email" name="epost" placeholder="din@epost.no" required>
+        </div>
+
+        <!-- Generelt inntrykk -->
+        <p class="section-label">Generelt inntrykk</p>
+
+        <div class="fb-card">
+          <h3>Hvordan vil du oppsummere deres totalopplevelse med Badegjestene?</h3>
+          <p>1 = Dårlig, 5 = Svært bra</p>
+          <div class="star-row">
+            <input type="radio" name="totalopplevelse_stjerner" id="s5" value="5"><label for="s5">★</label>
+            <input type="radio" name="totalopplevelse_stjerner" id="s4" value="4"><label for="s4">★</label>
+            <input type="radio" name="totalopplevelse_stjerner" id="s3" value="3"><label for="s3">★</label>
+            <input type="radio" name="totalopplevelse_stjerner" id="s2" value="2"><label for="s2">★</label>
+            <input type="radio" name="totalopplevelse_stjerner" id="s1" value="1"><label for="s1">★</label>
+          </div>
+        </div>
+
+        <div class="fb-card">
+          <h3>Vil du utdype totalopplevelsen?</h3>
+          <textarea class="fb-textarea" name="totalopplevelse_tekst" placeholder="Skriv gjerne litt om hva som var bra eller kunne vært bedre..."></textarea>
+        </div>
+
+        <!-- Opptredenen -->
+        <p class="section-label">Selve opptredenen</p>
+
+        <div class="fb-card">
+          <h3>Hvordan opplevde du bandets musikalske nivå og scenetilstedeværelse?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="musikalsk_niva" value="Svært bra"> Svært bra</label>
+            <label><input type="radio" name="musikalsk_niva" value="Bra"> Bra</label>
+            <label><input type="radio" name="musikalsk_niva" value="OK"> OK</label>
+            <label><input type="radio" name="musikalsk_niva" value="Dårlig"> Dårlig</label>
+            <label><input type="radio" name="musikalsk_niva" value="Svært dårlig"> Svært dårlig</label>
+          </div>
+        </div>
+
+        <div class="fb-card">
+          <h3>Hvordan fungerte bandet med publikum?</h3>
+          <p>Energi, kontakt, stemning osv.</p>
+          <div class="radio-group">
+            <label><input type="radio" name="publikum_kontakt" value="Svært bra"> Svært bra</label>
+            <label><input type="radio" name="publikum_kontakt" value="Bra"> Bra</label>
+            <label><input type="radio" name="publikum_kontakt" value="OK"> OK</label>
+            <label><input type="radio" name="publikum_kontakt" value="Dårlig"> Dårlig</label>
+            <label><input type="radio" name="publikum_kontakt" value="Svært dårlig"> Svært dårlig</label>
+          </div>
+        </div>
+
+        <!-- Booking og kommunikasjon -->
+        <p class="section-label">Booking og kommunikasjon</p>
+
+        <div class="fb-card">
+          <h3>Hvor enkelt var det å booke Badegjestene og få svar underveis?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="booking_enkelt" value="Svært enkelt"> Svært enkelt</label>
+            <label><input type="radio" name="booking_enkelt" value="Ganske enkelt"> Ganske enkelt</label>
+            <label><input type="radio" name="booking_enkelt" value="OK"> OK</label>
+            <label><input type="radio" name="booking_enkelt" value="Litt vanskelig"> Litt vanskelig</label>
+            <label><input type="radio" name="booking_enkelt" value="Veldig vanskelig"> Veldig vanskelig</label>
+          </div>
+        </div>
+
+        <div class="fb-card">
+          <h3>Hvordan opplevde du kommunikasjonen før og under arrangementet?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="kommunikasjon" value="Svært profesjonell"> Svært profesjonell</label>
+            <label><input type="radio" name="kommunikasjon" value="God"> God</label>
+            <label><input type="radio" name="kommunikasjon" value="OK"> OK</label>
+            <label><input type="radio" name="kommunikasjon" value="Litt rotete"> Litt rotete</label>
+            <label><input type="radio" name="kommunikasjon" value="Dårlig"> Dårlig</label>
+          </div>
+        </div>
+
+        <div class="fb-card">
+          <h3>Hvor fikk du høre om oss?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="kilde" value="badegjestene.no"> badegjestene.no</label>
+            <label><input type="radio" name="kilde" value="YouTube"> YouTube</label>
+            <label><input type="radio" name="kilde" value="Instagram"> Instagram</label>
+            <label><input type="radio" name="kilde" value="TikTok"> TikTok</label>
+            <label><input type="radio" name="kilde" value="Facebook"> Facebook</label>
+            <label><input type="radio" name="kilde" value="Gjennom en konsert"> Gjennom en konsert Badegjestene hadde</label>
+            <label><input type="radio" name="kilde" value="Annet"> Annet</label>
+          </div>
+        </div>
+
+        <!-- Verdi -->
+        <p class="section-label">Verdi og forventninger</p>
+
+        <div class="fb-card">
+          <h3>Synes du bandet leverte i forhold til hva det kostet?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="verdi" value="Absolutt verdt det"> Absolutt verdt det</label>
+            <label><input type="radio" name="verdi" value="Ja, passende"> Ja, det var passende</label>
+            <label><input type="radio" name="verdi" value="Litt dyrt"> Litt dyrt i forhold til leveranse</label>
+            <label><input type="radio" name="verdi" value="Ikke verdt pengene"> Ikke verdt pengene</label>
+            <label><input type="radio" name="verdi" value="Usikker"> Usikker</label>
+          </div>
+        </div>
+
+        <div class="fb-card">
+          <h3>Stemte det som ble levert overens med det dere forventet?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="forventninger" value="Over forventning"> Over forventning</label>
+            <label><input type="radio" name="forventninger" value="Som forventet"> Som forventet</label>
+            <label><input type="radio" name="forventninger" value="Litt under forventet"> Litt under forventet</label>
+            <label><input type="radio" name="forventninger" value="Langt under forventet"> Langt under forventet</label>
+          </div>
+        </div>
+
+        <!-- Generelt -->
+        <p class="section-label">Generelt</p>
+
+        <div class="fb-card">
+          <h3>Ville du booket Badegjestene igjen?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="booke_igjen" value="Ja, uten tvil!"> Ja, uten tvil!</label>
+            <label><input type="radio" name="booke_igjen" value="Kanskje"> Kanskje</label>
+            <label><input type="radio" name="booke_igjen" value="Nei"> Nei</label>
+          </div>
+        </div>
+
+        <div class="fb-card">
+          <h3>Er det greit at vi bruker et utdrag av tilbakemeldingen din som sitat på nettsiden vår?</h3>
+          <div class="radio-group">
+            <label><input type="radio" name="sitat_ok" value="Ja"> Ja</label>
+            <label><input type="radio" name="sitat_ok" value="Nei"> Nei</label>
+          </div>
+        </div>
+
+        <!-- Forbedring -->
+        <p class="section-label">Forbedring</p>
+
+        <div class="fb-card">
+          <h3>Er det noe annet vi kan forbedre oss på?</h3>
+          <textarea class="fb-textarea" name="forbedring" placeholder="Frivillig..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send tilbakemelding</button>
+      </form>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <h2>Tusen takk! 🎶</h2>
+      <p>Vi setter stor pris på tilbakemeldingen din. Den hjelper oss å bli bedre!</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <img class="footer-logo" src="images/logo-hvit.png" alt="Badegjestene" width="220" height="50" loading="lazy">
+  <p><a href="index.html">← Tilbake til forsiden</a></p>
+</footer>
+
+<script>
+const form = document.getElementById('fb-form');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const res = await fetch('https://formspree.io/f/xwpognyr', { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+  if (res.ok) {
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  }
+});
+</script>
+<script src="base.js"></script>
+</body>
+</html>
