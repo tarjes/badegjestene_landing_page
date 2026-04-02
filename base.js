@@ -81,7 +81,10 @@ syncMobileHeaderVisibility();
 
 document.querySelectorAll('input[type="date"]').forEach(function (input) {
   function syncDateColor() {
-    input.classList.toggle('has-value', !!input.value);
+    var hasValue = !!input.value;
+    input.classList.toggle('has-value', hasValue);
+    var wrapper = input.closest('.date-wrapper');
+    if (wrapper) wrapper.classList.toggle('has-value', hasValue);
   }
   input.addEventListener('change', syncDateColor);
   syncDateColor();
