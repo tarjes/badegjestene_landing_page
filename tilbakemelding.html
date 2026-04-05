@@ -63,7 +63,7 @@
     <p style="color:var(--muted);margin-bottom:2rem">Vi setter stor pris på om dere vil bruke 2–3 minutter på å gi oss tilbakemelding. Dette hjelper oss å bli enda bedre!</p>
 
     <div id="form-wrap">
-      <form action="https://formspree.io/f/xwpognyr" method="POST" id="fb-form">
+      <form action="https://formspree.io/f/xbdpzoqk" method="POST" id="fb-form">
         <input type="hidden" name="_replyto" value="">
         <input type="hidden" name="_subject" value="Tilbakemelding – Badegjestene">
         <input type="hidden" name="skjema" value="tilbakemelding">
@@ -232,7 +232,7 @@ const form = document.getElementById('fb-form');
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const data = new FormData(form);
-  const res = await fetch('https://formspree.io/f/xwpognyr', { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+  const res = await fetch('https://formspree.io/f/xbdpzoqk', { method: 'POST', body: data, headers: { Accept: 'application/json' } });
   if (res.ok) {
     document.getElementById('form-wrap').style.display = 'none';
     document.getElementById('success-msg').style.display = 'block';
