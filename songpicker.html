@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bygg din setliste | Badegjestene</title>
+<meta name="description" content="Sett sammen drømmesetlisten fra Badegjestenes repertoar. Velg låter, se total spilletid og del listen med bandet.">
+<link rel="canonical" href="https://badegjestene.no/songpicker.html">
+<link rel="icon" type="image/png" href="images/gummiand_favicon.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" href="base.css" as="style">
+<link rel="stylesheet" href="base.css">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+</noscript>
+<style>
+/* ===== SONG PICKER ===== */
+
+/* Hero / intro */
+.sp-intro {
+  background: var(--bg-dark);
+  padding: 7rem 2rem 3rem;
+  text-align: center;
+}
+.sp-intro h1 { color: #fff; margin-bottom: .75rem; font-size: clamp(2rem,4vw,3rem); }
+.sp-intro .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 1.5rem; }
+.sp-intro-badges {
+  display: flex;
+  gap: .6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: .5rem;
+}
+.sp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .3rem .85rem;
+  border-radius: 100px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  font-size: .78rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.65);
+  letter-spacing: .3px;
+}
+.sp-badge strong { color: var(--gold); }
+
+/* App wrapper */
+.sp-app {
+  background: var(--bg);
+  padding: 2rem 1.5rem 4rem;
+  min-height: 80vh;
+}
+
+/* Mobile tabs */
+.sp-tabs {
+  display: none;
+  max-width: 1160px;
+  margin: 0 auto 1.25rem;
+  background: var(--bg-soft);
+  border-radius: 14px;
+  padding: .3rem;
+  gap: .3rem;
+}
+.sp-tab-btn {
+  flex: 1;
+  padding: .65rem .75rem;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-family: 'Nunito', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.sp-tab-btn.active { background: #fff; color: var(--navy); box-shadow: 0 2px 8px rgba(26,46,74,.1); }
+
+/* Two-column layout */
+.sp-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.5rem;
+  align-items: start;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* ---- Library ---- */
+.sp-library {
+  background: #fff;
+  border-radius: 22px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.sp-library-head {
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+  margin-bottom: 1.25rem;
+}
+
+.sp-search {
+  width: 100%;
+  padding: .75rem 1rem .75rem 2.6rem;
+  border: 1.5px solid rgba(26,46,74,.12);
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: .97rem;
+  color: var(--navy);
+  background: var(--bg-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a6070' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") .85rem center / 16px no-repeat;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.sp-search:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,200,66,.15); }
+.sp-search::placeholder { color: var(--muted); }
+
+.sp-filter-row {
+  display: flex;
+  gap: .45rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sp-chip {
+  padding: .32rem .85rem;
+  border-radius: 100px;
+  border: 1.5px solid rgba(26,46,74,.14);
+  background: transparent;
+  color: var(--muted);
+  font-family: 'Nunito', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.sp-chip:hover { border-color: var(--navy); color: var(--navy); background: rgba(26,46,74,.04); }
+.sp-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+.sp-meta-row {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.sp-sort-select {
+  border: 1px solid rgba(26,46,74,.14);
+  border-radius: 8px;
+  padding: .28rem .55rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+.sp-visible-count {
+  margin-left: auto;
+  color: rgba(74,96,112,.6);
+  font-size: .77rem;
+}
+
+/* Song grid */
+.sp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .55rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: .2rem;
+}
+.sp-grid::-webkit-scrollbar { width: 4px; }
+.sp-grid::-webkit-scrollbar-thumb { background: rgba(26,46,74,.14); border-radius: 4px; }
+.sp-grid::-webkit-scrollbar-track { background: transparent; }
+
+/* Song card */
+.sp-card {
+  padding: .85rem .95rem;
+  border-radius: 14px;
+  border: 2px solid rgba(26,46,74,.08);
+  background: var(--bg-soft);
+  cursor: pointer;
+  transition: border-color .18s, transform .15s, box-shadow .15s, background .15s;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+.sp-card:hover {
+  border-color: rgba(245,200,66,.7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(26,46,74,.1);
+}
+.sp-card.selected {
+  border-color: var(--gold);
+  background: #fffbee;
+  box-shadow: 0 4px 14px rgba(245,200,66,.2);
+}
+.sp-card__check {
+  position: absolute;
+  top: .55rem;
+  right: .6rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .65rem;
+  opacity: 0;
+  transition: opacity .15s, transform .15s;
+  transform: scale(0.5);
+}
+.sp-card.selected .sp-card__check { opacity: 1; transform: scale(1); }
+
+.sp-card__artist {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: .18rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sp-card__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .93rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: .45rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.sp-card__foot {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  flex-wrap: wrap;
+}
+.sp-card__year, .sp-card__dur {
+  font-size: .67rem;
+  color: rgba(74,96,112,.7);
+  font-weight: 600;
+}
+.sp-card__dot {
+  width: 2.5px;
+  height: 2.5px;
+  border-radius: 50%;
+  background: rgba(74,96,112,.35);
+  flex-shrink: 0;
+}
+.sp-tag {
+  font-size: .6rem;
+  font-weight: 800;
+  padding: .12rem .42rem;
+  border-radius: 6px;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+}
+.sp-tag--norsk  { background: rgba(26,46,74,.1);   color: var(--navy); }
+.sp-tag--rock   { background: rgba(160,40,20,.1);  color: #7d2010; }
+.sp-tag--pop    { background: rgba(110,30,160,.1); color: #5a1a82; }
+.sp-tag--party  { background: rgba(16,120,80,.1);  color: #0a5c3a; }
+
+.sp-no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  padding: 2.5rem 1rem;
+  font-size: .95rem;
+}
+.sp-no-results span { font-size: 2rem; display: block; margin-bottom: .5rem; }
+
+/* ---- Setlist ---- */
+.sp-setlist {
+  position: sticky;
+  top: 88px;
+  background: var(--navy);
+  border-radius: 22px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 110px);
+  overflow: hidden;
+}
+
+.sp-setlist-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  gap: .5rem;
+}
+.sp-setlist-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+.sp-setlist-actions {
+  display: flex;
+  gap: .4rem;
+  flex-shrink: 0;
+}
+.sp-icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: .95rem;
+  transition: background .15s, color .15s;
+  position: relative;
+}
+.sp-icon-btn:hover { background: rgba(255,255,255,.16); color: #fff; }
+.sp-icon-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,.75);
+  color: #fff;
+  font-size: .7rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  padding: .3rem .6rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Setlist list */
+.sp-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 120px;
+}
+.sp-list::-webkit-scrollbar { width: 3px; }
+.sp-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 3px; }
+
+.sp-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  color: rgba(255,255,255,.3);
+  text-align: center;
+  font-size: .88rem;
+  gap: .4rem;
+  line-height: 1.5;
+}
+.sp-empty-icon { font-size: 2.2rem; }
+
+/* Setlist item */
+.sp-item {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .6rem .4rem;
+  border-radius: 10px;
+  transition: background .15s;
+  cursor: grab;
+}
+.sp-item:hover { background: rgba(255,255,255,.06); }
+.sp-item:active { cursor: grabbing; }
+.sp-item.dragging { opacity: .35; }
+.sp-item.drag-over { background: rgba(245,200,66,.12); outline: 1.5px dashed rgba(245,200,66,.5); }
+
+.sp-item-num {
+  font-size: .72rem;
+  font-weight: 800;
+  color: var(--gold);
+  min-width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.sp-item-drag {
+  color: rgba(255,255,255,.2);
+  font-size: .8rem;
+  cursor: grab;
+  flex-shrink: 0;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.sp-item-info { flex: 1; min-width: 0; }
+.sp-item-artist {
+  font-size: .65rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.4);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sp-item-title {
+  font-size: .87rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sp-item-dur {
+  font-size: .72rem;
+  color: rgba(255,255,255,.35);
+  flex-shrink: 0;
+  font-weight: 600;
+}
+.sp-item-remove {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.25);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: .1rem .25rem;
+  border-radius: 5px;
+  transition: color .15s, background .15s;
+  flex-shrink: 0;
+}
+.sp-item-remove:hover { color: #ff6b6b; background: rgba(255,100,100,.1); }
+
+/* Gap indicator between items */
+.sp-gap-row {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .15rem .4rem;
+}
+.sp-gap-line { flex: 1; height: 1px; background: rgba(255,255,255,.06); }
+.sp-gap-label {
+  font-size: .62rem;
+  color: rgba(255,255,255,.2);
+  font-weight: 700;
+  letter-spacing: .3px;
+  white-space: nowrap;
+}
+
+/* Total footer */
+.sp-total {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+  flex-shrink: 0;
+}
+.sp-total-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: .25rem;
+}
+.sp-total-label {
+  font-size: .75rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.45);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sp-total-time {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+}
+.sp-total-detail {
+  font-size: .71rem;
+  color: rgba(255,255,255,.28);
+  margin-bottom: .65rem;
+  line-height: 1.5;
+}
+
+/* Progress bar */
+.sp-progress-wrap { position: relative; margin-bottom: .3rem; }
+.sp-progress-bar {
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.08);
+  overflow: visible;
+  position: relative;
+}
+.sp-progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--gold-dk), var(--gold));
+  transition: width .4s cubic-bezier(.4,0,.2,1);
+  max-width: 100%;
+}
+/* Reference markers */
+.sp-progress-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  pointer-events: none;
+}
+.sp-marker {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 12px;
+  background: rgba(255,255,255,.15);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+.sp-progress-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .35rem;
+  font-size: .63rem;
+  color: rgba(255,255,255,.22);
+  font-weight: 600;
+}
+.sp-progress-ticks span { position: relative; }
+
+/* Copy toast */
+.sp-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--navy-deep);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: .75rem 1.5rem;
+  font-size: .88rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+  z-index: 999;
+  white-space: nowrap;
+}
+.sp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1000px) {
+  .sp-layout { grid-template-columns: 1fr 340px; }
+}
+@media (max-width: 860px) {
+  .sp-layout { grid-template-columns: 1fr; }
+  .sp-setlist { position: static; max-height: none; }
+  .sp-grid { max-height: 480px; }
+}
+@media (max-width: 680px) {
+  .sp-tabs { display: flex; }
+  .sp-intro { padding: 5.5rem 1.25rem 2.5rem; }
+  .sp-app { padding: 1rem 1rem 3rem; }
+  .sp-grid { grid-template-columns: 1fr; max-height: 55vh; }
+  .sp-library, .sp-setlist { border-radius: 16px; }
+  [data-panel] { display: none !important; }
+  [data-panel].sp-panel-active { display: block !important; }
+  .sp-setlist[data-panel].sp-panel-active { display: flex !important; }
+}
+@media (max-width: 400px) {
+  .sp-intro-badges { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body class="no-hero">
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <nav class="site-nav" aria-label="Hovedmeny">
+      <button class="menu-toggle" type="button" aria-label="Åpne meny" data-menu-toggle><span></span></button>
+      <div class="nav-side nav-side--left">
+        <a class="nav-link" href="om_oss.html">Om oss</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown__toggle" type="button" aria-expanded="false" data-dropdown-toggle>Arrangementer</button>
+          <div class="nav-dropdown__menu">
+            <a href="event.html">Event</a>
+            <a href="fest.html">Fest</a>
+            <a href="bryllup.html">Bryllup</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-brand" href="index.html"><img src="images/logo-hvit-small.webp" alt="Badegjestene" width="300" height="65"></a>
+      <div class="nav-side nav-side--right">
+        <a class="nav-link" href="fest.html#booking">Kontakt oss</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-overlay" data-mobile-overlay></div>
+<div class="mobile-menu" data-mobile-menu>
+  <button class="mobile-close" type="button" aria-label="Lukk meny" data-mobile-close>×</button>
+  <a href="om_oss.html">Om oss</a>
+  <div class="mobile-menu__label">Arrangementer</div>
+  <a class="mobile-menu__subitem" href="event.html">Event</a>
+  <a class="mobile-menu__subitem" href="fest.html">Fest</a>
+  <a class="mobile-menu__subitem" href="bryllup.html">Bryllup</a>
+  <a href="fest.html#booking">Kontakt oss</a>
+</div>
+
+<!-- INTRO -->
+<section class="sp-intro">
+  <div class="eyebrow">Setliste-bygger</div>
+  <h1>Sett sammen <em>drømmesetlisten</em></h1>
+  <p class="section-sub">Velg låtene du vil ha fra repertoaret vårt og se nøyaktig hvor lang setlisten blir – inkludert pauser.</p>
+  <div class="sp-intro-badges">
+    <span class="sp-badge">🎵 <strong>43</strong> låter tilgjengelig</span>
+    <span class="sp-badge">⏱ 30 sek. mellom hver låt</span>
+    <span class="sp-badge">📋 Send listen til oss</span>
+  </div>
+</section>
+
+<!-- APP -->
+<section class="sp-app">
+
+  <!-- Mobile tabs -->
+  <div class="sp-tabs" id="spTabs" role="tablist">
+    <button class="sp-tab-btn active" data-tab="library" id="tabLibrary" role="tab" aria-selected="true">🎵 Velg låter</button>
+    <button class="sp-tab-btn" data-tab="setlist" id="tabSetlist" role="tab" aria-selected="false">📋 Min setliste <span id="tabCount"></span></button>
+  </div>
+
+  <div class="sp-layout">
+
+    <!-- LIBRARY -->
+    <div class="sp-library" data-panel="library" id="libraryPanel" role="tabpanel">
+      <div class="sp-library-head">
+        <input type="search" class="sp-search" id="spSearch" placeholder="Søk etter låt eller artist…" aria-label="Søk i låter">
+        <div class="sp-filter-row" role="group" aria-label="Filtrer etter sjanger">
+          <button class="sp-chip active" data-filter="all">Alle</button>
+          <button class="sp-chip" data-filter="norsk">🇳🇴 Norsk</button>
+          <button class="sp-chip" data-filter="rock">🎸 Rock</button>
+          <button class="sp-chip" data-filter="pop">✨ Pop</button>
+          <button class="sp-chip" data-filter="party">🕺 Party</button>
+        </div>
+        <div class="sp-meta-row">
+          <span>Sorter:</span>
+          <select id="spSort" class="sp-sort-select" aria-label="Sorteringsrekkefølge">
+            <option value="artist">Artist A–Å</option>
+            <option value="title">Tittel A–Å</option>
+            <option value="year">Årstall (eldst)</option>
+            <option value="year-desc">Årstall (nyest)</option>
+            <option value="duration">Kortest</option>
+            <option value="duration-desc">Lengst</option>
+          </select>
+          <span class="sp-visible-count" id="spCount" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="sp-grid" id="spGrid" role="list" aria-label="Låtbibliotek"></div>
+    </div>
+
+    <!-- SETLIST -->
+    <div class="sp-setlist" data-panel="setlist" id="setlistPanel" role="tabpanel">
+      <div class="sp-setlist-head">
+        <span class="sp-setlist-title">🎤 Min setliste</span>
+        <div class="sp-setlist-actions">
+          <button class="sp-icon-btn" id="shuffleBtn" title="Bland rekkefølge" aria-label="Bland rekkefølge">🔀</button>
+          <button class="sp-icon-btn" id="copyBtn" title="Kopier setliste" aria-label="Kopier setliste til utklippstavle">📋</button>
+          <button class="sp-icon-btn" id="clearBtn" title="Fjern alle låter" aria-label="Fjern alle låter">🗑️</button>
+        </div>
+      </div>
+      <div class="sp-list" id="spList" aria-label="Din setliste" aria-live="polite">
+        <div class="sp-empty" id="spEmpty">
+          <span class="sp-empty-icon">🎶</span>
+          Klikk på låter til venstre<br>for å bygge setlisten din
+        </div>
+      </div>
+      <div class="sp-total">
+        <div class="sp-total-row">
+          <span class="sp-total-label">Total varighet</span>
+          <span class="sp-total-time" id="totalTime">—</span>
+        </div>
+        <div class="sp-total-detail" id="totalDetail">Velg låter for å se total tid</div>
+        <div class="sp-progress-wrap">
+          <div class="sp-progress-bar">
+            <div class="sp-progress-fill" id="progressFill" style="width:0%"></div>
+            <div class="sp-progress-markers">
+              <!-- 45min = 37.5%, 60min = 50%, 90min = 75% of 120min -->
+              <div class="sp-marker" style="left:37.5%" title="45 min"></div>
+              <div class="sp-marker" style="left:50%" title="60 min"></div>
+              <div class="sp-marker" style="left:75%" title="90 min"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sp-progress-ticks">
+          <span>0</span>
+          <span>45 min</span>
+          <span>1 time</span>
+          <span>1,5 t</span>
+          <span>2 t</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Toast notification -->
+<div class="sp-toast" id="spToast" role="status" aria-live="polite"></div>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-logo" src="images/logo-hvit-small.webp" alt="Badegjestene" width="220" height="50" loading="lazy">
+  <div class="social-links">
+    <a class="social-btn" href="https://instagram.com/badegjestene1" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a class="social-btn" href="https://youtube.com/@badegjestene" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+    <a class="social-btn" href="https://facebook.com/Badegjestene" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a class="social-btn" href="https://tiktok.com/@badegjestene" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+  </div>
+  <p>Oslo, Norge · <a href="mailto:booking.badegjestene@outlook.com">booking.badegjestene@outlook.com</a></p>
+  <p style="margin-top:.4rem"><a href="index.html">← Tilbake til forsiden</a></p>
+</footer>
+
+<script>
+/* =========================================================
+   SONG PICKER — Badegjestene
+   ========================================================= */
+
+const SONGS = [
+  { id:  1, artist: 'Backstreet Boys',      title: 'Everybody',                        dur: 237, year: 1999, tags: ['pop','party'] },
+  { id:  2, artist: 'Backstreet Boys',      title: 'I Want It That Way',               dur: 213, year: 1999, tags: ['pop','party'] },
+  { id:  3, artist: 'Britney Spears',       title: 'Baby One More Time',               dur: 210, year: 1998, tags: ['pop','party'] },
+  { id:  4, artist: 'Bruno Mars, Rosie',    title: 'APT.',                             dur: 157, year: 2024, tags: ['pop'] },
+  { id:  5, artist: 'CC Cowboys',           title: 'Vill, Vakker & Våt',              dur: 227, year: 1989, tags: ['norsk','rock'] },
+  { id:  6, artist: 'CeeLo Green',          title: 'Fuck You',                         dur: 223, year: 2010, tags: ['pop','party'] },
+  { id:  7, artist: 'Cher',                 title: 'Believe',                          dur: 237, year: 1998, tags: ['pop','party'] },
+  { id:  8, artist: 'Dagny',                title: 'Somebody',                         dur: 192, year: 2021, tags: ['norsk','pop'] },
+  { id:  9, artist: 'DDE',                  title: 'Rai-Rai',                          dur: 225, year: 1995, tags: ['norsk','party'] },
+  { id: 10, artist: 'Di Derre',             title: 'Jenter',                           dur: 212, year: 1994, tags: ['norsk','rock'] },
+  { id: 11, artist: 'DJ Ötzi',             title: 'Sweet Caroline',                   dur: 204, year: 2000, tags: ['pop','party'] },
+  { id: 12, artist: 'Drillos',             title: 'Alt for Norge',                    dur: 195, year: 1999, tags: ['norsk','party'] },
+  { id: 13, artist: 'Finn.no',             title: 'Squeeze Day',                      dur: 166, year: 2009, tags: ['norsk','party'] },
+  { id: 14, artist: 'Jason Paige',         title: 'Pokémon Theme',                    dur: 134, year: 1997, tags: ['pop','party'] },
+  { id: 15, artist: 'Journey',             title: "Don't Stop Believin'",             dur: 250, year: 1981, tags: ['rock','party'] },
+  { id: 16, artist: 'Karpe',               title: 'Spis din Syvende Sans',            dur: 234, year: 2012, tags: ['norsk','pop'] },
+  { id: 17, artist: 'The Kids',            title: "Forelska i Lærer'n",               dur: 200, year: 1980, tags: ['norsk','party'] },
+  { id: 18, artist: 'The Killers',         title: 'Mr. Brightside',                   dur: 222, year: 2003, tags: ['rock','party'] },
+  { id: 19, artist: 'Kings of Leon',       title: 'Sex On Fire',                      dur: 203, year: 2008, tags: ['rock'] },
+  { id: 20, artist: 'Kings of Leon',       title: 'Use Somebody',                     dur: 232, year: 2008, tags: ['rock'] },
+  { id: 21, artist: 'Kurt Nilsen',         title: "She's So High",                    dur: 232, year: 2003, tags: ['norsk','pop'] },
+  { id: 22, artist: 'Marius Müller',       title: 'Den Du Vei',                       dur: 205, year: 2009, tags: ['norsk','pop'] },
+  { id: 23, artist: 'Måneskin',            title: "Beggin'",                          dur: 214, year: 2017, tags: ['rock','party'] },
+  { id: 24, artist: 'Ole Ivars',           title: 'Kongen av Campingplassen',         dur: 198, year: 2001, tags: ['norsk','party'] },
+  { id: 25, artist: 'Owl City',            title: 'Fireflies',                        dur: 227, year: 2009, tags: ['pop'] },
+  { id: 26, artist: 'Postgirobygget',      title: 'En Solskinnsdag',                  dur: 221, year: 1998, tags: ['norsk','pop'] },
+  { id: 27, artist: 'Queen',               title: "Don't Stop Me Now",                dur: 209, year: 1978, tags: ['rock','party'] },
+  { id: 28, artist: 'Racer',               title: 'Bønda i Fra Nord',                dur: 212, year: 1992, tags: ['norsk','party'] },
+  { id: 29, artist: 'Ravi',                title: 'Tsjeriåu',                         dur: 178, year: 2018, tags: ['norsk','party'] },
+  { id: 30, artist: 'Ravi, DJ Løv',        title: 'Tsjeriåu Me De Månråus',           dur: 181, year: 2019, tags: ['norsk','party'] },
+  { id: 31, artist: 'Robbie Williams',     title: 'Angels',                           dur: 265, year: 1997, tags: ['pop','party'] },
+  { id: 32, artist: 'Sigrid',              title: 'Sucker Punch',                     dur: 180, year: 2019, tags: ['norsk','pop'] },
+  { id: 33, artist: 'Smash Mouth',         title: "I'm a Believer",                   dur: 167, year: 2001, tags: ['pop','party'] },
+  { id: 34, artist: 'Staysman og Lazz',    title: 'Muggene er Megasvære',             dur: 198, year: 2014, tags: ['norsk','party'] },
+  { id: 35, artist: 'Bryan Adams',         title: "Summer of '69",                    dur: 214, year: 1985, tags: ['rock','party'] },
+  { id: 36, artist: 'The Baseballs',       title: 'Umbrella',                         dur: 191, year: 2009, tags: ['pop','party'] },
+  { id: 37, artist: 'The Darkness',        title: 'I Believe in a Thing Called Love', dur: 219, year: 2003, tags: ['rock','party'] },
+  { id: 38, artist: 'Taylor Swift',        title: 'Love Story',                       dur: 235, year: 2008, tags: ['pop','party'] },
+  { id: 39, artist: 'Tina Turner',         title: 'Proud Mary',                       dur: 234, year: 1971, tags: ['rock','party'] },
+  { id: 40, artist: 'Trang Fødsel',        title: 'Drømmedame',                       dur: 225, year: 2001, tags: ['norsk','party'] },
+  { id: 41, artist: 'Walk The Moon',       title: 'Shut Up And Dance',                dur: 197, year: 2014, tags: ['pop','party'] },
+  { id: 42, artist: 'Wheatus',             title: 'Teenage Dirtbag',                  dur: 240, year: 2000, tags: ['rock','party'] },
+  { id: 43, artist: 'Åge Aleksandersen',   title: 'Levva Livet',                      dur: 230, year: 1980, tags: ['norsk','party'] },
+];
+
+/* ---- State ---- */
+let setlist = [];           // ordered array of song IDs
+let activeFilter = 'all';
+let searchQuery = '';
+let sortKey = 'artist';
+
+/* ---- DOM refs ---- */
+const grid        = document.getElementById('spGrid');
+const spList      = document.getElementById('spList');
+const spEmpty     = document.getElementById('spEmpty');
+const spCount     = document.getElementById('spCount');
+const totalTime   = document.getElementById('totalTime');
+const totalDetail = document.getElementById('totalDetail');
+const progressFill = document.getElementById('progressFill');
+const spSearch    = document.getElementById('spSearch');
+const tabCount    = document.getElementById('tabCount');
+const spToast     = document.getElementById('spToast');
+
+/* ---- Helpers ---- */
+function fmtDur(secs) {
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
+
+function fmtTotal(secs) {
+  if (secs <= 0) return '—';
+  const h = Math.floor(secs / 3600);
+  const m = Math.floor((secs % 3600) / 60);
+  const s = secs % 60;
+  if (h > 0) {
+    return m > 0 ? `${h}t ${m}m` : `${h}t`;
+  }
+  return s > 0 ? `${m} min ${s} sek` : `${m} min`;
+}
+
+function getSong(id) {
+  return SONGS.find(s => s.id === id);
+}
+
+function isInSetlist(id) {
+  return setlist.includes(id);
+}
+
+function showToast(msg) {
+  spToast.textContent = msg;
+  spToast.classList.add('show');
+  clearTimeout(spToast._t);
+  spToast._t = setTimeout(() => spToast.classList.remove('show'), 2400);
+}
+
+/* ---- Sort ---- */
+function sortedSongs(songs) {
+  return [...songs].sort((a, b) => {
+    switch (sortKey) {
+      case 'artist':       return a.artist.localeCompare(b.artist, 'no');
+      case 'title':        return a.title.localeCompare(b.title, 'no');
+      case 'year':         return a.year - b.year;
+      case 'year-desc':    return b.year - a.year;
+      case 'duration':     return a.dur - b.dur;
+      case 'duration-desc':return b.dur - a.dur;
+      default:             return 0;
+    }
+  });
+}
+
+/* ---- Filter ---- */
+function filteredSongs() {
+  return sortedSongs(SONGS.filter(s => {
+    const matchFilter = activeFilter === 'all' || s.tags.includes(activeFilter);
+    const q = searchQuery.toLowerCase();
+    const matchSearch = !q
+      || s.artist.toLowerCase().includes(q)
+      || s.title.toLowerCase().includes(q);
+    return matchFilter && matchSearch;
+  }));
+}
+
+/* ---- Render library ---- */
+function renderLibrary() {
+  const songs = filteredSongs();
+  spCount.textContent = songs.length === SONGS.length
+    ? `Alle ${SONGS.length} låter`
+    : `${songs.length} av ${SONGS.length} låter`;
+
+  if (songs.length === 0) {
+    grid.innerHTML = '<div class="sp-no-results"><span>🔍</span>Ingen låter funnet. Prøv et annet søk.</div>';
+    return;
+  }
+
+  grid.innerHTML = songs.map(s => {
+    const selected = isInSetlist(s.id);
+    const tagHtml = s.tags.map(t =>
+      `<span class="sp-tag sp-tag--${t}">${tagLabel(t)}</span>`
+    ).join('');
+    return `<div class="sp-card${selected ? ' selected' : ''}"
+                 data-id="${s.id}"
+                 role="listitem"
+                 tabindex="0"
+                 aria-pressed="${selected}"
+                 aria-label="${s.artist} – ${s.title}${selected ? ', lagt til i setliste' : ''}">
+      <div class="sp-card__check" aria-hidden="true">✓</div>
+      <div class="sp-card__artist">${esc(s.artist)}</div>
+      <div class="sp-card__title">${esc(s.title)}</div>
+      <div class="sp-card__foot">
+        <span class="sp-card__year">${s.year}</span>
+        <span class="sp-card__dot" aria-hidden="true"></span>
+        <span class="sp-card__dur">${fmtDur(s.dur)}</span>
+        <span class="sp-card__dot" aria-hidden="true"></span>
+        ${tagHtml}
+      </div>
+    </div>`;
+  }).join('');
+
+  /* click handler */
+  grid.querySelectorAll('.sp-card').forEach(card => {
+    card.addEventListener('click', () => toggleSong(Number(card.dataset.id)));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleSong(Number(card.dataset.id));
+      }
+    });
+  });
+}
+
+function tagLabel(tag) {
+  return { norsk: '🇳🇴 Norsk', rock: '🎸 Rock', pop: '✨ Pop', party: '🕺 Party' }[tag] || tag;
+}
+
+function esc(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ---- Render setlist ---- */
+function renderSetlist() {
+  /* update mobile tab badge */
+  tabCount.textContent = setlist.length > 0 ? ` (${setlist.length})` : '';
+
+  if (setlist.length === 0) {
+    spEmpty.style.display = '';
+    spList.querySelectorAll('.sp-item, .sp-gap-row').forEach(el => el.remove());
+    totalTime.textContent = '—';
+    totalDetail.textContent = 'Velg låter for å se total tid';
+    progressFill.style.width = '0%';
+    return;
+  }
+
+  spEmpty.style.display = 'none';
+
+  /* Build DOM */
+  const existing = spList.querySelectorAll('.sp-item, .sp-gap-row');
+  existing.forEach(el => el.remove());
+
+  const frag = document.createDocumentFragment();
+  setlist.forEach((id, idx) => {
+    const s = getSong(id);
+    if (!s) return;
+
+    /* Gap row between items */
+    if (idx > 0) {
+      const gap = document.createElement('div');
+      gap.className = 'sp-gap-row';
+      gap.innerHTML = '<div class="sp-gap-line"></div><span class="sp-gap-label">30 sek pause</span><div class="sp-gap-line"></div>';
+      frag.appendChild(gap);
+    }
+
+    const item = document.createElement('div');
+    item.className = 'sp-item';
+    item.dataset.id = id;
+    item.draggable = true;
+    item.innerHTML = `
+      <span class="sp-item-num">${idx + 1}</span>
+      <span class="sp-item-drag" aria-hidden="true">⠿</span>
+      <div class="sp-item-info">
+        <div class="sp-item-artist">${esc(s.artist)}</div>
+        <div class="sp-item-title">${esc(s.title)}</div>
+      </div>
+      <span class="sp-item-dur">${fmtDur(s.dur)}</span>
+      <button class="sp-item-remove" data-id="${id}" aria-label="Fjern ${esc(s.title)} fra setliste" title="Fjern">×</button>`;
+    frag.appendChild(item);
+  });
+  spList.insertBefore(frag, spEmpty);
+
+  /* Remove buttons */
+  spList.querySelectorAll('.sp-item-remove').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      removeSong(Number(btn.dataset.id));
+    });
+  });
+
+  /* Drag & drop */
+  setupDnd();
+
+  updateTotal();
+}
+
+/* ---- Duration total ---- */
+function updateTotal() {
+  const n = setlist.length;
+  if (n === 0) return;
+
+  const musicSecs = setlist.reduce((acc, id) => {
+    const s = getSong(id);
+    return acc + (s ? s.dur : 0);
+  }, 0);
+  const gapSecs = (n - 1) * 30;
+  const total = musicSecs + gapSecs;
+
+  totalTime.textContent = fmtTotal(total);
+
+  const musicMin = Math.floor(musicSecs / 60);
+  const musicSec = musicSecs % 60;
+  const gapMin   = Math.floor(gapSecs / 60);
+  const gapSec   = gapSecs % 60;
+  const musicStr = musicSec > 0 ? `${musicMin} min ${musicSec} sek` : `${musicMin} min`;
+  const gapStr   = gapSec  > 0 ? `${gapMin} min ${gapSec} sek`     : `${gapMin} min`;
+
+  totalDetail.textContent = n === 1
+    ? `1 låt · ${musicStr} musikk`
+    : `${n} låter · ${musicStr} musikk + ${gapStr} pauser`;
+
+  /* Progress bar (max = 7200s = 120 min) */
+  const pct = Math.min((total / 7200) * 100, 100);
+  progressFill.style.width = `${pct}%`;
+}
+
+/* ---- Toggle song ---- */
+function toggleSong(id) {
+  if (isInSetlist(id)) {
+    removeSong(id);
+  } else {
+    setlist.push(id);
+    const s = getSong(id);
+    showToast(`✓ "${s.title}" lagt til`);
+    renderLibrary();
+    renderSetlist();
+  }
+}
+
+function removeSong(id) {
+  const s = getSong(id);
+  setlist = setlist.filter(i => i !== id);
+  renderLibrary();
+  renderSetlist();
+  if (s) showToast(`"${s.title}" fjernet`);
+}
+
+/* ---- Drag & drop reorder ---- */
+let dragSrcId = null;
+
+function setupDnd() {
+  spList.querySelectorAll('.sp-item').forEach(item => {
+    item.addEventListener('dragstart', e => {
+      dragSrcId = Number(item.dataset.id);
+      item.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+      spList.querySelectorAll('.sp-item').forEach(i => i.classList.remove('drag-over'));
+    });
+    item.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (Number(item.dataset.id) !== dragSrcId) {
+        spList.querySelectorAll('.sp-item').forEach(i => i.classList.remove('drag-over'));
+        item.classList.add('drag-over');
+      }
+    });
+    item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      const targetId = Number(item.dataset.id);
+      if (dragSrcId === null || dragSrcId === targetId) return;
+      const srcIdx  = setlist.indexOf(dragSrcId);
+      const tgtIdx  = setlist.indexOf(targetId);
+      if (srcIdx === -1 || tgtIdx === -1) return;
+      setlist.splice(srcIdx, 1);
+      setlist.splice(tgtIdx, 0, dragSrcId);
+      dragSrcId = null;
+      renderSetlist();
+    });
+  });
+}
+
+/* ---- Shuffle ---- */
+document.getElementById('shuffleBtn').addEventListener('click', () => {
+  if (setlist.length < 2) { showToast('Legg til minst 2 låter for å blande 🎲'); return; }
+  for (let i = setlist.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [setlist[i], setlist[j]] = [setlist[j], setlist[i]];
+  }
+  renderSetlist();
+  showToast('🔀 Setlisten er blandet!');
+});
+
+/* ---- Clear all ---- */
+document.getElementById('clearBtn').addEventListener('click', () => {
+  if (setlist.length === 0) return;
+  if (!confirm(`Vil du fjerne alle ${setlist.length} låter fra setlisten?`)) return;
+  setlist = [];
+  renderLibrary();
+  renderSetlist();
+  showToast('Setlisten er tømt 🗑️');
+});
+
+/* ---- Copy setlist ---- */
+document.getElementById('copyBtn').addEventListener('click', () => {
+  if (setlist.length === 0) { showToast('Setlisten er tom – legg til låter først'); return; }
+
+  const musicSecs = setlist.reduce((acc, id) => acc + (getSong(id)?.dur || 0), 0);
+  const total     = musicSecs + (setlist.length - 1) * 30;
+  const lines = [
+    'Min setliste – Badegjestene',
+    '─'.repeat(30),
+    ...setlist.map((id, i) => {
+      const s = getSong(id);
+      return `${String(i + 1).padStart(2, ' ')}. ${s.artist} – ${s.title} (${fmtDur(s.dur)})`;
+    }),
+    '─'.repeat(30),
+    `Total: ${fmtTotal(total)} (inkl. 30 sek. pause mellom låter)`,
+  ];
+
+  navigator.clipboard.writeText(lines.join('\n'))
+    .then(() => showToast('📋 Setlisten er kopiert!'))
+    .catch(() => showToast('Kunne ikke kopiere – prøv igjen'));
+});
+
+/* ---- Search ---- */
+spSearch.addEventListener('input', () => {
+  searchQuery = spSearch.value.trim();
+  renderLibrary();
+});
+
+/* ---- Filter chips ---- */
+document.querySelectorAll('.sp-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.sp-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    renderLibrary();
+  });
+});
+
+/* ---- Sort ---- */
+document.getElementById('spSort').addEventListener('change', e => {
+  sortKey = e.target.value;
+  renderLibrary();
+});
+
+/* ---- Mobile tabs ---- */
+document.querySelectorAll('.sp-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sp-tab-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const target = btn.dataset.tab;
+    document.querySelectorAll('[data-panel]').forEach(p => p.classList.remove('sp-panel-active'));
+    document.querySelector(`[data-panel="${target}"]`).classList.add('sp-panel-active');
+  });
+});
+
+/* On mobile, show library by default */
+(function initMobilePanels() {
+  if (window.innerWidth <= 680) {
+    document.getElementById('libraryPanel').classList.add('sp-panel-active');
+  }
+})();
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 680) {
+    document.querySelectorAll('[data-panel]').forEach(p => p.classList.remove('sp-panel-active'));
+  } else {
+    const activeTab = document.querySelector('.sp-tab-btn.active');
+    if (activeTab) {
+      const target = activeTab.dataset.tab;
+      document.querySelectorAll('[data-panel]').forEach(p => p.classList.remove('sp-panel-active'));
+      document.querySelector(`[data-panel="${target}"]`).classList.add('sp-panel-active');
+    }
+  }
+});
+
+/* ---- Initial render ---- */
+renderLibrary();
+renderSetlist();
+</script>
+
+<script src="base.js"></script>
+</body>
+</html>
