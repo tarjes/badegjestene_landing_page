@@ -985,16 +985,17 @@ function renderSetlist() {
 }
 
 /* ---- Duration total ---- */
+function calcTotal() {
+  const musicSecs = setlist.reduce((acc, id) => acc + (getSong(id)?.dur || 0), 0);
+  const gapSecs   = (setlist.length - 1) * 30;
+  return { musicSecs, gapSecs, total: musicSecs + gapSecs };
+}
+
 function updateTotal() {
   const n = setlist.length;
   if (n === 0) return;
 
-  const musicSecs = setlist.reduce((acc, id) => {
-    const s = getSong(id);
-    return acc + (s ? s.dur : 0);
-  }, 0);
-  const gapSecs = (n - 1) * 30;
-  const total = musicSecs + gapSecs;
+  const { musicSecs, gapSecs, total } = calcTotal();
 
   totalTime.textContent = fmtTotal(total);
 
@@ -1098,8 +1099,7 @@ document.getElementById('clearBtn').addEventListener('click', () => {
 document.getElementById('copyBtn').addEventListener('click', () => {
   if (setlist.length === 0) { showToast('Setlisten er tom – legg til låter først'); return; }
 
-  const musicSecs = setlist.reduce((acc, id) => acc + (getSong(id)?.dur || 0), 0);
-  const total     = musicSecs + (setlist.length - 1) * 30;
+  const { musicSecs, total } = calcTotal();
   const lines = [
     'Min setliste – Badegjestene',
     '─'.repeat(30),
