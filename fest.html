@@ -225,16 +225,33 @@
 					</div>
 					<input type="text" name="sted" placeholder="Sted / lokale">
 				</div>
-				<select name="type">
-					<option value="" disabled>Type arrangement</option>
-					<option selected>Fest</option>
-					<option>Bryllup</option>
-					<option>Firmafest / event</option>
-					<option>Julebord</option>
-					<option>Afterski</option>
-					<option>Annet</option>
-				</select>
-				<textarea name="message" rows="3" required placeholder="Fortell oss om festen, hva som er viktig for deg, og eventuelle spørsmål."></textarea>
+				<div class="form-row">
+					<select name="type">
+						<option value="" disabled>Type arrangement</option>
+						<option>Event</option>
+						<option selected>Fest</option>
+						<option>Bryllup</option>
+						<option>Annet</option>
+					</select>
+					<input type="number" name="gjester" placeholder="Antall gjester" min="1">
+				</div>
+				<div class="form-row">
+					<select name="spilletid">
+						<option value="" disabled selected>Ønsket spilletid</option>
+						<option>45 min</option>
+						<option>60 min</option>
+						<option>90 min</option>
+						<option>120 min</option>
+					</select>
+					<select name="pa">
+						<option value="" disabled selected>Teknisk</option>
+						<option>Ønsker å leie PA og tekniker</option>
+						<option>Har PA, trenger tekniker</option>
+						<option>Har alt, bare kom og spill!</option>
+						<option>Vet ikke</option>
+					</select>
+				</div>
+				<textarea name="message" rows="4" required placeholder="Fortell oss om arrangementet, hva som er viktig for deg, og eventuelle spørsmål."></textarea>
 				<input type="hidden" name="_captcha" value="false">
 				<button type="submit" class="form-button">Send forespørsel</button>
 			</form>
