@@ -77,7 +77,7 @@
 <div class="header">
   <div class="header-left">
     <img src="images/logo-hvit-small.webp" alt="Badegjestene">
-    <span class="header-badge">Intern kalender</span>
+    <span class="header-badge">Intern</span>
   </div>
   <button class="btn-add" onclick="openAdd()">+ Legg til</button>
 </div>
@@ -262,6 +262,7 @@ function renderMonth() {
     const dayEl = document.createElement('div');
     dayEl.className = 'cal-day';
     dayEl.textContent = day;
+    dayEl.onclick = (e) => { e.stopPropagation(); openAddOnDate(dateStr); };
     cell.appendChild(dayEl);
     events.filter(e => e.date === dateStr).forEach(ev => {
       const c = COLORS[ev.type] || COLORS.other;
@@ -270,7 +271,13 @@ function renderMonth() {
       el.style.background = c.bg;
       el.style.color = c.text;
       el.textContent = ev.title;
-      el.onclick = () => openEdit(ev.id);
+      if (ev.notes) {
+        const notes = document.createElement('div');
+        notes.className = 'cal-event-notes';
+        notes.textContent = ev.notes;
+        el.appendChild(notes);
+      }
+      el.onclick = (e) => { e.stopPropagation(); openEdit(ev.id); };
       cell.appendChild(el);
     });
     grid.appendChild(cell);
@@ -306,10 +313,22 @@ function renderList() {
         </div>
         ${ev.notes ? `<div class="list-notes">${ev.notes}</div>` : ''}
       </div>
-      <div class="list-arrow">›</div>`;
+      <div class="list-arrow">›</div>`;;
     item.onclick = () => openEdit(ev.id);
     wrap.appendChild(item);
   });
+}
+
+function openAddOnDate(date) {
+  editId = null;
+  document.getElementById('modal-title').textContent = 'Legg til hendelse';
+  document.getElementById('f-title').value = '';
+  document.getElementById('f-date').value = date;
+  document.getElementById('f-type').value = 'practice';
+  document.getElementById('f-drummer').value = '';
+  document.getElementById('f-notes').value = '';
+  document.getElementById('btn-delete').classList.add('hidden');
+  document.getElementById('modal').classList.remove('hidden');
 }
 
 function openAdd() {
