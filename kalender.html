@@ -362,6 +362,8 @@ async function saveEvent() {
   const title = document.getElementById('f-title').value.trim();
   const date = document.getElementById('f-date').value;
   if (!title || !date) return alert('Tittel og dato er påkrevd.');
+  const saveBtn = document.getElementById('btn-save') || document.querySelector('.btn-save');
+  if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Lagrer...'; }
   const ev = {
     title, date,
     type: document.getElementById('f-type').value,
@@ -374,17 +376,18 @@ async function saveEvent() {
     events.push({ ...ev, id: Date.now().toString() });
   }
   events.sort((a,b) => a.date.localeCompare(b.date));
-  closeModal();
   render();
   await saveToStorage();
+  closeModal();
+  if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Lagre'; }
 }
 
 async function deleteEvent() {
   if (!confirm('Slett denne hendelsen?')) return;
   events = events.filter(e => e.id !== editId);
-  closeModal();
   render();
   await saveToStorage();
+  closeModal();
 }
 
 loadEvents();
