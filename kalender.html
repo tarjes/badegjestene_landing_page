@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badegjestene – Kalender</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="images/gummiand_favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', system-ui, sans-serif; background: #dae3e5; min-height: 100vh; }
+  :root { --navy: #1a2e4a; --gold: #f5c842; --muted: #4a6070; --bg: #dae3e5; --white: #fff; }
+
+  /* HEADER */
+  .header { background: var(--navy); padding: 1.1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .header-left { display: flex; align-items: center; gap: 1rem; }
+  .header-left img { height: 36px; width: auto; }
+  .header-badge { color: rgba(255,255,255,.4); font-size: .85rem; }
+  .btn-add { background: var(--gold); color: var(--navy); border: none; border-radius: 100px; padding: .55rem 1.25rem; font-weight: 800; cursor: pointer; font-size: .9rem; font-family: 'Nunito', sans-serif; }
+  .btn-add:hover { background: #f7d35a; }
+
+  /* TOOLBAR */
+  .toolbar { background: var(--white); border-bottom: 1px solid rgba(26,46,74,.1); padding: .75rem 1.5rem; display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+  .view-btn { background: transparent; color: var(--muted); border: 1.5px solid rgba(26,46,74,.2); border-radius: 100px; padding: .35rem .9rem; font-weight: 700; cursor: pointer; font-size: .85rem; font-family: 'Nunito', sans-serif; }
+  .view-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .legend { margin-left: auto; display: flex; gap: .35rem; flex-wrap: wrap; }
+  .legend-chip { border-radius: 100px; padding: .2rem .65rem; font-size: .75rem; font-weight: 700; }
+
+  /* MONTH VIEW */
+  .month-wrap { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(16,28,44,.08); margin: 1.5rem; }
+  .month-nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(26,46,74,.08); }
+  .month-nav button { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--navy); padding: .25rem .5rem; }
+  .month-nav h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; color: var(--navy); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-header { padding: .5rem; text-align: center; font-size: .75rem; font-weight: 800; color: var(--muted); letter-spacing: 1px; border-bottom: 1px solid rgba(26,46,74,.06); }
+  .cal-cell { min-height: 80px; padding: .4rem; border-right: 1px solid rgba(26,46,74,.06); border-bottom: 1px solid rgba(26,46,74,.06); }
+  .cal-cell:nth-child(7n) { border-right: none; }
+  .cal-cell.today { background: #f0f4ff; }
+  .cal-day { font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: .25rem; }
+  .cal-cell.today .cal-day { font-weight: 800; color: var(--navy); }
+  .cal-event { border-radius: 6px; padding: .15rem .4rem; font-size: .72rem; font-weight: 700; margin-bottom: .15rem; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* LIST VIEW */
+  .list-wrap { padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem; }
+  .list-item { background: var(--white); border-radius: 12px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; cursor: pointer; box-shadow: 0 2px 8px rgba(16,28,44,.06); transition: transform .15s; }
+  .list-item:hover { transform: translateY(-1px); }
+  .list-date-box { border-radius: 10px; padding: .5rem .75rem; text-align: center; min-width: 56px; }
+  .list-date-box .wd { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+  .list-date-box .dd { font-size: 1.2rem; font-weight: 800; line-height: 1; }
+  .list-date-box .mo { font-size: .7rem; }
+  .list-title { font-weight: 800; color: var(--navy); font-size: 1rem; }
+  .list-meta { display: flex; gap: .5rem; margin-top: .2rem; flex-wrap: wrap; }
+  .chip { border-radius: 100px; padding: .1rem .6rem; font-size: .75rem; font-weight: 700; }
+  .list-notes { color: var(--muted); font-size: .85rem; margin-top: .3rem; }
+  .list-arrow { color: #c8d0d8; font-size: 1.2rem; margin-left: auto; }
+  .empty { text-align: center; color: var(--muted); padding: 3rem; }
+
+  /* MODAL */
+  .modal-bg { position: fixed; inset: 0; background: rgba(10,18,30,.5); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+  .modal { background: var(--white); border-radius: 20px; padding: 1.75rem; width: 100%; max-width: 440px; box-shadow: 0 24px 60px rgba(10,18,30,.2); }
+  .modal h2 { font-family: 'Playfair Display', Georgia, serif; color: var(--navy); margin-bottom: 1.25rem; font-size: 1.3rem; }
+  .form-group { display: flex; flex-direction: column; gap: .75rem; }
+  .form-input { width: 100%; padding: .75rem 1rem; border-radius: 10px; border: 1.5px solid rgba(26,46,74,.16); background: #f8fafa; color: var(--navy); font-size: .95rem; font-family: 'Nunito', sans-serif; outline: none; }
+  .form-input:focus { border-color: var(--navy); }
+  .modal-actions { display: flex; gap: .75rem; margin-top: 1.25rem; }
+  .btn-delete { background: #fee; color: #c00; border: 1.5px solid #fcc; border-radius: 10px; padding: .7rem 1rem; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: .9rem; }
+  .btn-cancel { flex: 1; background: #edf1f2; color: var(--muted); border: none; border-radius: 10px; padding: .7rem; font-weight: 700; cursor: pointer; font-family: 'Nunito', sans-serif; }
+  .btn-save { flex: 2; background: var(--gold); color: var(--navy); border: none; border-radius: 10px; padding: .7rem; font-weight: 800; cursor: pointer; font-family: 'Nunito', sans-serif; font-size: .95rem; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <img src="images/logo-hvit-small.webp" alt="Badegjestene">
+    <span class="header-badge">Intern</span>
+  </div>
+  <button class="btn-add" onclick="openAdd()">+ Legg til</button>
+</div>
+
+<div class="toolbar">
+  <button class="view-btn active" id="btn-month" onclick="setView('month')">Måned</button>
+  <button class="view-btn" id="btn-list" onclick="setView('list')">Liste</button>
+  <div class="legend">
+    <span class="legend-chip" style="background:#1a2e4a;color:#fff">Gig – bekreftet</span>
+    <span class="legend-chip" style="background:#6fa8dc;color:#fff">Gig – potensiell</span>
+    <span class="legend-chip" style="background:#dae3e5;color:#4a6070">Øving</span>
+    <span class="legend-chip" style="background:#4a6070;color:#fff">Annet</span>
+    <span class="legend-chip" style="background:#f5c842;color:#1a2e4a">Ferie</span>
+  </div>
+</div>
+
+<div id="view-month">
+  <div class="month-wrap">
+    <div class="month-nav">
+      <button onclick="changeMonth(-1)">&#8249;</button>
+      <h2 id="month-title"></h2>
+      <button onclick="changeMonth(1)">&#8250;</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+</div>
+
+<div id="view-list" class="hidden">
+  <div class="list-wrap" id="list-wrap"></div>
+</div>
+
+<div class="modal-bg hidden" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h2 id="modal-title">Legg til hendelse</h2>
+    <div class="form-group">
+      <input class="form-input" id="f-title" placeholder="Tittel *">
+      <input class="form-input" id="f-date" type="date">
+      <select class="form-input" id="f-type">
+        <option value="practice">Øving</option>
+        <option value="gig_confirmed">Gig – bekreftet</option>
+        <option value="gig_potential">Gig – potensiell</option>
+        <option value="holiday">Ferie</option>
+        <option value="other">Annet</option>
+      </select>
+      <input class="form-input" id="f-drummer" placeholder="Vikar (valgfritt)">
+      <textarea class="form-input" id="f-notes" placeholder="Notater (valgfritt)" rows="2" style="resize:vertical"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-delete hidden" id="btn-delete" onclick="deleteEvent()">Slett</button>
+      <button class="btn-cancel" onclick="closeModal()">Avbryt</button>
+      <button class="btn-save" onclick="saveEvent()">Lagre</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const COLORS = {
+  gig_confirmed: { bg: "#1a2e4a", text: "#fff" },
+  gig_potential: { bg: "#6fa8dc", text: "#fff" },
+  practice:      { bg: "#dae3e5", text: "#4a6070" },
+  other:         { bg: "#4a6070", text: "#fff" },
+  holiday:       { bg: "#f5c842", text: "#1a2e4a" },
+};
+const MONTH_NAMES = ["Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"];
+const DAY_NAMES = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
+
+const todayDate = new Date();
+let currentMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+let events = [];
+let editId = null;
+let currentView = "month";
+
+function formatDate(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function parseDate(s) {
+  const [y,m,d] = s.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+
+function generateMondays() {
+  const result = [];
+  const d = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+  const end = new Date(todayDate.getFullYear()+1, todayDate.getMonth()+1, 0);
+  // advance to first Monday (getDay()===1)
+  while (d.getDay() !== 1) d.setDate(d.getDate() + 1);
+  while (d <= end) {
+    result.push(formatDate(new Date(d)));
+    d.setDate(d.getDate() + 7);
+  }
+  return result;
+}
+
+const BIN_ID = '69df44ecaaba882197ff0952';
+const API_KEY = '$2a$10$ETttKaGIcoP5Je.nuHCNmOjy0XgSl1lryg3ubDYWIaVYyTJi79dSi';
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+async function loadEvents() {
+  document.getElementById('view-month').innerHTML = '<div style="text-align:center;padding:3rem;color:#4a6070">Laster...</div>';
+  try {
+    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
+    const json = await res.json();
+    let loaded = json.record || [];
+    // Remove wrongly generated non-monday practices
+    loaded = loaded.filter(e => {
+      if (e.id && e.id.startsWith('monday-') && e.title === 'Vanlig øving') {
+        return parseDate(e.date).getDay() === 1;
+      }
+      return true;
+    });
+    // Add missing mondays
+    const mondays = generateMondays();
+    const existing = new Set(loaded.filter(e => e.id && e.id.startsWith('monday-')).map(e => e.date));
+    mondays.filter(d => !existing.has(d)).forEach(d => {
+      loaded.push({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' });
+    });
+    loaded.sort((a,b) => a.date.localeCompare(b.date));
+    events = loaded;
+    await saveToStorage();
+  } catch(e) {
+    events = generateMondays().map(d => ({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' }));
+  }
+  document.getElementById('view-month').innerHTML = '<div class="month-wrap"><div class="month-nav"><button onclick="changeMonth(-1)">&#8249;</button><h2 id="month-title"></h2><button onclick="changeMonth(1)">&#8250;</button></div><div class="cal-grid" id="cal-grid"></div></div>';
+  render();
+}
+
+async function saveToStorage() {
+  try {
+    await fetch(BIN_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+      body: JSON.stringify(events)
+    });
+  } catch(e) {}
+}
+
+function setView(v) {
+  currentView = v;
+  document.getElementById('view-month').classList.toggle('hidden', v !== 'month');
+  document.getElementById('view-list').classList.toggle('hidden', v !== 'list');
+  document.getElementById('btn-month').classList.toggle('active', v === 'month');
+  document.getElementById('btn-list').classList.toggle('active', v === 'list');
+  render();
+}
+
+function changeMonth(dir) {
+  currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + dir, 1);
+  renderMonth();
+}
+
+function render() {
+  if (currentView === 'month') renderMonth();
+  else renderList();
+}
+
+function renderMonth() {
+  const y = currentMonth.getFullYear();
+  const m = currentMonth.getMonth();
+  document.getElementById('month-title').textContent = `${MONTH_NAMES[m]} ${y}`;
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+  DAY_NAMES.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-header';
+    el.textContent = d;
+    grid.appendChild(el);
+  });
+  const firstDay = new Date(y, m, 1).getDay();
+  const offset = (firstDay + 6) % 7;
+  const daysInMonth = new Date(y, m+1, 0).getDate();
+  for (let i = 0; i < offset; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-cell';
+    grid.appendChild(el);
+  }
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const isToday = formatDate(todayDate) === dateStr;
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell' + (isToday ? ' today' : '');
+    const dayEl = document.createElement('div');
+    dayEl.className = 'cal-day';
+    dayEl.textContent = day;
+    cell.appendChild(dayEl);
+    events.filter(e => e.date === dateStr).forEach(ev => {
+      const c = COLORS[ev.type] || COLORS.other;
+      const el = document.createElement('div');
+      el.className = 'cal-event';
+      el.style.background = c.bg;
+      el.style.color = c.text;
+      el.textContent = ev.title;
+      el.onclick = () => openEdit(ev.id);
+      cell.appendChild(el);
+    });
+    grid.appendChild(cell);
+  }
+}
+
+function renderList() {
+  const todayStr = formatDate(todayDate);
+  const upcoming = events.filter(e => e.date >= todayStr);
+  const wrap = document.getElementById('list-wrap');
+  wrap.innerHTML = '';
+  if (!upcoming.length) {
+    wrap.innerHTML = '<div class="empty">Ingen kommende hendelser.</div>';
+    return;
+  }
+  upcoming.forEach(ev => {
+    const c = COLORS[ev.type] || COLORS.other;
+    const d = parseDate(ev.date);
+    const wd = ['Søn','Man','Tir','Ons','Tor','Fre','Lør'][d.getDay()];
+    const item = document.createElement('div');
+    item.className = 'list-item';
+    item.innerHTML = `
+      <div class="list-date-box" style="background:${c.bg};color:${c.text}">
+        <div class="wd">${wd}</div>
+        <div class="dd">${String(d.getDate()).padStart(2,'0')}</div>
+        <div class="mo">${MONTH_NAMES[d.getMonth()].slice(0,3)}</div>
+      </div>
+      <div style="flex:1">
+        <div class="list-title">${ev.title}</div>
+        <div class="list-meta">
+          <span class="chip" style="background:${c.bg};color:${c.text}">${ev.type === 'gig_confirmed' ? 'Gig – bekreftet' : ev.type === 'gig_potential' ? 'Gig – potensiell' : ev.type === 'practice' ? 'Øving' : ev.type === 'holiday' ? 'Ferie' : 'Annet'}</span>
+          ${ev.drummer ? `<span class="chip" style="background:#edf1f2;color:#4a6070">🥁 ${ev.drummer}</span>` : ''}
+        </div>
+        ${ev.notes ? `<div class="list-notes">${ev.notes}</div>` : ''}
+      </div>
+      <div class="list-arrow">›</div>`;
+    item.onclick = () => openEdit(ev.id);
+    wrap.appendChild(item);
+  });
+}
+
+function openAdd() {
+  editId = null;
+  document.getElementById('modal-title').textContent = 'Legg til hendelse';
+  document.getElementById('f-title').value = '';
+  document.getElementById('f-date').value = formatDate(todayDate);
+  document.getElementById('f-type').value = 'practice';
+  document.getElementById('f-drummer').value = '';
+  document.getElementById('f-notes').value = '';
+  document.getElementById('btn-delete').classList.add('hidden');
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+function openEdit(id) {
+  const ev = events.find(e => e.id === id);
+  if (!ev) return;
+  editId = id;
+  document.getElementById('modal-title').textContent = 'Rediger hendelse';
+  document.getElementById('f-title').value = ev.title;
+  document.getElementById('f-date').value = ev.date;
+  document.getElementById('f-type').value = ev.type;
+  document.getElementById('f-drummer').value = ev.drummer || '';
+  document.getElementById('f-notes').value = ev.notes || '';
+  document.getElementById('btn-delete').classList.remove('hidden');
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.add('hidden');
+}
+
+async function saveEvent() {
+  const title = document.getElementById('f-title').value.trim();
+  const date = document.getElementById('f-date').value;
+  if (!title || !date) return alert('Tittel og dato er påkrevd.');
+  const ev = {
+    title,
+    date,
+    type: document.getElementById('f-type').value,
+    drummer: document.getElementById('f-drummer').value.trim(),
+    notes: document.getElementById('f-notes').value.trim(),
+  };
+  if (editId) {
+    events = events.map(e => e.id === editId ? { ...e, ...ev } : e);
+  } else {
+    events.push({ ...ev, id: Date.now().toString() });
+  }
+  events.sort((a,b) => a.date.localeCompare(b.date));
+  saveToStorage();
+  closeModal();
+  render();
+}
+
+async function deleteEvent() {
+  if (!confirm('Slett denne hendelsen?')) return;
+  events = events.filter(e => e.id !== editId);
+  saveToStorage();
+  closeModal();
+  render();
+}
+
+loadEvents();
+</script>
+</body>
+</html>
