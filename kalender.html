@@ -270,7 +270,7 @@ function renderMonth() {
       el.className = 'cal-event';
       el.style.background = c.bg;
       el.style.color = c.text;
-      el.textContent = ev.title;
+      el.textContent = ev.title + (ev.drummer ? ` (${ev.drummer})` : '');
       if (ev.notes) {
         const notes = document.createElement('div');
         notes.className = 'cal-event-notes';
@@ -306,7 +306,7 @@ function renderList() {
         <div class="mo">${MONTH_NAMES[d.getMonth()].slice(0,3)}</div>
       </div>
       <div style="flex:1">
-        <div class="list-title">${ev.title}</div>
+        <div class="list-title">${ev.title}${ev.drummer ? ` <span style="font-weight:600;color:${c.text === '#fff' ? 'rgba(255,255,255,.7)' : 'var(--muted)'}">(${ev.drummer})</span>` : ''}</div>
         <div class="list-meta">
           <span class="chip" style="background:${c.bg};color:${c.text}">${TYPE_LABELS[ev.type] || 'Annet'}</span>
           ${ev.drummer ? `<span class="chip" style="background:#edf1f2;color:#4a6070">🥁 ${ev.drummer}</span>` : ''}
