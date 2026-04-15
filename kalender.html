@@ -26,8 +26,8 @@
   .toolbar { background: var(--white); border-bottom: 1px solid rgba(26,46,74,.1); padding: .75rem 1.5rem; display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
   .view-btn { background: transparent; color: var(--muted); border: 1.5px solid rgba(26,46,74,.2); border-radius: 100px; padding: .35rem .9rem; font-weight: 700; cursor: pointer; font-size: .85rem; font-family: 'Nunito', sans-serif; }
   .view-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
-  .legend { margin-left: auto; display: flex; gap: .35rem; flex-wrap: wrap; }
-  .legend-chip { border-radius: 100px; padding: .2rem .65rem; font-size: .75rem; font-weight: 700; }
+  .legend { margin-left: auto; display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; }
+  .legend-chip { border-radius: 100px; padding: .2rem .65rem; font-size: .75rem; font-weight: 700; text-align: center; }
 
   /* MONTH VIEW */
   .month-wrap { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(16,28,44,.08); margin: 1.5rem; }
@@ -177,19 +177,25 @@ const API_KEY = '$2a$10$ETttKaGIcoP5Je.nuHCNmOjy0XgSl1lryg3ubDYWIaVYyTJi79dSi';
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 async function loadEvents() {
-  document.getElementById('view-month').innerHTML = '<div style="text-align:center;padding:3rem;color:#4a6070">Laster...</div>';
+  // Show cached data immediately if available
+  const cached = localStorage.getItem('badegjestene-kalender-cache');
+  if (cached) {
+    events = JSON.parse(cached);
+    render();
+  } else {
+    document.getElementById('view-month').innerHTML = '<div style="text-align:center;padding:3rem;color:#4a6070">Laster...</div>';
+  }
+  // Fetch fresh data in background
   try {
     const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
     const json = await res.json();
     let loaded = json.record || [];
-    // Remove wrongly generated non-monday practices
     loaded = loaded.filter(e => {
       if (e.id && e.id.startsWith('monday-') && e.title === 'Vanlig øving') {
         return parseDate(e.date).getDay() === 1;
       }
       return true;
     });
-    // Add missing mondays
     const mondays = generateMondays();
     const existing = new Set(loaded.filter(e => e.id && e.id.startsWith('monday-')).map(e => e.date));
     mondays.filter(d => !existing.has(d)).forEach(d => {
@@ -197,11 +203,16 @@ async function loadEvents() {
     });
     loaded.sort((a,b) => a.date.localeCompare(b.date));
     events = loaded;
+    localStorage.setItem('badegjestene-kalender-cache', JSON.stringify(events));
     await saveToStorage();
   } catch(e) {
-    events = generateMondays().map(d => ({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' }));
+    if (!cached) {
+      events = generateMondays().map(d => ({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' }));
+    }
   }
-  document.getElementById('view-month').innerHTML = '<div class="month-wrap"><div class="month-nav"><button onclick="changeMonth(-1)">&#8249;</button><h2 id="month-title"></h2><button onclick="changeMonth(1)">&#8250;</button></div><div class="cal-grid" id="cal-grid"></div></div>';
+  if (!cached) {
+    document.getElementById('view-month').innerHTML = '<div class="month-wrap"><div class="month-nav"><button onclick="changeMonth(-1)">&#8249;</button><h2 id="month-title"></h2><button onclick="changeMonth(1)">&#8250;</button></div><div class="cal-grid" id="cal-grid"></div></div>';
+  }
   render();
 }
 
@@ -259,7 +270,8 @@ function renderMonth() {
     const isToday = formatDate(todayDate) === dateStr;
     const cell = document.createElement('div');
     cell.className = 'cal-cell' + (isToday ? ' today' : '');
-    const dayEl = document.createElement('div');
+    cell.style.cursor = 'pointer';
+    cell.onclick = (e) => { if (e.target === cell) openAddOnDate(dateStr); };
     dayEl.className = 'cal-day';
     dayEl.textContent = day;
     dayEl.onclick = (e) => { e.stopPropagation(); openAddOnDate(dateStr); };
