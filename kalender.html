@@ -14,7 +14,6 @@
   body { font-family: 'Nunito', system-ui, sans-serif; background: #dae3e5; min-height: 100vh; }
   :root { --navy: #1a2e4a; --gold: #f5c842; --muted: #4a6070; --bg: #dae3e5; --white: #fff; }
 
-  /* HEADER */
   .header { background: var(--navy); padding: 1.1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
   .header-left { display: flex; align-items: center; gap: 1rem; }
   .header-left img { height: 36px; width: auto; }
@@ -22,28 +21,26 @@
   .btn-add { background: var(--gold); color: var(--navy); border: none; border-radius: 100px; padding: .55rem 1.25rem; font-weight: 800; cursor: pointer; font-size: .9rem; font-family: 'Nunito', sans-serif; }
   .btn-add:hover { background: #f7d35a; }
 
-  /* TOOLBAR */
   .toolbar { background: var(--white); border-bottom: 1px solid rgba(26,46,74,.1); padding: .75rem 1.5rem; display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
   .view-btn { background: transparent; color: var(--muted); border: 1.5px solid rgba(26,46,74,.2); border-radius: 100px; padding: .35rem .9rem; font-weight: 700; cursor: pointer; font-size: .85rem; font-family: 'Nunito', sans-serif; }
   .view-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
   .legend { margin-left: auto; display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; }
   .legend-chip { border-radius: 100px; padding: .2rem .65rem; font-size: .75rem; font-weight: 700; text-align: center; }
 
-  /* MONTH VIEW */
   .month-wrap { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(16,28,44,.08); margin: 1.5rem; }
   .month-nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(26,46,74,.08); }
   .month-nav button { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--navy); padding: .25rem .5rem; }
   .month-nav h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; color: var(--navy); }
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
   .cal-header { padding: .5rem; text-align: center; font-size: .75rem; font-weight: 800; color: var(--muted); letter-spacing: 1px; border-bottom: 1px solid rgba(26,46,74,.06); }
-  .cal-cell { min-height: 80px; padding: .4rem; border-right: 1px solid rgba(26,46,74,.06); border-bottom: 1px solid rgba(26,46,74,.06); }
+  .cal-cell { height: 80px; padding: .3rem .25rem; border-right: 1px solid rgba(26,46,74,.06); border-bottom: 1px solid rgba(26,46,74,.06); overflow: hidden; cursor: pointer; }
   .cal-cell:nth-child(7n) { border-right: none; }
   .cal-cell.today { background: #f0f4ff; }
-  .cal-day { font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: .25rem; }
+  .cal-day { font-size: .78rem; font-weight: 600; color: var(--muted); margin-bottom: .15rem; display: inline-block; border-radius: 4px; padding: .05rem .15rem; }
   .cal-cell.today .cal-day { font-weight: 800; color: var(--navy); }
-  .cal-event { border-radius: 6px; padding: .15rem .4rem; font-size: .72rem; font-weight: 700; margin-bottom: .15rem; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cal-event { border-radius: 4px; padding: .1rem .25rem; font-size: .65rem; font-weight: 700; margin-bottom: .1rem; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+  .cal-event-notes { font-size: .6rem; font-weight: 400; opacity: .8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  /* LIST VIEW */
   .list-wrap { padding: 1.5rem; display: flex; flex-direction: column; gap: .6rem; }
   .list-item { background: var(--white); border-radius: 12px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; cursor: pointer; box-shadow: 0 2px 8px rgba(16,28,44,.06); transition: transform .15s; }
   .list-item:hover { transform: translateY(-1px); }
@@ -58,7 +55,6 @@
   .list-arrow { color: #c8d0d8; font-size: 1.2rem; margin-left: auto; }
   .empty { text-align: center; color: var(--muted); padding: 3rem; }
 
-  /* MODAL */
   .modal-bg { position: fixed; inset: 0; background: rgba(10,18,30,.5); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1rem; }
   .modal { background: var(--white); border-radius: 20px; padding: 1.75rem; width: 100%; max-width: 440px; box-shadow: 0 24px 60px rgba(10,18,30,.2); }
   .modal h2 { font-family: 'Playfair Display', Georgia, serif; color: var(--navy); margin-bottom: 1.25rem; font-size: 1.3rem; }
@@ -77,7 +73,7 @@
 <div class="header">
   <div class="header-left">
     <img src="images/logo-hvit-small.webp" alt="Badegjestene">
-    <span class="header-badge">Intern</span>
+    <span class="header-badge">Intern kalender</span>
   </div>
   <button class="btn-add" onclick="openAdd()">+ Legg til</button>
 </div>
@@ -143,6 +139,7 @@ const COLORS = {
 };
 const MONTH_NAMES = ["Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"];
 const DAY_NAMES = ["Man","Tir","Ons","Tor","Fre","Lør","Søn"];
+const TYPE_LABELS = { gig_confirmed: 'Gig – bekreftet', gig_potential: 'Gig – potensiell', practice: 'Øving', holiday: 'Ferie', other: 'Annet' };
 
 const todayDate = new Date();
 let currentMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
@@ -150,20 +147,21 @@ let events = [];
 let editId = null;
 let currentView = "month";
 
+const BIN_ID = '69df44ecaaba882197ff0952';
+const API_KEY = '$2a$10$ETttKaGIcoP5Je.nuHCNmOjy0XgSl1lryg3ubDYWIaVYyTJi79dSi';
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
 function formatDate(d) {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
-
 function parseDate(s) {
   const [y,m,d] = s.split('-').map(Number);
   return new Date(y, m-1, d);
 }
-
 function generateMondays() {
   const result = [];
   const d = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
   const end = new Date(todayDate.getFullYear()+1, todayDate.getMonth()+1, 0);
-  // advance to first Monday (getDay()===1)
   while (d.getDay() !== 1) d.setDate(d.getDate() + 1);
   while (d <= end) {
     result.push(formatDate(new Date(d)));
@@ -172,20 +170,12 @@ function generateMondays() {
   return result;
 }
 
-const BIN_ID = '69df44ecaaba882197ff0952';
-const API_KEY = '$2a$10$ETttKaGIcoP5Je.nuHCNmOjy0XgSl1lryg3ubDYWIaVYyTJi79dSi';
-const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-
 async function loadEvents() {
-  // Show cached data immediately if available
   const cached = localStorage.getItem('badegjestene-kalender-cache');
   if (cached) {
     events = JSON.parse(cached);
     render();
-  } else {
-    document.getElementById('view-month').innerHTML = '<div style="text-align:center;padding:3rem;color:#4a6070">Laster...</div>';
   }
-  // Fetch fresh data in background
   try {
     const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
     const json = await res.json();
@@ -205,15 +195,13 @@ async function loadEvents() {
     events = loaded;
     localStorage.setItem('badegjestene-kalender-cache', JSON.stringify(events));
     await saveToStorage();
+    render();
   } catch(e) {
     if (!cached) {
       events = generateMondays().map(d => ({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' }));
+      render();
     }
   }
-  if (!cached) {
-    document.getElementById('view-month').innerHTML = '<div class="month-wrap"><div class="month-nav"><button onclick="changeMonth(-1)">&#8249;</button><h2 id="month-title"></h2><button onclick="changeMonth(1)">&#8250;</button></div><div class="cal-grid" id="cal-grid"></div></div>';
-  }
-  render();
 }
 
 async function saveToStorage() {
@@ -223,6 +211,7 @@ async function saveToStorage() {
       headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
       body: JSON.stringify(events)
     });
+    localStorage.setItem('badegjestene-kalender-cache', JSON.stringify(events));
   } catch(e) {}
 }
 
@@ -234,12 +223,10 @@ function setView(v) {
   document.getElementById('btn-list').classList.toggle('active', v === 'list');
   render();
 }
-
 function changeMonth(dir) {
   currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + dir, 1);
   renderMonth();
 }
-
 function render() {
   if (currentView === 'month') renderMonth();
   else renderList();
@@ -270,12 +257,13 @@ function renderMonth() {
     const isToday = formatDate(todayDate) === dateStr;
     const cell = document.createElement('div');
     cell.className = 'cal-cell' + (isToday ? ' today' : '');
-    cell.style.cursor = 'pointer';
-    cell.onclick = (e) => { if (e.target === cell) openAddOnDate(dateStr); };
+    cell.onclick = (e) => { if (e.target === cell || e.target.classList.contains('cal-day')) openAddOnDate(dateStr); };
+
+    const dayEl = document.createElement('div');
     dayEl.className = 'cal-day';
     dayEl.textContent = day;
-    dayEl.onclick = (e) => { e.stopPropagation(); openAddOnDate(dateStr); };
     cell.appendChild(dayEl);
+
     events.filter(e => e.date === dateStr).forEach(ev => {
       const c = COLORS[ev.type] || COLORS.other;
       const el = document.createElement('div');
@@ -320,12 +308,12 @@ function renderList() {
       <div style="flex:1">
         <div class="list-title">${ev.title}</div>
         <div class="list-meta">
-          <span class="chip" style="background:${c.bg};color:${c.text}">${ev.type === 'gig_confirmed' ? 'Gig – bekreftet' : ev.type === 'gig_potential' ? 'Gig – potensiell' : ev.type === 'practice' ? 'Øving' : ev.type === 'holiday' ? 'Ferie' : 'Annet'}</span>
+          <span class="chip" style="background:${c.bg};color:${c.text}">${TYPE_LABELS[ev.type] || 'Annet'}</span>
           ${ev.drummer ? `<span class="chip" style="background:#edf1f2;color:#4a6070">🥁 ${ev.drummer}</span>` : ''}
         </div>
         ${ev.notes ? `<div class="list-notes">${ev.notes}</div>` : ''}
       </div>
-      <div class="list-arrow">›</div>`;;
+      <div class="list-arrow">›</div>`;
     item.onclick = () => openEdit(ev.id);
     wrap.appendChild(item);
   });
@@ -342,7 +330,6 @@ function openAddOnDate(date) {
   document.getElementById('btn-delete').classList.add('hidden');
   document.getElementById('modal').classList.remove('hidden');
 }
-
 function openAdd() {
   editId = null;
   document.getElementById('modal-title').textContent = 'Legg til hendelse';
@@ -354,7 +341,6 @@ function openAdd() {
   document.getElementById('btn-delete').classList.add('hidden');
   document.getElementById('modal').classList.remove('hidden');
 }
-
 function openEdit(id) {
   const ev = events.find(e => e.id === id);
   if (!ev) return;
@@ -368,7 +354,6 @@ function openEdit(id) {
   document.getElementById('btn-delete').classList.remove('hidden');
   document.getElementById('modal').classList.remove('hidden');
 }
-
 function closeModal() {
   document.getElementById('modal').classList.add('hidden');
 }
@@ -378,8 +363,7 @@ async function saveEvent() {
   const date = document.getElementById('f-date').value;
   if (!title || !date) return alert('Tittel og dato er påkrevd.');
   const ev = {
-    title,
-    date,
+    title, date,
     type: document.getElementById('f-type').value,
     drummer: document.getElementById('f-drummer').value.trim(),
     notes: document.getElementById('f-notes').value.trim(),
@@ -390,17 +374,17 @@ async function saveEvent() {
     events.push({ ...ev, id: Date.now().toString() });
   }
   events.sort((a,b) => a.date.localeCompare(b.date));
-  saveToStorage();
   closeModal();
   render();
+  await saveToStorage();
 }
 
 async function deleteEvent() {
   if (!confirm('Slett denne hendelsen?')) return;
   events = events.filter(e => e.id !== editId);
-  saveToStorage();
   closeModal();
   render();
+  await saveToStorage();
 }
 
 loadEvents();
