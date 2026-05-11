@@ -278,6 +278,7 @@
 .sp-tag--rock   { background: rgba(160,40,20,.1);  color: #7d2010; }
 .sp-tag--pop    { background: rgba(110,30,160,.1); color: #5a1a82; }
 .sp-tag--party  { background: rgba(16,120,80,.1);  color: #0a5c3a; }
+.sp-tag--swing  { background: rgba(200,110,0,.1);  color: #b84600; }
 
 .sp-no-results {
   grid-column: 1 / -1;
@@ -676,6 +677,7 @@
           <button class="sp-chip" data-filter="rock">🎸 Rock</button>
           <button class="sp-chip" data-filter="pop">✨ Pop</button>
           <button class="sp-chip" data-filter="party">🕺 Party</button>
+          <button class="sp-chip" data-filter="swing">💃 Swing</button>
         </div>
         <div class="sp-meta-row">
           <span>Sorter:</span>
@@ -908,7 +910,7 @@ function renderLibrary() {
 }
 
 function tagLabel(tag) {
-  return { norsk: '🇳🇴 Norsk', rock: '🎸 Rock', pop: '✨ Pop', party: '🕺 Party' }[tag] || tag;
+  return { norsk: '🇳🇴 Norsk', rock: '🎸 Rock', pop: '✨ Pop', party: '🕺 Party', swing: '💃 Swing' }[tag] || tag;
 }
 
 function esc(str) {
