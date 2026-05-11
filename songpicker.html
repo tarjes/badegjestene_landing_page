@@ -1175,17 +1175,17 @@ document.getElementById('copyBtn').addEventListener('click', () => {
   const { musicSecs, total } = calcTotal();
   const lines = [
     'Min setliste – Badegjestene',
-    '─'.repeat(30),
+    'Nr.\tTittel\tVarighet',
     ...setlist.map((id, i) => {
       const s = getSong(id);
-      return `${String(i + 1).padStart(2, ' ')}. ${s.artist} – ${s.title} (${fmtDur(s.dur)})`;
+      return `${i + 1}\t${s.title}\t${fmtDur(s.dur)}`;
     }),
-    '─'.repeat(30),
-    `Total: ${fmtTotal(total)} (inkl. 30 sek. pause mellom låter)`,
+    '',
+    `Total tid: ${fmtTotal(total)} (inkl. 30 sek. pause mellom låter)`,
   ];
 
   navigator.clipboard.writeText(lines.join('\n'))
-    .then(() => showToast('📋 Setlisten er kopiert!'))
+    .then(() => showToast('📋 Setlisten er kopiert til utklippstavlen!'))
     .catch(() => showToast('Kunne ikke kopiere – prøv igjen'));
 });
 
