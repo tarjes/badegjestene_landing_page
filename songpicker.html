@@ -384,13 +384,19 @@
   gap: .55rem;
   padding: .6rem .4rem;
   border-radius: 10px;
-  transition: background .15s;
-  cursor: grab;
+  transition: background .15s, box-shadow .15s;
+  position: relative;
+  background: transparent;
 }
 .sp-item:hover { background: rgba(255,255,255,.06); }
-.sp-item:active { cursor: grabbing; }
-.sp-item.dragging { opacity: .35; }
-.sp-item.drag-over { background: rgba(245,200,66,.12); outline: 1.5px dashed rgba(245,200,66,.5); }
+.sp-item.dragging {
+  background: rgba(245,200,66,.18);
+  box-shadow: 0 8px 22px rgba(0,0,0,.35);
+  z-index: 10;
+  cursor: grabbing;
+}
+.sp-list--dragging .sp-gap-row { display: none; }
+.sp-list--dragging .sp-item { transition: none; }
 
 .sp-item-num {
   font-size: .72rem;
@@ -401,12 +407,26 @@
   flex-shrink: 0;
 }
 .sp-item-drag {
-  color: rgba(255,255,255,.2);
-  font-size: .8rem;
+  color: rgba(255,255,255,.35);
+  font-size: 1rem;
   cursor: grab;
   flex-shrink: 0;
   line-height: 1;
   letter-spacing: -1px;
+  padding: .35rem .3rem;
+  margin: -.35rem -.1rem;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.sp-item-drag:active { cursor: grabbing; }
+@media (pointer: coarse) {
+  .sp-item-drag {
+    font-size: 1.35rem;
+    padding: .55rem .55rem;
+    margin: -.55rem 0;
+    color: rgba(255,255,255,.5);
+  }
 }
 .sp-item-info { flex: 1; min-width: 0; }
 .sp-item-artist {
@@ -629,7 +649,7 @@
   <h1>Sett sammen <em>drømmesetlisten</em></h1>
   <p class="section-sub">Velg låtene du vil ha fra repertoaret vårt og se nøyaktig hvor lang setlisten blir – inkludert pauser.</p>
   <div class="sp-intro-badges">
-    <span class="sp-badge">🎵 <strong>43</strong> låter tilgjengelig</span>
+    <span class="sp-badge">🎵 <strong id="spSongCount">…</strong> låter tilgjengelig</span>
     <span class="sp-badge">⏱ 30 sek. mellom hver låt</span>
     <span class="sp-badge">📋 Send listen til oss</span>
   </div>
@@ -740,51 +760,26 @@
    SONG PICKER — Badegjestene
    ========================================================= */
 
-const SONGS = [
-  { id:  1, artist: 'Backstreet Boys',      title: 'Everybody',                        dur: 237, year: 1999, tags: ['pop','party'] },
-  { id:  2, artist: 'Backstreet Boys',      title: 'I Want It That Way',               dur: 213, year: 1999, tags: ['pop','party'] },
-  { id:  3, artist: 'Britney Spears',       title: 'Baby One More Time',               dur: 210, year: 1998, tags: ['pop','party'] },
-  { id:  4, artist: 'Bruno Mars, Rosie',    title: 'APT.',                             dur: 157, year: 2024, tags: ['pop'] },
-  { id:  5, artist: 'CC Cowboys',           title: 'Vill, Vakker & Våt',              dur: 227, year: 1989, tags: ['norsk','rock'] },
-  { id:  6, artist: 'CeeLo Green',          title: 'Fuck You',                         dur: 223, year: 2010, tags: ['pop','party'] },
-  { id:  7, artist: 'Cher',                 title: 'Believe',                          dur: 237, year: 1998, tags: ['pop','party'] },
-  { id:  8, artist: 'Dagny',                title: 'Somebody',                         dur: 192, year: 2021, tags: ['norsk','pop'] },
-  { id:  9, artist: 'DDE',                  title: 'Rai-Rai',                          dur: 225, year: 1995, tags: ['norsk','party'] },
-  { id: 10, artist: 'Di Derre',             title: 'Jenter',                           dur: 212, year: 1994, tags: ['norsk','rock'] },
-  { id: 11, artist: 'DJ Ötzi',             title: 'Sweet Caroline',                   dur: 204, year: 2000, tags: ['pop','party'] },
-  { id: 12, artist: 'Drillos',             title: 'Alt for Norge',                    dur: 195, year: 1999, tags: ['norsk','party'] },
-  { id: 13, artist: 'Finn.no',             title: 'Squeeze Day',                      dur: 166, year: 2009, tags: ['norsk','party'] },
-  { id: 14, artist: 'Jason Paige',         title: 'Pokémon Theme',                    dur: 134, year: 1997, tags: ['pop','party'] },
-  { id: 15, artist: 'Journey',             title: "Don't Stop Believin'",             dur: 250, year: 1981, tags: ['rock','party'] },
-  { id: 16, artist: 'Karpe',               title: 'Spis din Syvende Sans',            dur: 234, year: 2012, tags: ['norsk','pop'] },
-  { id: 17, artist: 'The Kids',            title: "Forelska i Lærer'n",               dur: 200, year: 1980, tags: ['norsk','party'] },
-  { id: 18, artist: 'The Killers',         title: 'Mr. Brightside',                   dur: 222, year: 2003, tags: ['rock','party'] },
-  { id: 19, artist: 'Kings of Leon',       title: 'Sex On Fire',                      dur: 203, year: 2008, tags: ['rock'] },
-  { id: 20, artist: 'Kings of Leon',       title: 'Use Somebody',                     dur: 232, year: 2008, tags: ['rock'] },
-  { id: 21, artist: 'Kurt Nilsen',         title: "She's So High",                    dur: 232, year: 2003, tags: ['norsk','pop'] },
-  { id: 22, artist: 'Marius Müller',       title: 'Den Du Vei',                       dur: 205, year: 2009, tags: ['norsk','pop'] },
-  { id: 23, artist: 'Måneskin',            title: "Beggin'",                          dur: 214, year: 2017, tags: ['rock','party'] },
-  { id: 24, artist: 'Ole Ivars',           title: 'Kongen av Campingplassen',         dur: 198, year: 2001, tags: ['norsk','party'] },
-  { id: 25, artist: 'Owl City',            title: 'Fireflies',                        dur: 227, year: 2009, tags: ['pop'] },
-  { id: 26, artist: 'Postgirobygget',      title: 'En Solskinnsdag',                  dur: 221, year: 1998, tags: ['norsk','pop'] },
-  { id: 27, artist: 'Queen',               title: "Don't Stop Me Now",                dur: 209, year: 1978, tags: ['rock','party'] },
-  { id: 28, artist: 'Racer',               title: 'Bønda i Fra Nord',                dur: 212, year: 1992, tags: ['norsk','party'] },
-  { id: 29, artist: 'Ravi',                title: 'Tsjeriåu',                         dur: 178, year: 2018, tags: ['norsk','party'] },
-  { id: 30, artist: 'Ravi, DJ Løv',        title: 'Tsjeriåu Me De Månråus',           dur: 181, year: 2019, tags: ['norsk','party'] },
-  { id: 31, artist: 'Robbie Williams',     title: 'Angels',                           dur: 265, year: 1997, tags: ['pop','party'] },
-  { id: 32, artist: 'Sigrid',              title: 'Sucker Punch',                     dur: 180, year: 2019, tags: ['norsk','pop'] },
-  { id: 33, artist: 'Smash Mouth',         title: "I'm a Believer",                   dur: 167, year: 2001, tags: ['pop','party'] },
-  { id: 34, artist: 'Staysman og Lazz',    title: 'Muggene er Megasvære',             dur: 198, year: 2014, tags: ['norsk','party'] },
-  { id: 35, artist: 'Bryan Adams',         title: "Summer of '69",                    dur: 214, year: 1985, tags: ['rock','party'] },
-  { id: 36, artist: 'The Baseballs',       title: 'Umbrella',                         dur: 191, year: 2009, tags: ['pop','party'] },
-  { id: 37, artist: 'The Darkness',        title: 'I Believe in a Thing Called Love', dur: 219, year: 2003, tags: ['rock','party'] },
-  { id: 38, artist: 'Taylor Swift',        title: 'Love Story',                       dur: 235, year: 2008, tags: ['pop','party'] },
-  { id: 39, artist: 'Tina Turner',         title: 'Proud Mary',                       dur: 234, year: 1971, tags: ['rock','party'] },
-  { id: 40, artist: 'Trang Fødsel',        title: 'Drømmedame',                       dur: 225, year: 2001, tags: ['norsk','party'] },
-  { id: 41, artist: 'Walk The Moon',       title: 'Shut Up And Dance',                dur: 197, year: 2014, tags: ['pop','party'] },
-  { id: 42, artist: 'Wheatus',             title: 'Teenage Dirtbag',                  dur: 240, year: 2000, tags: ['rock','party'] },
-  { id: 43, artist: 'Åge Aleksandersen',   title: 'Levva Livet',                      dur: 230, year: 1980, tags: ['norsk','party'] },
-];
+let SONGS = [];
+
+function parseDuration(str) {
+  const [m, s] = String(str).split(':').map(n => parseInt(n, 10) || 0);
+  return m * 60 + s;
+}
+
+async function loadSongs() {
+  const res = await fetch('songs.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const raw = await res.json();
+  SONGS = raw.map((s, i) => ({
+    id: i + 1,
+    artist: s.artist || '',
+    title: s.title,
+    dur: parseDuration(s.duration),
+    year: s.year,
+    tags: Array.isArray(s.tags) ? s.tags : [],
+  }));
+}
 
 /* ---- State ---- */
 let setlist = [];           // ordered array of song IDs
@@ -956,10 +951,9 @@ function renderSetlist() {
     const item = document.createElement('div');
     item.className = 'sp-item';
     item.dataset.id = id;
-    item.draggable = true;
     item.innerHTML = `
       <span class="sp-item-num">${idx + 1}</span>
-      <span class="sp-item-drag" aria-hidden="true">⠿</span>
+      <span class="sp-item-drag" aria-hidden="true" role="button" aria-label="Dra for å endre rekkefølge">⠿</span>
       <div class="sp-item-info">
         <div class="sp-item-artist">${esc(s.artist)}</div>
         <div class="sp-item-title">${esc(s.title)}</div>
@@ -1036,42 +1030,120 @@ function removeSong(id) {
   if (s) showToast(`"${s.title}" fjernet`);
 }
 
-/* ---- Drag & drop reorder ---- */
-let dragSrcId = null;
-
+/* ---- Drag & drop reorder (pointer events — works for mouse, touch & pen) ---- */
 function setupDnd() {
   spList.querySelectorAll('.sp-item').forEach(item => {
-    item.addEventListener('dragstart', e => {
-      dragSrcId = Number(item.dataset.id);
-      item.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    });
-    item.addEventListener('dragend', () => {
-      item.classList.remove('dragging');
-      spList.querySelectorAll('.sp-item').forEach(i => i.classList.remove('drag-over'));
-    });
-    item.addEventListener('dragover', e => {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
-      if (Number(item.dataset.id) !== dragSrcId) {
-        spList.querySelectorAll('.sp-item').forEach(i => i.classList.remove('drag-over'));
-        item.classList.add('drag-over');
-      }
-    });
-    item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
-    item.addEventListener('drop', e => {
-      e.preventDefault();
-      const targetId = Number(item.dataset.id);
-      if (dragSrcId === null || dragSrcId === targetId) return;
-      const srcIdx  = setlist.indexOf(dragSrcId);
-      const tgtIdx  = setlist.indexOf(targetId);
-      if (srcIdx === -1 || tgtIdx === -1) return;
-      setlist.splice(srcIdx, 1);
-      setlist.splice(tgtIdx, 0, dragSrcId);
-      dragSrcId = null;
-      renderSetlist();
-    });
+    const handle = item.querySelector('.sp-item-drag');
+    if (!handle) return;
+    handle.addEventListener('pointerdown', e => startPointerDrag(e, item, handle));
   });
+}
+
+function startPointerDrag(e, item, handle) {
+  if (e.button !== undefined && e.button !== 0) return;
+  e.preventDefault();
+
+  const startClientY = e.clientY;
+  let layoutShift = 0;
+  let scrollRaf = null;
+  let lastClientY = startClientY;
+
+  try { handle.setPointerCapture(e.pointerId); } catch (_) {}
+  spList.classList.add('sp-list--dragging');
+  item.classList.add('dragging');
+
+  function applyTransform(clientY) {
+    item.style.transform = `translateY(${clientY - startClientY - layoutShift}px)`;
+  }
+  applyTransform(startClientY);
+
+  function maybeSwap() {
+    const items = [...spList.querySelectorAll('.sp-item')];
+    const idx = items.indexOf(item);
+    if (idx === -1) return;
+    const rect = item.getBoundingClientRect();
+    const mid = rect.top + rect.height / 2;
+
+    const next = items[idx + 1];
+    if (next) {
+      const nr = next.getBoundingClientRect();
+      if (mid > nr.top + nr.height / 2) {
+        spList.insertBefore(next, item);
+        layoutShift += nr.height;
+        applyTransform(lastClientY);
+        return;
+      }
+    }
+    const prev = items[idx - 1];
+    if (prev) {
+      const pr = prev.getBoundingClientRect();
+      if (mid < pr.top + pr.height / 2) {
+        spList.insertBefore(item, prev);
+        layoutShift -= pr.height;
+        applyTransform(lastClientY);
+      }
+    }
+  }
+
+  function autoScrollStep() {
+    scrollRaf = null;
+    const y = lastClientY;
+    const edge = 60;
+    const speed = 10;
+    const listRect = spList.getBoundingClientRect();
+    let scrolled = false;
+
+    if (spList.scrollHeight > spList.clientHeight + 2) {
+      if (y < listRect.top + edge && spList.scrollTop > 0) {
+        spList.scrollTop = Math.max(0, spList.scrollTop - speed);
+        scrolled = true;
+      } else if (y > listRect.bottom - edge && spList.scrollTop + spList.clientHeight < spList.scrollHeight) {
+        spList.scrollTop += speed;
+        scrolled = true;
+      }
+    }
+    if (!scrolled) {
+      if (y < edge && window.scrollY > 0) {
+        window.scrollBy(0, -speed);
+        scrolled = true;
+      } else if (y > window.innerHeight - edge) {
+        window.scrollBy(0, speed);
+        scrolled = true;
+      }
+    }
+    if (scrolled) {
+      maybeSwap();
+      scrollRaf = requestAnimationFrame(autoScrollStep);
+    }
+  }
+
+  function onMove(ev) {
+    ev.preventDefault();
+    lastClientY = ev.clientY;
+    applyTransform(ev.clientY);
+    maybeSwap();
+    if (scrollRaf === null) scrollRaf = requestAnimationFrame(autoScrollStep);
+  }
+
+  function onEnd() {
+    handle.removeEventListener('pointermove', onMove);
+    handle.removeEventListener('pointerup', onEnd);
+    handle.removeEventListener('pointercancel', onEnd);
+    if (scrollRaf !== null) { cancelAnimationFrame(scrollRaf); scrollRaf = null; }
+
+    item.classList.remove('dragging');
+    item.style.transform = '';
+    spList.classList.remove('sp-list--dragging');
+
+    const newOrder = [...spList.querySelectorAll('.sp-item')].map(el => Number(el.dataset.id));
+    const changed = newOrder.length !== setlist.length || newOrder.some((id, i) => id !== setlist[i]);
+    if (changed) setlist = newOrder;
+    renderSetlist();
+  }
+
+  handle.addEventListener('pointermove', onMove);
+  handle.addEventListener('pointerup', onEnd);
+  handle.addEventListener('pointercancel', onEnd);
 }
 
 /* ---- Shuffle ---- */
@@ -1173,8 +1245,17 @@ window.addEventListener('resize', () => {
 });
 
 /* ---- Initial render ---- */
-renderLibrary();
-renderSetlist();
+loadSongs()
+  .then(() => {
+    const countEl = document.getElementById('spSongCount');
+    if (countEl) countEl.textContent = SONGS.length;
+    renderLibrary();
+    renderSetlist();
+  })
+  .catch(err => {
+    console.error('Kunne ikke laste songs.json', err);
+    grid.innerHTML = '<div class="sp-no-results"><span>⚠️</span>Kunne ikke laste låtene. Last siden på nytt.</div>';
+  });
 </script>
 
 <script src="base.js"></script>
