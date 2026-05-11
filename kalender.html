@@ -144,12 +144,14 @@ const TYPE_LABELS = { gig_confirmed: 'Gig – bekreftet', gig_potential: 'Gig �
 const todayDate = new Date();
 let currentMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
 let events = [];
+let deletedMondays = new Set(); // dates (YYYY-MM-DD) explicitly deleted so they don't regenerate
 let editId = null;
 let currentView = "month";
 
 const BIN_ID = '69df44ecaaba882197ff0952';
 const API_KEY = '$2a$10$ETttKaGIcoP5Je.nuHCNmOjy0XgSl1lryg3ubDYWIaVYyTJi79dSi';
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const CACHE_KEY = 'badegjestene-kalender-v2';
 
 function formatDate(d) {
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -170,49 +172,78 @@ function generateMondays() {
   return result;
 }
 
+// Parse server/cache record into {events, deletedMondays}; handles old array format.
+function parseRecord(record) {
+  if (Array.isArray(record)) return { events: record, deletedMondays: [] };
+  return { events: record.events || [], deletedMondays: record.deletedMondays || [] };
+}
+
+// Merge generated mondays into an event list, skipping any that were explicitly deleted.
+function applyGeneratedMondays(evList, delMondays) {
+  const delSet = new Set(delMondays);
+  let list = evList.filter(e => {
+    if (e.id && e.id.startsWith('monday-') && e.title === 'Vanlig øving') {
+      return parseDate(e.date).getDay() === 1;
+    }
+    return true;
+  });
+  const existing = new Set(list.filter(e => e.id && e.id.startsWith('monday-')).map(e => e.date));
+  generateMondays()
+    .filter(d => !existing.has(d) && !delSet.has(d))
+    .forEach(d => list.push({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' }));
+  list.sort((a,b) => a.date.localeCompare(b.date));
+  return list;
+}
+
+// Fetch the authoritative state from JSONBin. cache:'no-store' bypasses browser HTTP cache.
+async function fetchFromServer() {
+  const res = await fetch(BIN_URL + '/latest', {
+    headers: { 'X-Master-Key': API_KEY },
+    cache: 'no-store',
+  });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const json = await res.json();
+  return parseRecord(json.record);
+}
+
+// Write current state to JSONBin and update local cache. Throws on failure.
+async function saveToStorage() {
+  const payload = { events, deletedMondays: [...deletedMondays] };
+  const res = await fetch(BIN_URL, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+}
+
 async function loadEvents() {
-  const cached = localStorage.getItem('badegjestene-kalender-cache');
+  // Show cached data immediately so the page feels instant.
+  const cached = localStorage.getItem(CACHE_KEY);
   if (cached) {
-    events = JSON.parse(cached);
-    render();
+    try {
+      const { events: ev, deletedMondays: dm } = parseRecord(JSON.parse(cached));
+      deletedMondays = new Set(dm);
+      events = applyGeneratedMondays(ev, dm);
+      render();
+    } catch(e) {}
   }
+
   try {
-    const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
-    const json = await res.json();
-    let loaded = json.record || [];
-    loaded = loaded.filter(e => {
-      if (e.id && e.id.startsWith('monday-') && e.title === 'Vanlig øving') {
-        return parseDate(e.date).getDay() === 1;
-      }
-      return true;
-    });
-    const mondays = generateMondays();
-    const existing = new Set(loaded.filter(e => e.id && e.id.startsWith('monday-')).map(e => e.date));
-    mondays.filter(d => !existing.has(d)).forEach(d => {
-      loaded.push({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' });
-    });
-    loaded.sort((a,b) => a.date.localeCompare(b.date));
-    events = loaded;
-    localStorage.setItem('badegjestene-kalender-cache', JSON.stringify(events));
-    await saveToStorage();
+    const { events: loaded, deletedMondays: dm } = await fetchFromServer();
+    deletedMondays = new Set(dm);
+    events = applyGeneratedMondays(loaded, dm);
+    // Update local cache only — do NOT write back to the API here.
+    // Writing on every page load was the main source of data loss.
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ events, deletedMondays: [...deletedMondays] }));
     render();
   } catch(e) {
     if (!cached) {
-      events = generateMondays().map(d => ({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' }));
+      events = applyGeneratedMondays([], []);
       render();
     }
   }
-}
-
-async function saveToStorage() {
-  try {
-    await fetch(BIN_URL, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
-      body: JSON.stringify(events)
-    });
-    localStorage.setItem('badegjestene-kalender-cache', JSON.stringify(events));
-  } catch(e) {}
 }
 
 function setView(v) {
@@ -362,32 +393,84 @@ async function saveEvent() {
   const title = document.getElementById('f-title').value.trim();
   const date = document.getElementById('f-date').value;
   if (!title || !date) return alert('Tittel og dato er påkrevd.');
-  const saveBtn = document.getElementById('btn-save') || document.querySelector('.btn-save');
+
+  const saveBtn = document.querySelector('.btn-save');
+  const cancelBtn = document.querySelector('.btn-cancel');
   if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Lagrer...'; }
-  const ev = {
-    title, date,
-    type: document.getElementById('f-type').value,
-    drummer: document.getElementById('f-drummer').value.trim(),
-    notes: document.getElementById('f-notes').value.trim(),
-  };
-  if (editId) {
-    events = events.map(e => e.id === editId ? { ...e, ...ev } : e);
-  } else {
-    events.push({ ...ev, id: Date.now().toString() });
+  if (cancelBtn) cancelBtn.disabled = true;
+
+  try {
+    // Always read the latest state from the server before writing.
+    // This prevents a stale browser session from overwriting someone else's changes.
+    const { events: fresh, deletedMondays: dm } = await fetchFromServer();
+    deletedMondays = new Set(dm);
+
+    const ev = {
+      title, date,
+      type: document.getElementById('f-type').value,
+      drummer: document.getElementById('f-drummer').value.trim(),
+      notes: document.getElementById('f-notes').value.trim(),
+    };
+
+    if (editId) {
+      const idx = fresh.findIndex(e => e.id === editId);
+      if (idx === -1) {
+        // Event was deleted by someone else while the modal was open.
+        alert('Denne hendelsen ble slettet av noen andre. Prøv igjen.');
+        const { events: reloaded, deletedMondays: rdm } = await fetchFromServer();
+        deletedMondays = new Set(rdm);
+        events = applyGeneratedMondays(reloaded, rdm);
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ events, deletedMondays: [...deletedMondays] }));
+        render();
+        closeModal();
+        return;
+      }
+      fresh[idx] = { ...fresh[idx], ...ev };
+    } else {
+      fresh.push({ ...ev, id: Date.now().toString() });
+    }
+
+    fresh.sort((a,b) => a.date.localeCompare(b.date));
+    events = applyGeneratedMondays(fresh, [...deletedMondays]);
+    render();
+    await saveToStorage();
+    closeModal();
+  } catch(err) {
+    alert('Lagring feilet – sjekk internettforbindelsen og prøv igjen.');
+  } finally {
+    if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Lagre'; }
+    if (cancelBtn) cancelBtn.disabled = false;
   }
-  events.sort((a,b) => a.date.localeCompare(b.date));
-  render();
-  await saveToStorage();
-  closeModal();
-  if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Lagre'; }
 }
 
 async function deleteEvent() {
-  if (!confirm('Slett denne hendelsen?')) return;
-  events = events.filter(e => e.id !== editId);
-  render();
-  await saveToStorage();
-  closeModal();
+  if (!editId || !confirm('Slett denne hendelsen?')) return;
+
+  const deleteBtn = document.getElementById('btn-delete');
+  if (deleteBtn) { deleteBtn.disabled = true; deleteBtn.textContent = 'Sletter...'; }
+
+  try {
+    // Read fresh state so we don't wipe other changes made since page load.
+    const { events: fresh, deletedMondays: dm } = await fetchFromServer();
+    deletedMondays = new Set(dm);
+
+    // If this is a generated monday, remember it was deleted so it won't regenerate.
+    if (editId.startsWith('monday-')) {
+      deletedMondays.add(editId.replace('monday-', ''));
+    }
+
+    events = applyGeneratedMondays(
+      fresh.filter(e => e.id !== editId),
+      [...deletedMondays]
+    );
+    render();
+    await saveToStorage();
+    closeModal();
+  } catch(err) {
+    alert('Sletting feilet – sjekk internettforbindelsen og prøv igjen.');
+  } finally {
+    if (deleteBtn) { deleteBtn.disabled = false; deleteBtn.textContent = 'Slett'; }
+  }
 }
 
 loadEvents();
