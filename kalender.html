@@ -144,7 +144,6 @@ const TYPE_LABELS = { gig_confirmed: 'Gig – bekreftet', gig_potential: 'Gig �
 const todayDate = new Date();
 let currentMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
 let events = [];
-let deletedMondays = new Set(); // dates (YYYY-MM-DD) explicitly deleted so they don't regenerate
 let editId = null;
 let currentView = "month";
 
@@ -160,42 +159,8 @@ function parseDate(s) {
   const [y,m,d] = s.split('-').map(Number);
   return new Date(y, m-1, d);
 }
-function generateMondays() {
-  const result = [];
-  const d = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-  const end = new Date(todayDate.getFullYear()+1, todayDate.getMonth()+1, 0);
-  while (d.getDay() !== 1) d.setDate(d.getDate() + 1);
-  while (d <= end) {
-    result.push(formatDate(new Date(d)));
-    d.setDate(d.getDate() + 7);
-  }
-  return result;
-}
 
-// Parse server/cache record into {events, deletedMondays}; handles old array format.
-function parseRecord(record) {
-  if (Array.isArray(record)) return { events: record, deletedMondays: [] };
-  return { events: record.events || [], deletedMondays: record.deletedMondays || [] };
-}
-
-// Merge generated mondays into an event list, skipping any that were explicitly deleted.
-function applyGeneratedMondays(evList, delMondays) {
-  const delSet = new Set(delMondays);
-  let list = evList.filter(e => {
-    if (e.id && e.id.startsWith('monday-') && e.title === 'Vanlig øving') {
-      return parseDate(e.date).getDay() === 1;
-    }
-    return true;
-  });
-  const existing = new Set(list.filter(e => e.id && e.id.startsWith('monday-')).map(e => e.date));
-  generateMondays()
-    .filter(d => !existing.has(d) && !delSet.has(d))
-    .forEach(d => list.push({ id: `monday-${d}`, title: 'Vanlig øving', date: d, type: 'practice', drummer: '', notes: '' }));
-  list.sort((a,b) => a.date.localeCompare(b.date));
-  return list;
-}
-
-// Fetch the authoritative state from JSONBin. cache:'no-store' bypasses browser HTTP cache.
+// Fetch the authoritative event list from JSONBin. cache:'no-store' bypasses browser HTTP cache.
 async function fetchFromServer() {
   const res = await fetch(BIN_URL + '/latest', {
     headers: { 'X-Master-Key': API_KEY },
@@ -203,19 +168,20 @@ async function fetchFromServer() {
   });
   if (!res.ok) throw new Error('HTTP ' + res.status);
   const json = await res.json();
-  return parseRecord(json.record);
+  const record = json.record;
+  // Handle old format (plain array) and new format ({events, ...})
+  return Array.isArray(record) ? record : (record.events || []);
 }
 
-// Write current state to JSONBin and update local cache. Throws on failure.
+// Write events to JSONBin and update local cache. Throws on failure.
 async function saveToStorage() {
-  const payload = { events, deletedMondays: [...deletedMondays] };
   const res = await fetch(BIN_URL, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(events),
   });
   if (!res.ok) throw new Error('HTTP ' + res.status);
-  localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+  localStorage.setItem(CACHE_KEY, JSON.stringify(events));
 }
 
 async function loadEvents() {
@@ -223,26 +189,19 @@ async function loadEvents() {
   const cached = localStorage.getItem(CACHE_KEY);
   if (cached) {
     try {
-      const { events: ev, deletedMondays: dm } = parseRecord(JSON.parse(cached));
-      deletedMondays = new Set(dm);
-      events = applyGeneratedMondays(ev, dm);
+      const parsed = JSON.parse(cached);
+      events = Array.isArray(parsed) ? parsed : (parsed.events || []);
       render();
     } catch(e) {}
   }
 
   try {
-    const { events: loaded, deletedMondays: dm } = await fetchFromServer();
-    deletedMondays = new Set(dm);
-    events = applyGeneratedMondays(loaded, dm);
-    // Update local cache only — do NOT write back to the API here.
-    // Writing on every page load was the main source of data loss.
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ events, deletedMondays: [...deletedMondays] }));
+    events = await fetchFromServer();
+    // Update local cache only — do NOT write back to the API on load.
+    localStorage.setItem(CACHE_KEY, JSON.stringify(events));
     render();
   } catch(e) {
-    if (!cached) {
-      events = applyGeneratedMondays([], []);
-      render();
-    }
+    if (!cached) render();
   }
 }
 
@@ -400,10 +359,9 @@ async function saveEvent() {
   if (cancelBtn) cancelBtn.disabled = true;
 
   try {
-    // Always read the latest state from the server before writing.
-    // This prevents a stale browser session from overwriting someone else's changes.
-    const { events: fresh, deletedMondays: dm } = await fetchFromServer();
-    deletedMondays = new Set(dm);
+    // Always read the latest state from the server before writing
+    // so a stale browser session can't overwrite someone else's changes.
+    const fresh = await fetchFromServer();
 
     const ev = {
       title, date,
@@ -415,12 +373,9 @@ async function saveEvent() {
     if (editId) {
       const idx = fresh.findIndex(e => e.id === editId);
       if (idx === -1) {
-        // Event was deleted by someone else while the modal was open.
         alert('Denne hendelsen ble slettet av noen andre. Prøv igjen.');
-        const { events: reloaded, deletedMondays: rdm } = await fetchFromServer();
-        deletedMondays = new Set(rdm);
-        events = applyGeneratedMondays(reloaded, rdm);
-        localStorage.setItem(CACHE_KEY, JSON.stringify({ events, deletedMondays: [...deletedMondays] }));
+        events = await fetchFromServer();
+        localStorage.setItem(CACHE_KEY, JSON.stringify(events));
         render();
         closeModal();
         return;
@@ -431,7 +386,7 @@ async function saveEvent() {
     }
 
     fresh.sort((a,b) => a.date.localeCompare(b.date));
-    events = applyGeneratedMondays(fresh, [...deletedMondays]);
+    events = fresh;
     render();
     await saveToStorage();
     closeModal();
@@ -450,19 +405,8 @@ async function deleteEvent() {
   if (deleteBtn) { deleteBtn.disabled = true; deleteBtn.textContent = 'Sletter...'; }
 
   try {
-    // Read fresh state so we don't wipe other changes made since page load.
-    const { events: fresh, deletedMondays: dm } = await fetchFromServer();
-    deletedMondays = new Set(dm);
-
-    // If this is a generated monday, remember it was deleted so it won't regenerate.
-    if (editId.startsWith('monday-')) {
-      deletedMondays.add(editId.replace('monday-', ''));
-    }
-
-    events = applyGeneratedMondays(
-      fresh.filter(e => e.id !== editId),
-      [...deletedMondays]
-    );
+    const fresh = await fetchFromServer();
+    events = fresh.filter(e => e.id !== editId);
     render();
     await saveToStorage();
     closeModal();
