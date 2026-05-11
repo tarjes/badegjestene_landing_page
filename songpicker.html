@@ -1045,7 +1045,6 @@ function startPointerDrag(e, item, handle) {
   e.preventDefault();
 
   const startClientY = e.clientY;
-  let layoutShift = 0;
   let scrollRaf = null;
   let lastClientY = startClientY;
 
@@ -1053,8 +1052,11 @@ function startPointerDrag(e, item, handle) {
   spList.classList.add('sp-list--dragging');
   item.classList.add('dragging');
 
+  const initialOffsetTop = item.offsetTop;
+
   function applyTransform(clientY) {
-    item.style.transform = `translateY(${clientY - startClientY - layoutShift}px)`;
+    const layoutOffset = item.offsetTop - initialOffsetTop;
+    item.style.transform = `translateY(${clientY - startClientY - layoutOffset}px)`;
   }
   applyTransform(startClientY);
 
@@ -1070,7 +1072,6 @@ function startPointerDrag(e, item, handle) {
       const nr = next.getBoundingClientRect();
       if (mid > nr.top + nr.height / 2) {
         spList.insertBefore(next, item);
-        layoutShift += nr.height;
         applyTransform(lastClientY);
         return;
       }
@@ -1080,7 +1081,6 @@ function startPointerDrag(e, item, handle) {
       const pr = prev.getBoundingClientRect();
       if (mid < pr.top + pr.height / 2) {
         spList.insertBefore(item, prev);
-        layoutShift -= pr.height;
         applyTransform(lastClientY);
       }
     }
