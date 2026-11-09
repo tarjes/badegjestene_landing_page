@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bygg din setliste | Badegjestene</title>
-<meta name="description" content="Sett sammen drømmesetlisten fra Badegjestenes repertoar. Velg låter, se total spilletid og del listen med bandet.">
+<title>Lag din egen setliste | Badegjestene</title>
+<meta name="description" content="Plukk låter fra repertoaret vårt, se hvor lang setlisten blir, og send den til oss.">
 <link rel="canonical" href="https://badegjestene.no/songpicker.html">
 <link rel="icon" type="image/png" href="images/gummiand_favicon.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -646,10 +646,10 @@
 <!-- INTRO -->
 <section class="sp-intro">
   <div class="eyebrow">Setliste-bygger</div>
-  <h1>Sett sammen <em>drømmesetlisten</em></h1>
-  <p class="section-sub">Velg låtene du vil ha fra repertoaret vårt og se nøyaktig hvor lang setlisten blir – inkludert pauser.</p>
+  <h1>Lag din egen <em>setliste</em></h1>
+  <p class="section-sub">Plukk låtene du vil ha fra repertoaret vårt, og se hvor lang setlisten blir, pausene mellom låtene medregnet.</p>
   <div class="sp-intro-badges">
-    <span class="sp-badge">🎵 <strong id="spSongCount">…</strong> låter tilgjengelig</span>
+    <span class="sp-badge">🎵 <strong id="spSongCount">…</strong> låter å velge mellom</span>
     <span class="sp-badge">⏱ 30 sek. mellom hver låt</span>
     <span class="sp-badge">📋 Send listen til oss</span>
   </div>
@@ -707,7 +707,7 @@
       <div class="sp-list" id="spList" aria-label="Din setliste" aria-live="polite">
         <div class="sp-empty" id="spEmpty">
           <span class="sp-empty-icon">🎶</span>
-          Klikk på låter til venstre<br>for å bygge setlisten din
+          Trykk på en låt<br>for å legge den til
         </div>
       </div>
       <div class="sp-total">
@@ -868,7 +868,7 @@ function renderLibrary() {
     : `${songs.length} av ${SONGS.length} låter`;
 
   if (songs.length === 0) {
-    grid.innerHTML = '<div class="sp-no-results"><span>🔍</span>Ingen låter funnet. Prøv et annet søk.</div>';
+    grid.innerHTML = '<div class="sp-no-results"><span>🔍</span>Fant ingen låter. Den har vi kanskje ikke lært oss ennå.</div>';
     return;
   }
 
@@ -1255,7 +1255,7 @@ loadSongs()
   })
   .catch(err => {
     console.error('Kunne ikke laste songs.json', err);
-    grid.innerHTML = '<div class="sp-no-results"><span>⚠️</span>Kunne ikke laste låtene. Last siden på nytt.</div>';
+    grid.innerHTML = '<div class="sp-no-results"><span>⚠️</span>Fikk ikke lastet låtene. Prøv å laste siden på nytt.</div>';
   });
 </script>
 
