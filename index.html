@@ -150,10 +150,13 @@
     <p class="section-sub">Vil du booke oss, eller bare stille et spørsmål?<br>Fyll ut skjemaet – vi svarer innen 24 timer.</p>
     <div class="booking-box">
       <form action="https://formspree.io/f/xwpognyr" method="POST">
-        <input type="text" name="name" placeholder="Navn" required>
         <div class="form-row">
-          <input type="email" name="email" placeholder="E-post" required>
+          <input type="text" name="name" placeholder="Navn" required>
           <input type="tel" name="telefon" placeholder="Telefon" autocomplete="tel" pattern="[+0-9 ]{8,}" title="Skriv inn et gyldig telefonnummer" required>
+        </div>
+        <div class="form-row">
+          <input type="email" name="email" placeholder="E-post" autocomplete="email" required>
+          <input type="email" class="email-confirm" placeholder="Bekreft e-post" autocomplete="off" required>
         </div>
         <div class="form-row">
           <div class="date-wrapper">
@@ -183,7 +186,7 @@
             <option value="" disabled selected>Teknisk</option>
             <option>Ønsker å leie PA og tekniker</option>
             <option>Har PA, trenger tekniker</option>
-            <option>Har alt, bare kom og spill!</option>
+            <option>Har PA og lydtekniker</option>
             <option>Vet ikke</option>
           </select>
         </div>

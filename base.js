@@ -89,3 +89,16 @@ document.querySelectorAll('input[type="date"]').forEach(function (input) {
   input.addEventListener('change', syncDateColor);
   syncDateColor();
 });
+
+document.querySelectorAll('input.email-confirm').forEach(function (confirm) {
+  var email = confirm.form && confirm.form.querySelector('input[name="email"]');
+  if (!email) return;
+  function check() {
+    var a = email.value.trim().toLowerCase();
+    var b = confirm.value.trim().toLowerCase();
+    confirm.setCustomValidity(b && a !== b ? 'E-postadressene er ikke like' : '');
+  }
+  email.addEventListener('input', check);
+  confirm.addEventListener('input', check);
+  confirm.addEventListener('paste', function (e) { e.preventDefault(); });
+});
